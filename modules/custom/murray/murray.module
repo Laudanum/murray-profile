@@ -76,6 +76,8 @@ function get_project_info($tax_name = 'none'){
     
     global $base_url;
     
+    $file_direcoty_path = '/' . file_stream_wrapper_get_instance_by_uri('public://')->getDirectoryPath();
+    
     $output = "<ul>";
     
     $type_id = 0;
@@ -124,7 +126,7 @@ function get_project_info($tax_name = 'none'){
             foreach($file as $file_item){
                 $style_thumbnail = image_style_load('square_thumbnail');
                 image_style_create_derivative($style_thumbnail, $file_item->uri, file_default_scheme() . '://styles/square_thumbnail/public/' . $file_item->filename);
-                $output.= '<li><a href="' . url('node/'.$node_item->nid) . '" class="thumb_nail"><img src="' . $base_url . '/sites/default/files/styles/square_thumbnail/public/' . $file_item->filename . '" alt=""></a></li>';
+                $output.= '<li><a href="' . url('node/'.$node_item->nid) . '" class="thumb_nail"><img src="' . $base_url . $file_direcoty_path . '/styles/square_thumbnail/public/' . $file_item->filename . '" alt=""></a></li>';
             }    
         }    
         
@@ -149,6 +151,8 @@ function get_project_info($tax_name = 'none'){
 function get_project_slide_info($tax_name = 'none'){
     
     global $base_url;
+    
+    $file_direcoty_path = '/' . file_stream_wrapper_get_instance_by_uri('public://')->getDirectoryPath();
     
     $output = "<ul>";
     
@@ -217,12 +221,12 @@ function get_project_slide_info($tax_name = 'none'){
                 $catption_value = "";
                 
                  if($index == 1){
-                    $output .= '<li class="active"><a href="'. url("node/".$node->nid) .'"><img src="' . $base_url . '/sites/default/files/styles/large/public/' . $file_item->filename . '" title="'. $catption_value . '"></a>';
+                    $output .= '<li class="active"><a href="'. url("node/".$node->nid) .'"><img src="' . $base_url . $file_direcoty_path . '/styles/large/public/' . $file_item->filename . '" title="'. $catption_value . '"></a>';
                     $output .= '<div class="detail-info">' . '<p><a href="'. url("node/".$node->nid) .'">' . $title . '</a></p><p><a href="'. url("node/".$node->nid) .'">' . $date_info . '</a></p>' . '</div>';
                     $output .= '</li>';
                  }
                  else{
-                    $output .= '<li ><a href="'. url("node/".$node->nid) .'"><img src="' . $base_url . '/sites/default/files/styles/large/public/' . $file_item->filename . '" title="'. $catption_value . '">';
+                    $output .= '<li ><a href="'. url("node/".$node->nid) .'"><img src="' . $base_url . $file_direcoty_path . '//styles/large/public/' . $file_item->filename . '" title="'. $catption_value . '">';
                     $output .= '<div class="detail-info">' . '<p><a href="'. url("node/".$node->nid) .'">' . $title . '</a></p><p><a href="'. url("node/".$node->nid) .'">' . $date_info . '</a></p>' . '</div>';
                     $output .= '</li>'; 
                  }

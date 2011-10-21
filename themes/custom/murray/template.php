@@ -91,6 +91,8 @@ function murray_preprocess_page(&$variables, $hook) {
   if (isset($variables['node']) && ($variables['node']->type == 'project')) {
       
       global $base_url;
+      
+      $file_direcoty_path = '/' . file_stream_wrapper_get_instance_by_uri('public://')->getDirectoryPath();
     
       $node = $variables['node'];
     
@@ -108,7 +110,7 @@ function murray_preprocess_page(&$variables, $hook) {
       foreach($node->field_downloads as $value){
         foreach($value as $item){
             $fname = $item['filename'];
-            $target_path = $base_url . "/sites/default/files";
+            $target_path = $base_url . $file_direcoty_path;
             $url = str_replace("public://", $target_path, $item['uri']);    
             
             $download .= '<li><a href="' . $url . '" class="download">' . $fname . '</a></li>';
@@ -193,9 +195,9 @@ function murray_preprocess_page(&$variables, $hook) {
             $style_thumbnail = image_style_load('large');
             image_style_create_derivative($style_thumbnail, $file->uri, file_default_scheme() . '://styles/large/public/' . $file->filename);
             if($index == 1)
-                $media_info .= '<li class="active"><a href="'. url("node/".$node->nid) .'"><img src="' . $base_url . '/sites/default/files/styles/large/public/' . $file->filename . '" title="'. $catption_value . '"></a></li>';
+                $media_info .= '<li class="active"><a href="'. url("node/".$node->nid) .'"><img src="' . $base_url . $file_direcoty_path .'/styles/large/public/' . $file->filename . '" title="'. $catption_value . '"></a></li>';
             else
-                $media_info .= '<li ><a href="'. url("node/".$node->nid) .'"><img src="' . $base_url . '/sites/default/files/styles/large/public/' . $file->filename . '" title="'. $catption_value . '"></li>';
+                $media_info .= '<li ><a href="'. url("node/".$node->nid) .'"><img src="' . $base_url . $file_direcoty_path . '/styles/large/public/' . $file->filename . '" title="'. $catption_value . '"></li>';
             
           }
      }
@@ -220,6 +222,8 @@ function murray_preprocess_page(&$variables, $hook) {
   else if (isset($variables['node']) && ($variables['node']->type == 'page')) {
       
       global $base_url;
+      
+      $file_direcoty_path = '/' . file_stream_wrapper_get_instance_by_uri('public://')->getDirectoryPath();
     
       $node = $variables['node'];
     
@@ -237,7 +241,7 @@ function murray_preprocess_page(&$variables, $hook) {
       foreach($node->field_downloads as $value){
         foreach($value as $item){
             $fname = $item['filename'];
-            $target_path = $base_url . "/sites/default/files";
+            $target_path = $base_url . $file_direcoty_path;
             $url = str_replace("public://", $target_path, $item['uri']);    
             
             $download .= '<li><a href="' . $url . '" class="download">' . $fname . '</a></li>';
