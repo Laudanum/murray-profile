@@ -1,0 +1,31 @@
+
+#sidebar div.body { width: 380px; clear: both; margin: 20px 0 10px; }
+#sidebar div.body .viewport { width: 360px; height : 400px; overflow: hidden; position: relative; }
+#sidebar div.body .overview { list-style: none; position: absolute; left: 0; top: 0; }
+#sidebar div.body .thumb .end,
+#sidebar div.body .thumb { 
+	background-color: #ffffff;
+	background-color : rgba(255,255,255,0.9); 
+}
+#sidebar div.body .thumb .end { 
+	border-top-right-radius : 6px;
+	border-top-left-radius : 6px;
+	margin-top : 3px;
+}
+#sidebar div.body .thumb { 
+	border-bottom-right-radius : 6px;
+	border-bottom-left-radius : 6px;
+}
+#sidebar div.body .scrollbar { position: relative; float: right; width: 15px; }
+#sidebar div.body .track { 
+	background-color: #D8EEFD; height: 100%; width:13px; position: relative; padding: 0 1px; 
+	background-color : rgba(255,255,255,0.4);
+	border-radius : 7px;
+	margin-top : 0px;
+}
+#sidebar div.body .thumb { 
+	height: 20px; width: 13px; cursor: pointer; overflow: hidden; position: absolute; top: 0; 
+	border-radius : 6px;
+}
+#sidebar div.body .thumb .end { overflow: hidden; height: 5px; width: 13px; }
+#sidebar div.body .disable{ display: none; }
