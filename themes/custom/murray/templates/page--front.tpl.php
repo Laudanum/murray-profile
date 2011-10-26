@@ -82,9 +82,8 @@
                 </div>
             </div>
             <div id="sidebar-container" class="container_12">
-                <div class="title">
-                    <h2><a href="/node/216" title="Intangible Architecture" description"2011">Intangible Architecture</a></h2>
-                    <div class="meta">2011</div>
+                <div class="title" id="slidecontent">
+                    
                 </div>
                 <div id="sidebar" class="">                
                     <div class="body grid_4">
@@ -93,7 +92,7 @@
                             <div class="overview">
                                 <div class="content">
                                     <?php //print render($page['content']); ?>
-                                    <div id="slidecontent"></div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -105,29 +104,9 @@
            <?php print render($page['main_menu']); ?>
            <?php print render($page['thumbnail_collection']); ?>
             
-            <div id="bottom">
-                <div class="container_12">
-<!--
-                    <div id="installations">
-                        <ul>
-                            <li><a href="javascript: void(0)"><img src="http://placehold.it/79" alt=""/></a></li>
-                            <li><a href="javascript: void(0)"><img src="http://placehold.it/79" alt=""/></a></li>
-                            <li><a href="javascript: void(0)"><img src="http://placehold.it/79" alt=""/></a></li>
-                            <li><a href="javascript: void(0)"><img src="http://placehold.it/79" alt=""/></a></li>
-                            <li><a href="javascript: void(0)"><img src="http://placehold.it/79" alt=""/></a></li>
-                            <li><a href="javascript: void(0)"><img src="http://placehold.it/79" alt=""/></a></li>
-                            <li><a href="javascript: void(0)"><img src="http://placehold.it/79" alt=""/></a></li>
-                            <li><a href="javascript: void(0)"><img src="http://placehold.it/79" alt=""/></a></li>
-                            <li><a href="javascript: void(0)"><img src="http://placehold.it/79" alt=""/></a></li>
-                            <li><a href="javascript: void(0)"><img src="http://placehold.it/79" alt=""/></a></li>
-                            <li><a href="javascript: void(0)"><img src="http://placehold.it/79" alt=""/></a></li>
-                            <li><a href="javascript: void(0)"><img src="http://placehold.it/79" alt=""/></a></li>
-                        </ul>
-                    </div>
--->
-                    <div class="copyright">Copyright 2011 <a href="javascript: void(0)">Ainslie Murray</a> except where noted</div>
-                </div>
-            </div>
+        </div>
+        <div id="bottom">
+                    <div class="copyright">Copyright 2011 <a href="<?php print $front_page; ?>">Ainslie Murray</a></div>
         </div>
         
 

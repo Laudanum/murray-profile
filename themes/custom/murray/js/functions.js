@@ -51,8 +51,11 @@ jQuery(document).ready(function(){
      setInterval( "slideSwitch()", 5000 );
      
      jQuery('div.secondary ul').jcarousel({
-         scroll: 12,
+         scroll:12       
      });
+     
+     
+     
 
     
 
@@ -84,6 +87,7 @@ jQuery(document).ready(function(){
 			}
 */
 		});
+        jQuery("#bottom").show();
 	});
 
 /* show submenu */
@@ -99,7 +103,7 @@ jQuery(document).ready(function(){
             
 		} else {
             //alert('me');
-            jQuery(this).parent().find("a").animate({opacity:1});
+            //jQuery(this).parent().find("a").animate({opacity:1});
 			
 		}
 	});

@@ -23,6 +23,7 @@
 	height : 0;
 	opacity : 0;
 	overflow : hidden;
+    
 }
 .secondary.active {
 	opacity : 1;

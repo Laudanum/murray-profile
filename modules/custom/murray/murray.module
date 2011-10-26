@@ -222,12 +222,13 @@ function get_project_slide_info($tax_name = 'none'){
                 
                  if($index == 1){
                     $output .= '<li class="active"><a href="'. url("node/".$node->nid) .'"><img src="' . $base_url . $file_direcoty_path . '/styles/large/public/' . $file_item->filename . '" title="'. $catption_value . '"></a>';
-                    $output .= '<div class="detail-info">' . '<p><a href="'. url("node/".$node->nid) .'">' . $title . '</a></p><p><a href="'. url("node/".$node->nid) .'">' . $date_info . '</a></p>' . '</div>';
+                    //$output .= '<div class="detail-info">' . '<p><a href="'. url("node/".$node->nid) .'">' . $title . '</a></p><p><a href="'. url("node/".$node->nid) .'">' . $date_info . '</a></p>' . '</div>';
+                    $output .= '<div class="detail-info">' . '<h2><a href="'. url("node/".$node->nid) .'">' . $title . '</a></h2><div class="meta">' . $date_info . '</div>' . '</div>';
                     $output .= '</li>';
                  }
                  else{
                     $output .= '<li ><a href="'. url("node/".$node->nid) .'"><img src="' . $base_url . $file_direcoty_path . '//styles/large/public/' . $file_item->filename . '" title="'. $catption_value . '">';
-                    $output .= '<div class="detail-info">' . '<p><a href="'. url("node/".$node->nid) .'">' . $title . '</a></p><p><a href="'. url("node/".$node->nid) .'">' . $date_info . '</a></p>' . '</div>';
+                    $output .= '<div class="detail-info">' . '<h2><a href="'. url("node/".$node->nid) .'">' . $title . '</a></h2><div class="meta">' . $date_info . '</div>' . '</div>';
                     $output .= '</li>'; 
                  }
                     
