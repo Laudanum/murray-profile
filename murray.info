@@ -8,69 +8,8 @@ version = "0.2"
 ; INSTALL FILES
 files[] = "murray.profile"
 
+; base theme (requires profiler)
+base[] = monograph
 
-; CORE
-; Core
-dependencies[] = contact
-dependencies[] = dblog
-dependencies[] = field_ui
-dependencies[] = file
-dependencies[] = menu
-dependencies[] = path
-dependencies[] = taxonomy
-dependencies[] = toolbar
-dependencies[] = block
-
-; Core other
-dependencies[] = image
-dependencies[] = list
-dependencies[] = number
-dependencies[] = options
-
-; dependencies[] = "color"
-dependencies[] = "comment"
-; dependencies[] = "contextual"
-dependencies[] = "dashboard"
-dependencies[] = "help"
-; dependencies[] = "search"
-dependencies[] = "shortcut"
-dependencies[] = "overlay"
-dependencies[] = "rdf"
-
-; Contrib
-dependencies[] = "features"
-dependencies[] = libraries
-dependencies[] = wysiwyg
-dependencies[] = colorbox
-dependencies[] = date
-dependencies[] = link
-dependencies[] = field_collection
-dependencies[] = entity
-dependencies[] = transliteration
-dependencies[] = token
-dependencies[] = pathauto
-dependencies[] = globalredirect
-dependencies[] = xmlsitemap
-dependencies[] = googleanalytics
-dependencies[] = webform
-dependencies[] = nodequeue
-dependencies[] = smartqueue
-
-dependencies[] = ctools
-dependencies[] = file_entity
-dependencies[] = media
-dependencies[] = media_internet
-dependencies[] = media_vimeo
-dependencies[] = media_youtube
-dependencies[] = insert
-dependencies[] = monograph_media
-; dependencies[] = styles
-; dependencies[] = file_styles
-
-; Monograph features
-dependencies[] = monograph_projects
-dependencies[] = monograph_editors
-; dependencies[] = monograph_permissions
-
-; Murray dependencies
+dependencies[] = profiler
 dependencies[] = nice_menus
