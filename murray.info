@@ -8,8 +8,4 @@ version = "0.2"
 ; INSTALL FILES
 files[] = "murray.profile"
 
-; base theme (requires profiler)
-base = monograph
-
-dependencies[] = profiler
 dependencies[] = nice_menus

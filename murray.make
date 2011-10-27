@@ -11,14 +11,13 @@
 
 ; ---------------------
 ; Include monograph install profile makefile via URL
-; includes[] = https://raw.github.com/queenvictoria/monograph/master/monograph.make
+includes[] = https://raw.github.com/queenvictoria/monograph/master/monograph.make
 
 api = 2
 core = 7.x
 
 ; utils
 projects[nice_menus][subdir] = "contrib"
-projects[profiler][subdir] = "contrib"
 
 projects[zen][type] = "theme"
 projects[zen][subdir] = "contrib"
