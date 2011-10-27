@@ -13,5 +13,5 @@ core = 7.x
 
 projects[murray][type] = "profile"
 projects[murray][download][type] = "git"
-projects[murray][download][url] = "ssh://git@github.com/murray.git"
+projects[murray][download][url] = "ssh://gitrepo/murray.git"
 projects[murray][download][branch] = "master"
