@@ -1,0 +1,17 @@
+; build runs first. it is the single file that begets all others.
+; The installation profile referred to in the build stub should be the projects profile (ie itself).
+; To import elements from other profiles you can use an -include- statement in your profile make file.
+
+includes[] = https://raw.github.com/queenvictoria/monograph/master/monograph.build
+; Installation Profile
+
+api = 2
+core = 7.x
+
+;projects[drupal][type] = core
+;projects[drupal][version] = "7.8"
+
+projects[murray][type] = "profile"
+projects[murray][download][type] = "git"
+projects[murray][download][url] = "ssh://git@github.com/murray.git"
+projects[murray][download][branch] = "master"

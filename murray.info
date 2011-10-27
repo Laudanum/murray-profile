@@ -1,0 +1,13 @@
+; part of our profile
+
+name = Murray
+description = Extend the Monograph profile to suit Ainslie Murray's site
+core = 7.x
+version = "0.2"
+
+; INSTALL FILES
+
+files[] = "monograph.profile"
+files[] = "murray.profile"
+
+dependencies[] = nice_menus
