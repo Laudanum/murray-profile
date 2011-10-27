@@ -1,3 +1,5 @@
 <?php
 	function murray_install() {
+		include_once DRUPAL_ROOT . '/profiles/monograph/monograph.install';
+		monograph_install();
 	}
