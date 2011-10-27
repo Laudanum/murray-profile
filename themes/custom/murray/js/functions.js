@@ -6,6 +6,11 @@ function slideSwitch() {
             jQuery('#slidecontent').html(gallery_info);
         }
         
+        var gallery_body = jQuery('#gallery ul li.active .detail-body').html();
+        if(gallery_info != ""){
+            jQuery('#content').html(gallery_body);
+        }
+        
         
 
         if ( $active.length == 0 ) $active = jQuery('#gallery ul li:last');

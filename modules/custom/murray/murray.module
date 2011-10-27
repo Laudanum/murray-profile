@@ -154,7 +154,8 @@ function get_project_slide_info($tax_name = 'none'){
     
     $file_direcoty_path = '/' . file_stream_wrapper_get_instance_by_uri('public://')->getDirectoryPath();
     
-    $output = "<ul>";
+    //$output = "<ul>";
+    $output = "";
     
     $type_id = 0;
     
@@ -169,7 +170,7 @@ function get_project_slide_info($tax_name = 'none'){
      
      
     
-    $result = db_query("
+    /*$result = db_query("
             SELECT node.title AS node_title, node.nid AS nid, nodequeue_nodes_node.position AS nodequeue_nodes_node_position
             FROM 
             {node} node
@@ -178,10 +179,29 @@ function get_project_slide_info($tax_name = 'none'){
             WHERE (( (node.status = '1') AND (node.type IN  ('project')) AND (field_data_field_project_type.field_project_type_tid = :type_id ) ))
             ORDER BY nodequeue_nodes_node_position ASC ", array(
             ':type_id' => $type_id,
+            ));*/
+    $result = db_query("
+            SELECT node.title AS node_title, node.nid AS nid
+            FROM 
+            {node} node
+            LEFT JOIN {field_data_field_project_type} field_data_field_project_type ON node.nid = field_data_field_project_type.entity_id AND (field_data_field_project_type.entity_type = 'node' AND field_data_field_project_type.deleted = '0')
+            WHERE (( (node.status = '1') AND (node.promote = '1') AND (node.type IN  ('project')) AND (field_data_field_project_type.field_project_type_tid = :type_id ) ))
+            ORDER BY nid desc ", array(
+            ':type_id' => $type_id,
             ));
+            
     
     foreach($result as $node_item){
         $node = node_load($node_item->nid);
+        
+        $body = "";
+        
+        foreach($node->body as $body_item){
+            $body = $body_item[0]['value'];
+        }
+        
+       
+        
         
          $title = $node->title;
          
@@ -224,11 +244,13 @@ function get_project_slide_info($tax_name = 'none'){
                     $output .= '<li class="active"><a href="'. url("node/".$node->nid) .'"><img src="' . $base_url . $file_direcoty_path . '/styles/large/public/' . $file_item->filename . '" title="'. $catption_value . '"></a>';
                     //$output .= '<div class="detail-info">' . '<p><a href="'. url("node/".$node->nid) .'">' . $title . '</a></p><p><a href="'. url("node/".$node->nid) .'">' . $date_info . '</a></p>' . '</div>';
                     $output .= '<div class="detail-info">' . '<h2><a href="'. url("node/".$node->nid) .'">' . $title . '</a></h2><div class="meta">' . $date_info . '</div>' . '</div>';
+                    $output .= '<div class="detail-body">' . $body. '</div>';
                     $output .= '</li>';
                  }
                  else{
                     $output .= '<li ><a href="'. url("node/".$node->nid) .'"><img src="' . $base_url . $file_direcoty_path . '//styles/large/public/' . $file_item->filename . '" title="'. $catption_value . '">';
                     $output .= '<div class="detail-info">' . '<h2><a href="'. url("node/".$node->nid) .'">' . $title . '</a></h2><div class="meta">' . $date_info . '</div>' . '</div>';
+                    $output .= '<div class="detail-body">' . $body. '</div>';
                     $output .= '</li>'; 
                  }
                     
@@ -240,9 +262,10 @@ function get_project_slide_info($tax_name = 'none'){
     
     //print $output ."</ul>";
     
-    $output .= "</ul>";
+    //$output .= "</ul>";
     
-    if($output == "<ul></ul>") $output = "";
+    //if($output == "<ul></ul>") $output = "";
+    
     
     return $output;
     
@@ -276,7 +299,7 @@ function murray_get_thumbnails() {
 }
 
 function murray_get_slideshow() {
-    $output = "";
+    $output = "<ul>";
     
     $pdata = db_query("SELECT d.tid as id, d.name FROM {taxonomy_vocabulary} v inner join {taxonomy_term_data} d on v.vid = d.vid WHERE v.machine_name = :name order by name ", array(
           ':name' => 'project_type',
@@ -293,6 +316,10 @@ function murray_get_slideshow() {
         $output .= get_project_slide_info($term_name);
         
     }
+    
+    $output .= "</ul>";
+    if($output == "<ul></ul>") $output = "";
+    
     
     return $output;
 }

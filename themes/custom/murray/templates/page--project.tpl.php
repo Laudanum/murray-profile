@@ -87,8 +87,8 @@
     </div>
     <div id="sidebar-container" class="container_12">
         <div class="title">
-            <h2><a href="<?php print $node_url; ?>" title="<?php print $node_title; ?>" description"<?php print $created_date; ?>"><?php print $node_title; ?></a></h2>
-            <div class="meta"><?php print $created_date; ?></div>
+            <h2><a href="<?php print $node_url; ?>" title="<?php print $node_title; ?>" description"<?php print $date_info; ?>"><?php print $node_title; ?></a></h2>
+            <div class="meta"><?php print $date_info; ?></div>
         </div>
         <div id="sidebar" class="">                
             <div class="body grid_4">
@@ -96,6 +96,9 @@
                 <div class="viewport">
                     <div class="overview">
                         <div class="content">
+                            <?php if ($tabs = render($tabs)): ?>
+                                <div class="tabs"><?php print $tabs; ?></div>
+                            <?php endif; ?>
                             <?php print $body; ?></p>
                         </div>
                         <div class="media">

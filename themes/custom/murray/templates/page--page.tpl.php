@@ -96,6 +96,9 @@
                 <div class="viewport">
                     <div class="overview">
                         <div class="content">
+                        <?php if ($tabs = render($tabs)): ?>
+                        <div class="tabs"><?php print $tabs; ?></div>
+                      <?php endif; ?>
                             <?php print $body; ?></p>
                         </div>
                         <div class="media">

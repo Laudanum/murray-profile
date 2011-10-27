@@ -289,11 +289,22 @@ a:focus {
 	overflow : hidden;
     z-index: 8;
 }
+#gallery ul li {
+    display: none;
+    
+}
 #gallery ul li.active {
     z-index: 10;
 }
+#gallery ul li.active{
+    display: block;
+ 
+}
 
 #gallery ul li .detail-info {
+    display: none;
+}
+#gallery ul li .detail-body {
     display: none;
 }
 

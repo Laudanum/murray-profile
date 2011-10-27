@@ -69,7 +69,7 @@
  */
 ?>
   <div id="gallery">
-    <?php print render($page['gallery_collection']); ?>
+    
   </div>
  
         <div id="wrapper">
@@ -90,8 +90,11 @@
                         <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
                         <div class="viewport">
                             <div class="overview">
-                                <div class="content" id="content">
-                                    <?php //print render($page['content']); ?>
+                                <div class="content">
+                                    <?php if ($tabs = render($tabs)): ?>
+                                        <div class="tabs"><?php print $tabs; ?></div>
+                                    <?php endif; ?>
+                                    <?php print render($page['content']); ?>
                                     
                                 </div>
                             </div>

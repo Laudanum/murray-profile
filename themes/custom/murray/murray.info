@@ -1,6 +1,6 @@
 screenshot  = screenshot.png
-name        = Murray
-description = Custom theme for the Ainslie Murray site
+name        = Murry
+description = Murry Site.
 
 core        = 7.x
 base theme  = zen
