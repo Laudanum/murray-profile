@@ -104,8 +104,8 @@ a:focus {
 }
 #sidebar ul, #sidebar ul li {
   list-style : none;
-  margin : none;
-  padding : none;
+  margin : 0;
+  padding : 0;
 }
 #sidebar a.download {
 	text-decoration: none;
@@ -117,7 +117,7 @@ a:focus {
   text-decoration : underline;
 }
 #sidebar a.download.application-pdf {
-	background: url("../images/icons.png") no-repeat 3px 0 scroll transparent;
+	background: url("../images/icons.png") no-repeat 0 3px scroll transparent;
 	padding-left: 35px;
 }
 #sidebar a.download.application-pdf:hover {
