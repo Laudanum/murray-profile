@@ -107,6 +107,10 @@ a:focus {
   margin : 0;
   padding : 0;
 }
+
+#sidebar .media {
+  margin-bottom : 2em;
+}
 #sidebar a.download {
 	text-decoration: none;
 	font-size: 11px;
