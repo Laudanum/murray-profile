@@ -112,7 +112,7 @@ function murray_preprocess_page(&$variables, $hook) {
             $fname = isset($item['description']) ? $item['description'] : $item['filename'];
             $target_path = $base_url . $file_direcoty_path;
 //            $url = str_replace("public://", $target_path, $item['uri']);
-			$url = url($item['uri']);
+			$url = file_create_url($item['uri']);
 			$mimetype = str_replace("/", "-", $item['filemime']);
             
             $download .= '<li><a href="' . $url . '" class="download ' . $mimetype . '">' . $fname . '</a></li>';
