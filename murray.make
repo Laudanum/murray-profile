@@ -19,6 +19,6 @@ core = 7.x
 ; utils
 projects[nice_menus][subdir] = "contrib"
 
-projects[zen][type] = "theme"
+; projects[zen][type] = "theme"
 projects[zen][subdir] = "contrib"
 
