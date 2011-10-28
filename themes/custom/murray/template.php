@@ -109,10 +109,7 @@ function murray_preprocess_page(&$variables, $hook) {
       $download = "<ul>";
       foreach($node->field_downloads as $value){
         foreach($value as $item){
-	print "<!-- ";
-	print_r($item);
-	print " -->";
-            $fname = $item['filename'];
+            $fname = isset($item['description']) ? $item['description'] : $item['filename'];
             $target_path = $base_url . $file_direcoty_path;
             $url = str_replace("public://", $target_path, $item['uri']);    
             
