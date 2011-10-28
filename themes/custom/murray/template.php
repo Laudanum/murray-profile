@@ -114,7 +114,7 @@ function murray_preprocess_page(&$variables, $hook) {
             $url = str_replace("public://", $target_path, $item['uri']);
 			$mimetype = str_replace("/", "-", $item['filemime']);
             
-            $download .= '<li><a href="' . $url . '" class="download $mimetype">' . $fname . '</a></li>';
+            $download .= '<li><a href="' . $url . '" class="download ' . $mimetype . '">' . $fname . '</a></li>';
         }   
         
       }
