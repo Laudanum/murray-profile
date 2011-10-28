@@ -43,6 +43,7 @@
 	width : 1140px;
 	margin-left : auto;
 	margin-right : auto;
+    z-index: 50;
 }
 
 #primary-links > ul > li {

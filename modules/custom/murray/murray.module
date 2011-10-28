@@ -117,16 +117,30 @@ function get_project_info($tax_name = 'none'){
             }
         }
         
+       
+        
         //Get File info.
         if(!empty($first_image)) {
+      
             $file = db_query("Select * from {file_managed} Where fid = :fid",array(
             ':fid' => $first_image['fid']
             ));
             
+            $caption_value = "";
+            if(isset($first_image['file']) && !empty($first_image['file'])){
+                $media_caption = $first_image['file']->field_media_caption;
+                
+                if(!empty($media_caption)){
+                foreach($media_caption as $item)
+                    $caption_value = $item[0]['value'];
+                }
+                
+            }
+            
             foreach($file as $file_item){
                 $style_thumbnail = image_style_load('square_thumbnail');
                 image_style_create_derivative($style_thumbnail, $file_item->uri, file_default_scheme() . '://styles/square_thumbnail/public/' . $file_item->filename);
-                $output.= '<li><a href="' . url('node/'.$node_item->nid) . '" class="thumb_nail"><img src="' . $base_url . $file_direcoty_path . '/styles/square_thumbnail/public/' . $file_item->filename . '" alt=""></a></li>';
+                $output.= '<li><a href="' . url('node/'.$node_item->nid) . '" class="thumb_nail"'.' title="'. $caption_value . '"><img src="' . $base_url . $file_direcoty_path . '/styles/square_thumbnail/public/' . $file_item->filename . '" title="'. $caption_value . '" /></a></li>';
             }    
         }    
         
@@ -232,23 +246,39 @@ function get_project_slide_info($tax_name = 'none'){
             ':fid' => $first_image['fid']
             ));
             
+            $caption_value = "";
+            
+            if(isset($first_image['file']) && !empty($first_image['file'])){
+                $media_caption = $first_image['file']->field_media_caption;
+                
+                //print "<pre>";
+                //print_r($media_caption);
+                //print "</pre>";
+                //exit(0);
+                
+                
+                if(!empty($media_caption)){
+                foreach($media_caption as $item)
+                    $caption_value = $item[0]['value'];
+                }
+                    
+            }
+            
             $index = 0;
             foreach($file as $file_item){
                 $index++;
                 $style_thumbnail = image_style_load('large');
                 image_style_create_derivative($style_thumbnail, $file_item->uri, file_default_scheme() . '://styles/large/public/' . $file_item->filename);
                 
-                $catption_value = "";
-                
                  if($index == 1){
-                    $output .= '<li class="active"><a href="'. url("node/".$node->nid) .'"><img src="' . $base_url . $file_direcoty_path . '/styles/large/public/' . $file_item->filename . '" title="'. $catption_value . '"></a>';
+                    $output .= '<li class="active"><a href="'. url("node/".$node->nid) .'" title="'. $caption_value . '" ><img src="' . $base_url . $file_direcoty_path . '/styles/large/public/' . $file_item->filename . '" title="'. $caption_value . '" /></a>';
                     //$output .= '<div class="detail-info">' . '<p><a href="'. url("node/".$node->nid) .'">' . $title . '</a></p><p><a href="'. url("node/".$node->nid) .'">' . $date_info . '</a></p>' . '</div>';
                     $output .= '<div class="detail-info">' . '<h2><a href="'. url("node/".$node->nid) .'">' . $title . '</a></h2><div class="meta">' . $date_info . '</div>' . '</div>';
                     $output .= '<div class="detail-body">' . $body. '</div>';
                     $output .= '</li>';
                  }
                  else{
-                    $output .= '<li ><a href="'. url("node/".$node->nid) .'"><img src="' . $base_url . $file_direcoty_path . '//styles/large/public/' . $file_item->filename . '" title="'. $catption_value . '">';
+                    $output .= '<li ><a href="'. url("node/".$node->nid) .'" title="'. $caption_value . '"><img src="' . $base_url . $file_direcoty_path . '//styles/large/public/' . $file_item->filename . '" title="'. $caption_value . '" />';
                     $output .= '<div class="detail-info">' . '<h2><a href="'. url("node/".$node->nid) .'">' . $title . '</a></h2><div class="meta">' . $date_info . '</div>' . '</div>';
                     $output .= '<div class="detail-body">' . $body. '</div>';
                     $output .= '</li>'; 

@@ -52,8 +52,14 @@ jQuery(document).ready(function(){
 //		jQuery(this).hide();
 	});
     
+    var length = jQuery('#gallery ul li').length;
     
-     setInterval( "slideSwitch()", 5000 );
+    if(length > 1) {
+     setInterval( "slideSwitch()", 5000 );   
+    }
+    
+    
+     
      
      jQuery('div.secondary ul').jcarousel({
          scroll:12       
@@ -79,6 +85,7 @@ jQuery(document).ready(function(){
 */
 //refactor with intent or timer
 	jQuery(".secondary").hover(function(event){
+        //alert('okay');
 		jQuery(secondary+","+primary).stop();					
 	},function(event){
 		jQuery(".secondary").animate({height:0, opacity:0}, "slow", "swing", function() {
@@ -108,7 +115,7 @@ jQuery(document).ready(function(){
             
 		} else {
             //alert('me');
-            //jQuery(this).parent().find("a").animate({opacity:1});
+           jQuery(this).parent().find("a").animate({opacity:1});
 			
 		}
 	});
@@ -124,7 +131,7 @@ jQuery(document).ready(function(){
         var current_name = taxnomy_name[taxnomy_name.length - 1];
         
         jQuery(".secondary").animate({height:0, opacity:0}, "slow", "swing");    
-        jQuery('#works-'+ current_name).animate({height:94, bottom:95, opacity:1}, "slow", "swing");    
+        jQuery('#works-'+ current_name).animate({height:95, bottom:95, opacity:1}, "slow", "swing");    
         
         /*jQuery.ajax({
           url: "murray_thumbnail/" + current_name,

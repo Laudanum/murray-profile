@@ -90,7 +90,8 @@ function murray_preprocess_page(&$variables, $hook) {
   
   if (isset($variables['node']) && ($variables['node']->type == 'project')) {
       
-      global $base_url;
+      global $base_url,$user;
+      
       
       $file_direcoty_path = '/' . file_stream_wrapper_get_instance_by_uri('public://')->getDirectoryPath();
     
@@ -138,6 +139,12 @@ function murray_preprocess_page(&$variables, $hook) {
           $bundle = $p_item->field_data_field_property_bundle;
           $property_value = $p_item->field_data_field_property_field_property_value;
           
+          $property_edit_url = url('field-collection/field-property/' . $property_value . '/edit?destination=node/' . $node->nid);
+          
+          
+          
+          
+          
           $result = db_query("Select property_key.field_property_key_tid as id, term_data.name, property_value.field_property_value_value as value From 
           (field_data_field_property_key  property_key
           Inner Join field_data_field_property_value property_value On property_key.entity_id = property_value.entity_id) Inner Join taxonomy_term_data term_data on property_key.field_property_key_tid = term_data.tid
@@ -145,8 +152,15 @@ function murray_preprocess_page(&$variables, $hook) {
           ':id' => $property_value,
           ));
           
+          
           foreach($result as $item) {
               $project_property .= "<dt>" . $item->name . "</dt><dd>". strip_tags($item->value,'<a>') . "</dd>";
+              if($user->uid != 0){
+                  
+                if(in_array('editor user',$user->roles) || in_array('administrator',$user->roles) ) {
+                    $project_property .= "<dd><a href='" . $property_edit_url . "' class='edit_property'>Edit</a></dd>";
+                }
+              }
           }
           
       }
@@ -187,9 +201,11 @@ function murray_preprocess_page(&$variables, $hook) {
             $caption_value = "";
             
             if(!empty($caption)){
-                foreach($catption as $item)
+                foreach($caption as $item)
                     $caption_value = $item[0]['value'];
             }
+            
+            
             
             $index++;
             
@@ -197,13 +213,16 @@ function murray_preprocess_page(&$variables, $hook) {
             $style_thumbnail = image_style_load('large');
             image_style_create_derivative($style_thumbnail, $file->uri, file_default_scheme() . '://styles/large/public/' . $file->filename);
             if($index == 1)
-                $media_info .= '<li class="active"><a href="'. url("node/".$node->nid) .'"><img src="' . $base_url . $file_direcoty_path .'/styles/large/public/' . $file->filename . '" title="'. $catption_value . '"></a></li>';
+                $media_info .= '<li class="active"><a href="'. url("node/".$node->nid) .'" title="'. $caption_value . '"><img src="' . $base_url . $file_direcoty_path .'/styles/large/public/' . $file->filename . '" title="'. $caption_value . '" /></a></li>';
             else
-                $media_info .= '<li ><a href="'. url("node/".$node->nid) .'"><img src="' . $base_url . $file_direcoty_path . '/styles/large/public/' . $file->filename . '" title="'. $catption_value . '"></li>';
+                $media_info .= '<li ><a href="'. url("node/".$node->nid) .'" title="'. $caption_value . '"><img src="' . $base_url . $file_direcoty_path . '/styles/large/public/' . $file->filename . '" title="'. $caption_value . '" /></li>';
             
           }
      }
      $media_info .= "</ul>";
+     
+     
+     
      
      if($media_info == "<ul></ul>") 
         $media_info = "";
