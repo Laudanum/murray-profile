@@ -111,16 +111,17 @@ a:focus {
 	text-decoration: none;
 	font-size: 11px;
 	color: #444444;
+	display : block;
 }
 #sidebar a.download:hover {
   text-decoration : underline;
 }
 #sidebar a.download.application-pdf {
-	background: url("../images/icons.png") no-repeat 0 0 scroll transparent;
+	background: url("../images/icons.png") no-repeat 3px 0 scroll transparent;
 	padding-left: 35px;
 }
 #sidebar a.download.application-pdf:hover {
-	background: url("../images/icons.png") no-repeat 0 -26px scroll transparent;
+	background: url("../images/icons.png") no-repeat 0 -23px scroll transparent;
 }
 
 
