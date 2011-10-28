@@ -103,6 +103,23 @@ a:focus {
 	width: 236px;
 }
 
+#sidebar a.download {
+	text-decoration: none;
+	font-size: 11px;
+	color: #444444;
+}
+#sidebar a.download:hover {
+  text-decoration : underline;
+}
+#sidebar a.download.application.pdf {
+	background: url("../images/icons.png") no-repeat 0 0 scroll transparent;
+	padding-left: 35px;
+}
+#sidebar a.download.application.pdf:hover {
+	background: url("../images/icons.png") no-repeat 0 -26px scroll transparent;
+}
+
+
 #wrapper .toggle {
 	position : absolute;
 	top : 0;
