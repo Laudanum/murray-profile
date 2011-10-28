@@ -84,6 +84,25 @@ a:focus {
 	overflow : auto;
 	max-height : 400px;
 }
+
+#sidebar .properties dl {
+	margin: 0;
+	overflow: hidden;
+}
+#sidebar .properties dl dt {
+	display: block;
+	float: left;
+	width: 100px;
+	margin-right: 10px;
+	font-style: italic;
+	color: #666666;
+}
+#sidebar .properties dl dd {
+	display: block;
+	float: left;
+	width: 236px;
+}
+
 #wrapper .toggle {
 	position : absolute;
 	top : 0;
