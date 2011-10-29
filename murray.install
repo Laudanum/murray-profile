@@ -2,4 +2,8 @@
 	function murray_install() {
 		include_once DRUPAL_ROOT . '/profiles/monograph/monograph.install';
 		monograph_install();
+		
+
+  		theme_enable(array('murray'));
+  		variable_set('theme_default', 'murray');
 	}

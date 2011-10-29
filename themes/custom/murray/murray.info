@@ -1,6 +1,6 @@
 screenshot  = screenshot.png
-name        = Murry
-description = Murry Site.
+name        = Murray
+description = Murray Site.
 
 core        = 7.x
 base theme  = zen
