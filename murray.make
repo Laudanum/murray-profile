@@ -16,6 +16,13 @@ includes[] = https://raw.github.com/queenvictoria/monograph/master/monograph.mak
 api = 2
 core = 7.x
 
+; profiles
+
+projects[monograph][type] = "profile"
+projects[monograph][download][type] = "git"
+projects[monograph][download][url] = "https://github.com/queenvictoria/monograph.git"
+projects[monograph][download][branch] = "master"
+
 ; utils
 projects[nice_menus][subdir] = "contrib"
 
