@@ -77,18 +77,11 @@
 </div>
 
 <div id="wrapper">
-    <div id="header" class="menu secondary active container_12">
-        <div id="name-and-slogan" class="grid_9 push_3">
-            <h1 class="site-name"><a href="<?php print $front_page; ?>"><?php print $site_name; ?></a></h1>
-            <div id="site-slogan">
-               <?php  print $site_slogan; ?>
-            </div>
-        </div>
-    </div>
+    
     <div id="sidebar-container" class="container_12">
         <div class="title">
             <h2><a href="<?php print $node_url; ?>" title="<?php print $node_title; ?>" description"<?php print $date_info; ?>"><?php print $node_title; ?></a></h2>
-            <div class="meta"><?php print $date_info; ?></div>
+            <div class="meta"></div>
         </div>
         <div id="sidebar" class="">                
             <div class="body grid_4">

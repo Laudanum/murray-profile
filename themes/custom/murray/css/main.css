@@ -84,51 +84,6 @@ a:focus {
 	overflow : auto;
 	max-height : 400px;
 }
-
-#sidebar .properties dl {
-	margin: 0;
-	overflow: hidden;
-}
-#sidebar .properties dl dt {
-	display: block;
-	float: left;
-	width: 72px;
-	margin-right: 10px;
-	font-style: italic;
-	color: #666666;
-}
-#sidebar .properties dl dd {
-	display: block;
-	float: left;
-	width: 236px;
-}
-#sidebar ul, #sidebar ul li {
-  list-style : none;
-  margin : 0;
-  padding : 0;
-}
-
-#sidebar .media {
-  margin-bottom : 2em;
-}
-#sidebar a.download {
-	text-decoration: none;
-	font-size: 11px;
-	color: #444444;
-	display : block;
-}
-#sidebar a.download:hover {
-  text-decoration : underline;
-}
-#sidebar a.download.application-pdf {
-	background: url("../images/icons.png") no-repeat 0 3px scroll transparent;
-	padding-left: 35px;
-}
-#sidebar a.download.application-pdf:hover {
-	background: url("../images/icons.png") no-repeat 0 -23px scroll transparent;
-}
-
-
 #wrapper .toggle {
 	position : absolute;
 	top : 0;
@@ -369,6 +324,12 @@ a:focus {
 
 ul.nice-menu ul {
     border-top: 0px !important;
+}
+
+a.edit_property {
+    text-decoration: none;
+    color: #444444;
+    font-weight: bold;
 }
 
 #footer {
