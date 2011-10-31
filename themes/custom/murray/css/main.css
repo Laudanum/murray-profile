@@ -32,11 +32,15 @@ a:focus {
 	margin-right: 10px;
 	font-style: italic;
 	color: #666666;
+	clear : both;
 }
 #sidebar .properties dl dd {
 	display: block;
 	float: left;
 	width: 236px;
+}
+#sidebar .properties dl dd.item-edit {
+  width : 42px;
 }
 #sidebar ul, #sidebar ul li {
   list-style : none;

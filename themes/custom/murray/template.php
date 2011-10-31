@@ -154,11 +154,11 @@ function murray_preprocess_page(&$variables, $hook) {
           
           
           foreach($result as $item) {
-              $project_property .= "<dt>" . $item->name . "</dt><dd>". strip_tags($item->value,'<a>') . "</dd>";
+              $project_property .= "<dt>" . $item->name . "</dt><dd class='item-value'>". strip_tags($item->value,'<a>') . "</dd>";
               if($user->uid != 0){
                   
                 if(in_array('editor user',$user->roles) || in_array('administrator',$user->roles) ) {
-                    $project_property .= "<dd><a href='" . $property_edit_url . "' class='edit_property'>Edit</a></dd>";
+                    $project_property .= "<dd class='item-edit'><a href='" . $property_edit_url . "' class='edit_property'>Edit</a></dd>";
                 }
               }
           }
