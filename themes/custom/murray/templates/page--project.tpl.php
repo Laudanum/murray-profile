@@ -81,7 +81,7 @@
     <div id="sidebar-container" class="container_12">
         <div class="title">
             <h2><a href="<?php print $node_url; ?>" title="<?php print $node_title; ?>" description"<?php print $date_info; ?>"><?php print $node_title; ?></a></h2>
-            <div class="meta"></div>
+			<div class="meta"><?php print $date_info; ?></div>
         </div>
         <div id="sidebar" class="">                
             <div class="body grid_4">
@@ -100,7 +100,6 @@
                         <div id="field_property" class="properties">
                             <div><?php print $project_property; ?></div>
                             <div><?php print $link_info; ?></div>
-                            <div><?php print $date_info; ?></div>
                         </div>
                     </div>
                 </div>
