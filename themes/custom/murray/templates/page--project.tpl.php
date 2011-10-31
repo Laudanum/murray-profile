@@ -92,11 +92,13 @@
                             <?php if ($tabs = render($tabs)): ?>
                                 <div class="tabs"><?php print $tabs; ?></div>
                             <?php endif; ?>
-                            <?php print $body; ?></p>
+                            <?php print $body; ?>
                         </div>
+						<?php if ( isset($download)): ?>
                         <div class="media">
                             <?php print $download; ?>
                         </div>
+						<?php endif; ?>
                         <div id="field_property" class="properties">
                             <div><?php print $project_property; ?></div>
                             <div><?php print $link_info; ?></div>
