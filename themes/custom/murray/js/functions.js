@@ -88,7 +88,10 @@ jQuery(document).ready(function(){
         //alert('okay');
 		jQuery(secondary+","+primary).stop();					
 	},function(event){
-		jQuery(".secondary").animate({height:0, opacity:0}, "slow", "swing", function() {
+// only exit if we're exiting up
+			if ( event.pageY < jQuery(this).offset().top ) {
+//    	  alert('exit ' + event.pageY + " " + jQuery(this).offset().top);
+    		jQuery(".secondary").animate({height:0, opacity:0}, "slow", "swing", function() {
 //	if we exit from the top close primary
 //	dont' close the primary menu any more
 /*
@@ -98,8 +101,9 @@ jQuery(document).ready(function(){
 			} else {
 			}
 */
-		});
-        jQuery("#bottom").show();
+		    });
+	    }
+      jQuery("#bottom").show();
 	});
 
 /* show submenu */
@@ -130,7 +134,7 @@ jQuery(document).ready(function(){
         var taxnomy_name = taxnomy_name_list.split("/");
         var current_name = taxnomy_name[taxnomy_name.length - 1];
         
-        jQuery(".secondary").animate({height:0, opacity:0}, "slow", "swing");    
+        jQuery(".secondary").animate({height:0, opacity:0}, "fast", "swing");    
         jQuery('#works-'+ current_name).animate({height:95, bottom:95, opacity:1}, "slow", "swing");    
         
         /*jQuery.ajax({
