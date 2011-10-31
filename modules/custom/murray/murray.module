@@ -307,7 +307,6 @@ function get_project_slide_info($tax_name = 'none'){
 }
 
 function murray_get_thumbnails() {
-	print "<h1> get thumbnails</h1>";
     $output = "";
     
     $pdata = db_query("SELECT d.tid as id, d.name FROM {taxonomy_vocabulary} v inner join {taxonomy_term_data} d on v.vid = d.vid WHERE v.machine_name = :name order by name ", array(
