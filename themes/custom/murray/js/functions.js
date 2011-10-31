@@ -89,9 +89,10 @@ jQuery(document).ready(function(){
 		jQuery(secondary+","+primary).stop();					
 	},function(event){
 // only exit if we're exiting up
-			if ( event.pageY < jQuery(this).offset().top ) {
-//    	  alert('exit ' + event.pageY + " " + jQuery(this).offset().top);
-    		jQuery(".secondary").animate({height:0, opacity:0}, "slow", "swing", function() {
+			if ( event.pageY < jQuery(this).offset().top && jQuery(this).hasClass("active") ) {
+//			  jQuery(this).css("border", "1px solid red");
+//    	  alert('exit event y ' + event.pageY + " this top " + jQuery(this).offset().top);
+    		jQuery(this).animate({height:0, opacity:0}, "slow", "swing", function() {
 //	if we exit from the top close primary
 //	dont' close the primary menu any more
 /*
@@ -115,7 +116,9 @@ jQuery(document).ready(function(){
 //	if we are not exiting up then close it up
 		if ( event.pageY > jQuery(primary).offset().top ) {
 			jQuery(this).animate({opacity:0}).parent().removeClass("active");
-			jQuery(".secondary").animate({height:0, opacity:0}, "slow", "swing");
+//			alert("close from primary ul ul exit")
+//  why are we closing here ? probably from old hover interaction
+//			jQuery(".secondary").animate({height:0, opacity:0}, "slow", "swing");
             
 		} else {
             //alert('me');
@@ -133,9 +136,9 @@ jQuery(document).ready(function(){
         
         var taxnomy_name = taxnomy_name_list.split("/");
         var current_name = taxnomy_name[taxnomy_name.length - 1];
-        
-        jQuery(".secondary").animate({height:0, opacity:0}, "fast", "swing");    
-        jQuery('#works-'+ current_name).animate({height:95, bottom:95, opacity:1}, "slow", "swing");    
+//        alert("Closing others")
+        jQuery(".secondary.active").removeClass("active").animate({height:0, opacity:0}, "fast", "swing");    
+        jQuery('#works-'+ current_name).addClass("active").animate({height:95, bottom:95, opacity:1}, "slow", "swing");    
         
         /*jQuery.ajax({
           url: "murray_thumbnail/" + current_name,
