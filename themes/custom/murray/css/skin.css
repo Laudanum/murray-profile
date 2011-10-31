@@ -23,7 +23,7 @@
 
 .secondary .jcarousel-clip-horizontal {
     width:  1058px;
-    height: 79px;
+    height: 95px;
 }
 
 .secondary .jcarousel-clip-vertical {
@@ -31,13 +31,13 @@
 }
 
 .secondary .jcarousel-item {
-    width: 79px;
-    height: 79px;
+    width: 95px;
+    height: 95px;
 }
 
 .secondary .jcarousel-item-horizontal {
     margin-left: 0;
-    margin-right: 10px;
+    margin-right: 0;
 }
 
 .secondary .jcarousel-direction-rtl .jcarousel-item-horizontal {
