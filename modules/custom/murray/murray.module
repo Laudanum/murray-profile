@@ -97,7 +97,7 @@ function get_project_info($tax_name = 'none'){
             SELECT node.title AS node_title, node.nid AS nid, nodequeue_nodes_node.position AS nodequeue_nodes_node_position
             FROM 
             {node} node
-            INNER JOIN {nodequeue_nodes} nodequeue_nodes_node ON node.nid = nodequeue_nodes_node.nid AND nodequeue_nodes_node.qid = '1'
+            Left JOIN {nodequeue_nodes} nodequeue_nodes_node ON node.nid = nodequeue_nodes_node.nid AND nodequeue_nodes_node.qid = '1'
             LEFT JOIN {field_data_field_project_type} field_data_field_project_type ON node.nid = field_data_field_project_type.entity_id AND (field_data_field_project_type.entity_type = 'node' AND field_data_field_project_type.deleted = '0')
             WHERE (( (node.status = '1') AND (node.type IN  ('project')) AND (field_data_field_project_type.field_project_type_tid = :type_id ) ))
             ORDER BY nodequeue_nodes_node_position ASC ", array(
@@ -140,9 +140,11 @@ function get_project_info($tax_name = 'none'){
             foreach($file as $file_item){
                 $style_thumbnail = image_style_load('square_thumbnail');
                 image_style_create_derivative($style_thumbnail, $file_item->uri, file_default_scheme() . '://styles/square_thumbnail/public/' . $file_item->filename);
-                $output.= '<li><a href="' . url('node/'.$node_item->nid) . '" class="thumb_nail"'.' title="'. $caption_value . '"><img src="' . $base_url . $file_direcoty_path . '/styles/square_thumbnail/public/' . $file_item->filename . '" title="'. $caption_value . '" /></a></li>';
+                $output.= '<li><a href="' . url('node/'.$node_item->nid) . '" class="thumb_nail"'.' title="'. $node_item->node_title . '"><img src="' . $base_url . $file_direcoty_path . '/styles/square_thumbnail/public/' . $file_item->filename . '" title="'. $node_item->node_title . '" /></a></li>';
             }    
-        }    
+        } else {
+            $output.= '<li><a href="' . url('node/'.$node_item->nid) . '" class="thumb_nail"'.' title="'. $node_item->node_title . '">'.$node_item->node_title.'</a></li>';    
+        }        
         
         
     }
