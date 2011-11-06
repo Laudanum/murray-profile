@@ -107,15 +107,15 @@ function murray_preprocess_page(&$variables, $hook) {
         $body .= $node->body[$key][0]['safe_value'];
       }
       
-	    if ( count($node->field_downloads) ) {
+        if ( count($node->field_downloads) ) {
         $download = "<ul>";
         foreach($node->field_downloads as $value){
           foreach($value as $item){
               $fname = isset($item['description']) ? $item['description'] : $item['filename'];
               $target_path = $base_url . $file_direcoty_path;
   //            $url = str_replace("public://", $target_path, $item['uri']);
-  			$url = file_create_url($item['uri']);
-  			$mimetype = str_replace("/", "-", $item['filemime']);
+              $url = file_create_url($item['uri']);
+              $mimetype = str_replace("/", "-", $item['filemime']);
             
               $download .= '<li><a href="' . $url . '" class="download ' . $mimetype . '">' . $fname . '</a></li>';
           }   
@@ -140,11 +140,9 @@ function murray_preprocess_page(&$variables, $hook) {
           $bundle = $p_item->field_data_field_property_bundle;
           $property_value = $p_item->field_data_field_property_field_property_value;
           
-          $property_edit_url = url('field-collection/field-property/' . $property_value . '/edit?destination=node/' . $node->nid);
-          
-          
-          
-          
+          $property_add_url = $base_url.'/field-collection/field-property/add/node/' . $node->nid . '?destination=node/' . $node->nid;
+          $property_edit_url = $base_url.'/field-collection/field-property/' . $property_value . '/edit?destination=node/' . $node->nid;
+          $property_delete_url = $base_url.'/field-collection/field-property/' . $property_value . '/delete?destination=node/' . $node->nid;
           
           $result = db_query("Select property_key.field_property_key_tid as id, term_data.name, property_value.field_property_value_value as value From 
           (field_data_field_property_key  property_key
@@ -159,7 +157,9 @@ function murray_preprocess_page(&$variables, $hook) {
               if($user->uid != 0){
                   
                 if(in_array('editor user',$user->roles) || in_array('administrator',$user->roles) ) {
-                    $project_property .= "<dd class='item-edit'><a href='" . $property_edit_url . "' class='edit_property'>Edit</a></dd>";
+                    $project_property .= "<dd class='item-edit'><a href='" . $property_add_url . "' class='edit_property'>Add</a><br/>";
+                    $project_property .= "<a href='" . $property_edit_url . "' class='edit_property'>Edit</a><br/>";
+                    $project_property .= "<a href='" . $property_delete_url . "' class='edit_property'>Delete</a></dd>";
                 }
               }
           }
@@ -259,7 +259,7 @@ function murray_preprocess_page(&$variables, $hook) {
         $body .= $node->body[$key][0]['safe_value'];
       }
       
-	    if ( count($node->field_downloads) ) {
+        if ( count($node->field_downloads) ) {
         $download = "<ul>";
         foreach($node->field_downloads as $value){
           foreach($value as $item){
@@ -272,7 +272,7 @@ function murray_preprocess_page(&$variables, $hook) {
         
         }
         $download .="</ul>";
-  	  }
+        }
 
       $variables['node_url'] = $node_url;
       $variables['node_title'] = $node_title;
