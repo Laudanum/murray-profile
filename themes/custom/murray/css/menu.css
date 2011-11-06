@@ -118,6 +118,11 @@
 	border : 1px solid white;
 	overflow : hidden;
 	opacity : 0.6;
+/* styles for missing thumbnails */
+	text-decoration: none;
+  font-size: 0.9em;
+  word-break: break-all;
+  background-color: white;
 }
 .secondary li a:hover {
 	opacity : 1.0;
