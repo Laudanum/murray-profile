@@ -200,6 +200,9 @@ a:focus {
     position : relative;
     display: inline ! important;
 }
+#sidebar-container div.title div.meta a{
+    text-decoration: none;
+}
 /* Bottom */
 #bottom {
     /*
