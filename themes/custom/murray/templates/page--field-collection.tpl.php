@@ -101,8 +101,8 @@
            <?php print render($page['thumbnail_collection']); ?>
             
         </div>
-        <div id="bottom">
-                    <div class="copyright">Copyright 2011 <a href="<?php print $front_page; ?>">Ainslie Murray</a></div>
+        <div id="bottom" style="display: block;">
+               <div class="copyright">Copyright 2011 <a href="<?php print $front_page; ?>">Ainslie Murray</a></div>
         </div>
         
 

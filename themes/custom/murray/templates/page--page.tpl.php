@@ -106,13 +106,9 @@
     <div class="toggle"><a href="javascript:void(0)">Close</a></div>
    <?php print render($page['main_menu']); ?>
    <?php print render($page['thumbnail_collection']); ?>
-    
-    <div id="bottom">
-        <div class="container_12">
-
-            <div class="copyright">Copyright 2011 <a href="javascript: void(0)">Ainslie Murray</a> except where noted</div>
-        </div>
-    </div>
+</div>
+<div id="bottom" style="display: block;">
+       <div class="copyright">Copyright 2011 <a href="<?php print $front_page; ?>">Ainslie Murray</a></div>
 </div>
         
 
