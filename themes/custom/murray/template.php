@@ -134,39 +134,55 @@ function murray_preprocess_page(&$variables, $hook) {
                 ORDER BY node_created DESC",array(
                 ':nid' => $node->nid,
                 ));
-                
-      foreach($property_data as $p_item){
+      if(!empty($property_data)) {
+          foreach($property_data as $p_item){
           
-          $bundle = $p_item->field_data_field_property_bundle;
-          $property_value = $p_item->field_data_field_property_field_property_value;
-          
-          $property_add_url = $base_url.'/field-collection/field-property/add/node/' . $node->nid . '?destination=node/' . $node->nid;
-          $property_edit_url = $base_url.'/field-collection/field-property/' . $property_value . '/edit?destination=node/' . $node->nid;
-          $property_delete_url = $base_url.'/field-collection/field-property/' . $property_value . '/delete?destination=node/' . $node->nid;
-          
-          $result = db_query("Select property_key.field_property_key_tid as id, term_data.name, property_value.field_property_value_value as value From 
-          (field_data_field_property_key  property_key
-          Inner Join field_data_field_property_value property_value On property_key.entity_id = property_value.entity_id) Inner Join taxonomy_term_data term_data on property_key.field_property_key_tid = term_data.tid
-          Where property_key.entity_id = :id ", array(
-          ':id' => $property_value,
-          ));
-          
-          
-          foreach($result as $item) {
-              $project_property .= "<dt>" . $item->name . "</dt><dd class='item-value'>". strip_tags($item->value,'<a>') . "</dd>";
-              if($user->uid != 0){
-                  
-                if(in_array('editor user',$user->roles) || in_array('administrator',$user->roles) ) {
-                    $project_property .= "<dd class='item-edit'><a href='" . $property_add_url . "' class='edit_property'>Add</a><br/>";
-                    $project_property .= "<a href='" . $property_edit_url . "' class='edit_property'>Edit</a><br/>";
-                    $project_property .= "<a href='" . $property_delete_url . "' class='edit_property'>Delete</a></dd>";
-                }
+              $bundle = $p_item->field_data_field_property_bundle;
+              $property_value = $p_item->field_data_field_property_field_property_value;
+              
+              $property_add_url = $base_url.'/field-collection/field-property/add/node/' . $node->nid . '?destination=node/' . $node->nid;
+              $property_edit_url = $base_url.'/field-collection/field-property/' . $property_value . '/edit?destination=node/' . $node->nid;
+              $property_delete_url = $base_url.'/field-collection/field-property/' . $property_value . '/delete?destination=node/' . $node->nid;
+              
+              $result = db_query("Select property_key.field_property_key_tid as id, term_data.name, property_value.field_property_value_value as value From 
+              (field_data_field_property_key  property_key
+              Inner Join field_data_field_property_value property_value On property_key.entity_id = property_value.entity_id) Inner Join taxonomy_term_data term_data on property_key.field_property_key_tid = term_data.tid
+              Where property_key.entity_id = :id ", array(
+              ':id' => $property_value,
+              ));
+              
+              
+              foreach($result as $item) {
+                  $project_property .= "<dt>" . $item->name . "</dt><dd class='item-value'>". strip_tags($item->value,'<a>') . "</dd>";
+                  if($user->uid != 0){
+                      
+                    if(in_array('editor user',$user->roles) || in_array('administrator',$user->roles) ) {
+                        $project_property .= "<dd class='item-edit'><a href='" . $property_add_url . "' class='edit_property'>Add</a><br/>";
+                        $project_property .= "<a href='" . $property_edit_url . "' class='edit_property'>Edit</a><br/>";
+                        $project_property .= "<a href='" . $property_delete_url . "' class='edit_property'>Delete</a></dd>";
+                    }
+                  }
               }
+              
           }
           
       }
+                
+      
       $project_property .= "</dl>";
-      if($project_property == "<dl></dl>") $project_property = "";
+      
+      if($project_property == "<dl></dl>") {
+          if(in_array('editor user',$user->roles) || in_array('administrator',$user->roles) ) {
+                $property_add_url = $base_url.'/field-collection/field-property/add/node/' . $node->nid . '?destination=node/' . $node->nid; 
+                $project_property = "<dl><dd class='item-edit'><a href='" . $property_add_url . "' class='edit_property'>Add</a></dd></dl>";
+          }else{
+                $project_property = "";
+          }
+          
+          
+      }
+      
+      
       
       $link_info = "";
       foreach($node->field_link as $value){
