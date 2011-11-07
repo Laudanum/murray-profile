@@ -273,7 +273,8 @@ function get_project_slide_info($tax_name = 'none'){
                 image_style_create_derivative($style_thumbnail, $file_item->uri, file_default_scheme() . '://styles/large/public/' . $file_item->filename);
                 
                  if($index == 1){
-                    $output .= '<li class="active"><a href="'. url("node/".$node->nid) .'" title="'. $caption_value . '" ><img src="' . $base_url . $file_direcoty_path . '/styles/large/public/' . $file_item->filename . '" title="'. $caption_value . '" /></a>';
+                    //$output .= '<li class="active"><a href="'. url("node/".$node->nid) .'" title="'. $caption_value . '" ><img src="' . $base_url . $file_direcoty_path . '/styles/large/public/' . $file_item->filename . '" title="'. $caption_value . '" /></a>';
+                    $output .= '<li><a href="'. url("node/".$node->nid) .'" title="'. $caption_value . '" ><img src="' . $base_url . $file_direcoty_path . '/styles/large/public/' . $file_item->filename . '" title="'. $caption_value . '" /></a>';
                     //$output .= '<div class="detail-info">' . '<p><a href="'. url("node/".$node->nid) .'">' . $title . '</a></p><p><a href="'. url("node/".$node->nid) .'">' . $date_info . '</a></p>' . '</div>';
                     $output .= '<div class="detail-info">' . '<h2><a href="'. url("node/".$node->nid) .'">' . $title . '</a></h2><div class="meta"><a href="'. url("node/".$node->nid) .'">' . $date_info . '</a></div>' . '</div>';
                     $output .= '<div class="detail-body">' . $body. '</div>';
