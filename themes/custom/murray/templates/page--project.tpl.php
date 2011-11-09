@@ -81,7 +81,7 @@
     <div id="sidebar-container" class="container_12">
         <div class="title">
             <h2><a href="<?php print $node_url; ?>" title="<?php print $node_title; ?>" description"<?php print $date_info; ?>"><?php print $node_title; ?></a></h2>
-			<div class="meta"><?php print $date_info; ?></div>
+            <div class="meta"><?php print $date_info; ?></div>
         </div>
         <div id="sidebar" class="">                
             <div class="body grid_4">
@@ -94,11 +94,11 @@
                             <?php endif; ?>
                             <?php print $body; ?>
                         </div>
-						<?php if ( isset($download)): ?>
+                        <?php if ( isset($download)): ?>
                         <div class="media">
                             <?php print $download; ?>
                         </div>
-						<?php endif; ?>
+                        <?php endif; ?>
                         <div id="field_property" class="properties">
                             <div><?php print $project_property; ?></div>
                             <div><?php print $link_info; ?></div>
@@ -112,10 +112,20 @@
     <div class="toggle"><a href="javascript:void(0)">Close</a></div>
    <?php print render($page['main_menu']); ?>
    <?php print render($page['thumbnail_collection']); ?>
-   
 </div>
 <div id="bottom" style="display: block;">
        <div class="copyright">Copyright 2011 <a href="<?php print $front_page; ?>">Ainslie Murray</a></div>
 </div>
+<?php
+    if($color_info != ""){
+        print '<script type="text/javascript">
+        jQuery(document).ready(function(){
+            jQuery("body").css("background-color","#' . $color_info . '");
+        });
+        </script>';    
+    }
+    
+ ?>
+
         
 

@@ -92,11 +92,10 @@ function murray_preprocess_page(&$variables, $hook) {
       
       global $base_url,$user;
       
-      
       $file_direcoty_path = '/' . file_stream_wrapper_get_instance_by_uri('public://')->getDirectoryPath();
     
       $node = $variables['node'];
-    
+      
       $node_url = url("node/".$node->nid);
       $node_title = $node->title;
       
@@ -243,6 +242,15 @@ function murray_preprocess_page(&$variables, $hook) {
      
      if($media_info == "<ul></ul>") 
         $media_info = "";
+     
+     $color_info ="";
+      foreach($node->field_background as $value){
+        foreach($value as $item){
+            $color = $item['jquery_colorpicker'];
+            $color_info .= $color; 
+        }   
+        
+      }
         
     
     $variables['media_info'] = $media_info;
@@ -254,6 +262,7 @@ function murray_preprocess_page(&$variables, $hook) {
     $variables['project_property'] = $project_property;
     $variables['link_info'] = $link_info;
     $variables['date_info'] = $date_info;
+    $variables['color_info'] = $color_info;
         
     $variables['theme_hook_suggestions'][] = 'page__'. str_replace('_', '--', $variables['node']->type);
   }
