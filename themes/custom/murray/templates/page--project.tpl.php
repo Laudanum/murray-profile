@@ -112,6 +112,7 @@
     <div class="toggle"><a href="javascript:void(0)">Close</a></div>
    <?php print render($page['main_menu']); ?>
    <?php print render($page['thumbnail_collection']); ?>
+   <?php print $thumb_info; ?>
 </div>
 <div id="bottom" style="display: block;">
        <div class="copyright">Copyright 2011 <a href="<?php print $front_page; ?>">Ainslie Murray</a></div>

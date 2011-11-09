@@ -204,6 +204,7 @@ function murray_preprocess_page(&$variables, $hook) {
       $media = $node->field_media;
       
       $media_info = "<ul>";
+      $thumb_info = "<ul>";
         
       $first_image = array();
       $index = 0;
@@ -228,20 +229,36 @@ function murray_preprocess_page(&$variables, $hook) {
             
             $style_thumbnail = image_style_load('large');
             image_style_create_derivative($style_thumbnail, $file->uri, file_default_scheme() . '://styles/large/public/' . $file->filename);
+            
+            $style_thumbnail = image_style_load('square_thumbnail');
+            image_style_create_derivative($style_thumbnail, $file->uri, file_default_scheme() . '://styles/square_thumbnail/public/' . $file->filename);
+            
+            
             if($index == 1)
                 $media_info .= '<li class="active"><a href="'. url("node/".$node->nid) .'" title="'. $caption_value . '"><img src="' . $base_url . $file_direcoty_path .'/styles/large/public/' . $file->filename . '" title="'. $caption_value . '" /></a></li>';
             else
                 $media_info .= '<li ><a href="'. url("node/".$node->nid) .'" title="'. $caption_value . '"><img src="' . $base_url . $file_direcoty_path . '/styles/large/public/' . $file->filename . '" title="'. $caption_value . '" /></li>';
             
+            $thumb_info .= '<li ><a href="'. url("node/".$node->nid) .'" title="'. $caption_value . '"><img src="' . $base_url . $file_direcoty_path . '/styles/square_thumbnail/public/' . $file->filename . '" title="'. $caption_value . '" /></li>';
+            
           }
      }
      $media_info .= "</ul>";
+     $thumb_info .= "</ul>";
      
      
      
      
      if($media_info == "<ul></ul>") 
         $media_info = "";
+     
+     if($thumb_info == "<ul></ul>") 
+        $thumb_info = "";
+     else{
+        $thumb_info =  '<div id="project-media" class="menu secondary">' . $thumb_info . '</div>';
+     }
+     
+     
      
      $color_info ="";
       foreach($node->field_background as $value){
@@ -254,6 +271,7 @@ function murray_preprocess_page(&$variables, $hook) {
         
     
     $variables['media_info'] = $media_info;
+    $variables['thumb_info'] = $thumb_info;
     $variables['node_url'] = $node_url;
     $variables['node_title'] = $node_title;
     $variables['created_date'] = $created_date;

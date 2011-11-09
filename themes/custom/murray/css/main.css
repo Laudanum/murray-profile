@@ -363,8 +363,8 @@ a:focus {
 }
 
 #gallery ul li img {
-    max-width : 100%;
-    max-height : 100%;
+    /*max-width : 100%;
+    max-height : 100%;*/
 }
 #gallery ul li.crop img {
     min-width : 100%;
