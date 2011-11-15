@@ -237,9 +237,12 @@ function murray_preprocess_page(&$variables, $hook) {
             if($index == 1)
                 $media_info .= '<li class="active"><a href="'. url("node/".$node->nid) .'" title="'. $caption_value . '"><img src="' . $base_url . $file_direcoty_path .'/styles/large/public/' . $file->filename . '" title="'. $caption_value . '" /></a></li>';
             else
-                $media_info .= '<li ><a href="'. url("node/".$node->nid) .'" title="'. $caption_value . '"><img src="' . $base_url . $file_direcoty_path . '/styles/large/public/' . $file->filename . '" title="'. $caption_value . '" /></li>';
-            
-            $thumb_info .= '<li ><a href="'. url("node/".$node->nid) .'" title="'. $caption_value . '"><img src="' . $base_url . $file_direcoty_path . '/styles/square_thumbnail/public/' . $file->filename . '" title="'. $caption_value . '" /></li>';
+                $media_info .= '<li><a href="'. url("node/".$node->nid) .'" title="'. $caption_value . '"><img src="' . $base_url . $file_direcoty_path . '/styles/large/public/' . $file->filename . '" title="'. $caption_value . '" /></li>';
+                
+            if($index == 1)
+                $thumb_info .= '<li class="active"><a href="'. $base_url . $file_direcoty_path . '/styles/large/public/' . $file->filename .'" title="'. $caption_value . '"><img src="' . $base_url . $file_direcoty_path . '/styles/square_thumbnail/public/' . $file->filename . '" title="'. $caption_value . '" /></li>';
+            else
+                $thumb_info .= '<li><a href="'. $base_url . $file_direcoty_path . '/styles/large/public/' . $file->filename .'" title="'. $caption_value . '"><img src="' . $base_url . $file_direcoty_path . '/styles/square_thumbnail/public/' . $file->filename . '" title="'. $caption_value . '" /></li>';
             
           }
      }
