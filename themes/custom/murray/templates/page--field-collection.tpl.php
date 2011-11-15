@@ -68,41 +68,46 @@
  * @see template_process()
  */
 ?>
-  <div id="gallery">
-    
-  </div>
+
+<div id="page-wrapper"><div id="page">
+
  
-        <div id="wrapper">
-            
-            <div id="sidebar-container" class="container_12">
-                <div class="title" id="slidecontent">
-                    
-                </div>
-                <div id="sidebar" class="">                
-                    <div class="body grid_4">
-                        <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
-                        <div class="viewport">
-                            <div class="overview">
-                                <div class="content">
-                                    <?php if ($tabs = render($tabs)): ?>
-                                        <div class="tabs"><?php print $tabs; ?></div>
-                                    <?php endif; ?>
-                                    <?php print render($page['content']); ?>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="clear">&nbsp;</div>
-            </div>
-            <div class="toggle"><a href="javascript:void(0)">Close</a></div>
-           <?php print render($page['main_menu']); ?>
-           <?php print render($page['thumbnail_collection']); ?>
-            
-        </div>
-        <div id="bottom" style="display: block;">
-               <div class="copyright">Copyright 2011 <a href="<?php print $front_page; ?>">Ainslie Murray</a></div>
-        </div>
-        
+
+  <div id="main-wrapper"><div id="main" class="clearfix<?php if ($main_menu || $page['navigation']) { print ' with-navigation'; } ?>">
+
+    <div id="content" class="column"><div class="section">
+      <?php print render($page['highlighted']); ?>
+      
+      <a id="main-content"></a>
+      <?php print render($title_prefix); ?>
+      <?php if ($title): ?>
+        <h1 class="title" id="page-title"><?php print $title; ?></h1>
+      <?php endif; ?>
+      <?php print render($title_suffix); ?>
+      <?php print $messages; ?>
+      <?php if ($tabs = render($tabs)): ?>
+        <div class="tabs"><?php print $tabs; ?></div>
+      <?php endif; ?>
+      <?php print render($page['help']); ?>
+      <?php if ($action_links): ?>
+        <ul class="action-links"><?php print render($action_links); ?></ul>
+      <?php endif; ?>
+      <?php print render($page['content']); ?>
+      <?php print $feed_icons; ?>
+    </div></div><!-- /.section, /#content -->
+
+    
+
+    <?php print render($page['sidebar_first']); ?>
+
+    <?php print render($page['sidebar_second']); ?>
+
+  </div></div><!-- /#main, /#main-wrapper -->
+
+  <?php print render($page['footer']); ?>
+
+</div></div><!-- /#page, /#page-wrapper -->
+
+<?php print render($page['bottom']); ?>
+ 
 
