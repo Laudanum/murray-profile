@@ -110,5 +110,16 @@
 <div id="bottom" style="display: block;">
        <div class="copyright">Copyright 2011 <a href="<?php print $front_page; ?>">Ainslie Murray</a></div>
 </div>
+
+<?php
+    if($color_info != ""){
+        print '<script type="text/javascript">
+        jQuery(document).ready(function(){
+            jQuery("body").css("background-color","#' . $color_info . '");
+        });
+        </script>';    
+    }
+    
+ ?>
         
 

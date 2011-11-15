@@ -316,12 +316,24 @@ function murray_preprocess_page(&$variables, $hook) {
         }
         $download .="</ul>";
         }
+      
+      
+      $color_info ="";
+      foreach($node->field_background as $value){
+        foreach($value as $item){
+            $color = $item['jquery_colorpicker'];
+            $color_info .= $color; 
+        }   
+        
+      }
+        
 
       $variables['node_url'] = $node_url;
       $variables['node_title'] = $node_title;
       $variables['created_date'] = $created_date;
       $variables['body'] = $body;
       $variables['download'] = $download;
+      $variables['color_info'] = $color_info;
       
       $variables['theme_hook_suggestions'][] = 'page__'. str_replace('_', '--', $variables['node']->type);
   }
