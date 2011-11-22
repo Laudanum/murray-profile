@@ -56,11 +56,10 @@ stylesheets-conditional[lte IE 6][all][]  = css/ie6.css
 
 ; Optionally add some JavaScripts to your theme.
 
-;scripts[] = js/script.js
-
 scripts[] = js/jquery.tinyscrollbar.min.js
+scripts[] = js/jquery.timers-1.2.js
 scripts[] = js/functions.js
-scripts[] = js/jquery.jcarousel.min.js
+; scripts[] = js/jquery.jcarousel.min.js
 
 
 

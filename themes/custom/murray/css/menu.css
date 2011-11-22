@@ -124,8 +124,14 @@
   word-break: break-all;
   background-color: white;
 }
+.secondary li a.active,
 .secondary li a:hover {
 	opacity : 1.0;
+}
+.secondary li a.active,
+.secondary li a.active img {
+	border-top-left-radius : 10px;
+	border-bottom-right-radius : 0px;
 }
 
 .secondary li a img {

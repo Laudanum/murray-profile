@@ -47,11 +47,107 @@ jQuery(document).ready(function(){
 //move header into primary-links
 //	jQuery("#primary-links").prepend(jQuery("#header"));
 
+
+/* show the correct row of thumbnails and hide the others */
+  var _showSubmenu = function(obj) {
+//  do nothing if we're currently active
+    if ( jQuery(obj).hasClass("active") ) {
+      return false;
+    }
+//  hide any existing menus
+    jQuery(".menu.secondary").removeClass("active").animate({
+      opacity : 0,
+      height : 0
+    }, "fast", "swing");
+//  show the correct one
+    jQuery(obj).addClass("active").animate({
+      opacity : 1,
+      height : 94
+    }, "slow", "swing");
+  }
+
+/* show a particular slide, or the next slide if no slide is specified */
+  var _showSlide = function(_next_slide) {
+    var _active_slide = jQuery('#gallery ul li.active');
+    if ( _active_slide.length == 0 ) _active_slide = jQuery('#gallery ul li:last');
+    if ( ! _next_slide ) {
+      _next_slide =  _active_slide.next().length ? _active_slide.next() : jQuery('#gallery ul li:first');
+    }
+
+//  if the previous slide is still running then don't do anything
+    if (_active_slide.is(':animated') ) {
+      return false;
+    }
+
+    _active_slide.addClass('last-active');
+    _next_slide.css({opacity: 0.0}).addClass('active').animate(
+      {opacity: 1.0}, 
+      transition_speed, 
+      function() {
+        _active_slide.removeClass('active last-active');
+      }
+    );
+    
+//  update the correct thumbnail
+    _src = jQuery(_next_slide).find("img").attr("src");
+    jQuery(".secondary a.active").removeClass("active");
+    jQuery(".secondary a[href=" + _src + "]").addClass("active");
+  //  front page - update the header with the title of the work shown
+    var gallery_info = jQuery('#gallery ul li.active .detail-info').html();
+    if(gallery_info != ""){
+      jQuery('#slidecontent').html(gallery_info);
+    }  
+  }  
+  
+
+  var _startSlideshow = function() {
+    jQuery("body").everyTime(slide_speed, "slideshow", function() {
+      _showSlide();
+    });
+  }
+  
+  
+  var _stopSlideshow = function() {
+    jQuery("body").stopTime("slideshow");
+  }
+  
+
 	if ( jQuery("body").hasClass("front") ) {
 		secondary = "#header";
 	} else {
 		secondary = "#secondary-links";
 	}
+
+
+/* * * *
+ *
+ *  project pages only	
+ *
+ * * * */
+	if ( jQuery("body").hasClass("node-type-project") ) {
+	  _showSubmenu(jQuery("#project-media"));
+
+//  interrput clicks on the project title and show the project media submenu
+    jQuery("div.title h2 a").click(function(event) {
+      event.preventDefault();
+	    _showSubmenu(jQuery("#project-media"));
+    });
+
+//  interrupt clicks on project media thumbs and show the correct slide
+    jQuery("#project-media li a").click(function(event) {
+      event.preventDefault();
+//  pause the slideshow
+      _stopSlideshow();
+      
+      _src = jQuery(this).attr("href");      
+      next_slide = jQuery("#gallery img[src=" + _src + "]").parents("li");
+      if ( next_slide.length ) {
+        _showSlide(next_slide);
+      }      
+    });
+	}
+	
+	
 	
 	primary = ".primary";
 	
@@ -60,10 +156,39 @@ jQuery(document).ready(function(){
 //		jQuery(this).hide();
 	});
     
-    var length = jQuery('#gallery ul li').length;
+//    var length = jQuery('#gallery ul li').length;
     
-    if(length > 1) {
-     setInterval( "slideSwitch()", slide_speed );   
+/* if we have a gallery set up a slideshow and run it */
+    if(jQuery('#gallery ul li').size() > 1) {
+      _startSlideshow();
+
+//  create some buttons if we don't have them already
+      jQuery("#gallery").append("<a class='navigation next' href='javascript:void(0);'>Next</a><a class='navigation previous' href='javascript:void(0);'>Previous</a>");
+
+//  listen for clicks on the navigation arrows
+      jQuery("#gallery a.navigation").click(function(event) {
+        _stopSlideshow();
+        if ( jQuery(this).hasClass("next") ) {
+          _showSlide();
+        } else {
+          var _active_slide = jQuery('#gallery ul li.active');
+          _previous_slide = _active_slide.prev().length ? _active_slide.prev() : jQuery('#gallery ul li:last');
+          _showSlide(_previous_slide);
+        }
+      });
+
+//  use keyboard arrows to navigate the slideshow
+			jQuery(document).keydown(function(event) {
+				if ( event.which == 37 ) { // left
+					event.preventDefault()
+					jQuery(".previous").click();
+				} else if ( event.which == 39 ) { // right
+					event.preventDefault()
+					jQuery(".next").click();
+				} else {
+//						alert(event.which)
+				}
+			});
     }
     
     
@@ -145,8 +270,9 @@ jQuery(document).ready(function(){
         var taxnomy_name = taxnomy_name_list.split("/");
         var current_name = taxnomy_name[taxnomy_name.length - 1];
 //        alert("Closing others")
-        jQuery(".secondary.active").removeClass("active").animate({height:0, opacity:0}, "fast", "swing");    
-        jQuery('#works-'+ current_name).addClass("active").animate({height:95, bottom:95, opacity:1}, "slow", "swing");    
+_showSubmenu(jQuery('#works-'+ current_name));
+//        jQuery(".secondary.active").removeClass("active").animate({height:0, opacity:0}, "fast", "swing");    
+  //      jQuery('#works-'+ current_name).addClass("active").animate({height:95, bottom:95, opacity:1}, "slow", "swing");    
         
         /*jQuery.ajax({
           url: "murray_thumbnail/" + current_name,
