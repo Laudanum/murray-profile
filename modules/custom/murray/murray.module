@@ -206,7 +206,7 @@ function get_project_slide_info($tax_name = 'none'){
             ':type_id' => $type_id,
             ));
             
-    
+    $iterator = 0;
     foreach($result as $node_item){
         $node = node_load($node_item->nid);
         
@@ -272,16 +272,21 @@ function get_project_slide_info($tax_name = 'none'){
                 $style_thumbnail = image_style_load('large');
                 image_style_create_derivative($style_thumbnail, $file_item->uri, file_default_scheme() . '://styles/large/public/' . $file_item->filename);
                 
+                if ( $iterator === 0 ) {
+                  $item_class = "item-0 active";
+                } else {
+                  $item_class = "item-$iterator";
+                }
                  if($index == 1){
                     //$output .= '<li class="active"><a href="'. url("node/".$node->nid) .'" title="'. $caption_value . '" ><img src="' . $base_url . $file_direcoty_path . '/styles/large/public/' . $file_item->filename . '" title="'. $caption_value . '" /></a>';
-                    $output .= '<li><a href="'. url("node/".$node->nid) .'" title="'. $caption_value . '" ><img src="' . $base_url . $file_direcoty_path . '/styles/large/public/' . $file_item->filename . '" title="'. $caption_value . '" /></a>';
+                    $output .= '<li class="' . $item_class . '"><a href="'. url("node/".$node->nid) .'" title="'. $caption_value . '" ><img src="' . $base_url . $file_direcoty_path . '/styles/large/public/' . $file_item->filename . '" title="'. $caption_value . '" /></a>';
                     //$output .= '<div class="detail-info">' . '<p><a href="'. url("node/".$node->nid) .'">' . $title . '</a></p><p><a href="'. url("node/".$node->nid) .'">' . $date_info . '</a></p>' . '</div>';
                     $output .= '<div class="detail-info">' . '<h2><a href="'. url("node/".$node->nid) .'">' . $title . '</a></h2><div class="meta"><a href="'. url("node/".$node->nid) .'">' . $date_info . '</a></div>' . '</div>';
                     $output .= '<div class="detail-body">' . $body. '</div>';
                     $output .= '</li>';
                  }
                  else{
-                    $output .= '<li ><a href="'. url("node/".$node->nid) .'" title="'. $caption_value . '"><img src="' . $base_url . $file_direcoty_path . '//styles/large/public/' . $file_item->filename . '" title="'. $caption_value . '" />';
+                    $output .= '<li class="' . $item_class . '"><a href="'. url("node/".$node->nid) .'" title="'. $caption_value . '"><img src="' . $base_url . $file_direcoty_path . '//styles/large/public/' . $file_item->filename . '" title="'. $caption_value . '" />';
                     $output .= '<div class="detail-info">' . '<h2><a href="'. url("node/".$node->nid) .'">' . $title . '</a></h2><div class="meta"><a href="'. url("node/".$node->nid) .'">' . $date_info . '</a></div>' . '</div>';
                     $output .= '<div class="detail-body">' . $body. '</div>';
                     $output .= '</li>'; 
@@ -289,6 +294,7 @@ function get_project_slide_info($tax_name = 'none'){
                     
             }    
         }    
+        $iterator++;
         
         
     }
@@ -339,15 +345,11 @@ function murray_get_slideshow() {
           ));
     foreach($pdata as $term_data){
         $tid = $term_data->id;
-        
         $path = drupal_get_path_alias("taxonomy/term/" . $tid);
-        
         $path = explode("/",$path);        
         //exit(0);
         $term_name = $term_data->name;
-        
         $output .= get_project_slide_info($term_name);
-        
     }
     
     $output .= "</ul>";

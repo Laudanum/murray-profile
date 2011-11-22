@@ -20,6 +20,10 @@ a:focus {
     outline: 0;
 }
 
+body.front #sidebar,
+body.front .toggle {
+  display : none;
+}
 
 #sidebar .properties dl {
     margin: 0;
@@ -370,7 +374,6 @@ body.front #sidebar-container a:hover {
 }
 #gallery ul li {
     display: none;
-    
 }
 #gallery ul li.active {
     z-index: 10;
