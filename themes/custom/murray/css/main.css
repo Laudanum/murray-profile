@@ -344,7 +344,18 @@ body.front #sidebar-container a:hover {
     width : 100%;
     height : 100%;
 }
-
+#gallery a.navigation {
+  position : absolute;
+  z-index : 11;
+  height : 100%;
+  width : 33%;
+  display : block;
+  text-indent : -5000px;
+}
+#gallery a.navigation.next {
+  width : 66%;
+  left : 33%;
+}
 #gallery ul,
 #gallery ul li {
     width : 100%;
