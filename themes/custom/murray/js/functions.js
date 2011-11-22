@@ -1,40 +1,48 @@
+var transition_speed = 500;
+var slide_speed = 7000;
+
 function slideSwitch() {
-        var $active = jQuery('#gallery ul li.active');
-        
-        var gallery_info = jQuery('#gallery ul li.active .detail-info').html();
-        if(gallery_info != ""){
-            jQuery('#slidecontent').html(gallery_info);
-        }
-        
-        var gallery_body = jQuery('#gallery ul li.active .detail-body').html();
-        if(gallery_info != ""){
-            jQuery('#content').html(gallery_body);
-        }
-        
-        
+  var _active_slide = jQuery('#gallery ul li.active');
 
-        if ( $active.length == 0 ) $active = jQuery('#gallery ul li:last');
+//  front page - update the header with the title of the work shown
+  var gallery_info = jQuery('#gallery ul li.active .detail-info').html();
+  if(gallery_info != ""){
+    jQuery('#slidecontent').html(gallery_info);
+  }
+  
+/*  
+//  front page - update the content area with the project description  
+  var gallery_body = jQuery('#gallery ul li.active .detail-body').html();
+  if(gallery_info != ""){
+      jQuery('#content').html(gallery_body);
+  }
+*/  
+  
 
-        // use this to pull the images in the order they appear in the markup
-        var $next =  $active.next().length ? $active.next()
-            : jQuery('#gallery ul li:first');
+  if ( _active_slide.length == 0 ) _active_slide = jQuery('#gallery ul li:last');
 
-        // uncomment the 3 lines below to pull the images in random order
-        
-        // var $sibs  = $active.siblings();
-        // var rndNum = Math.floor(Math.random() * $sibs.length );
-        // var $next  = $( $sibs[ rndNum ] );
+  // use this to pull the images in the order they appear in the markup
+  var _next_slide =  _active_slide.next().length ? _active_slide.next() : jQuery('#gallery ul li:first');
+
+  // uncomment the 3 lines below to pull the images in random order
+  
+  // var $sibs  = _active_slide.siblings();
+  // var rndNum = Math.floor(Math.random() * $sibs.length );
+  // var _next_slide  = $( $sibs[ rndNum ] );
 
 
-        $active.addClass('last-active');
+  _active_slide.addClass('last-active');
 
-        $next.css({opacity: 0.0})
-            .addClass('active')
-            .animate({opacity: 1.0}, 1000, function() {
-                $active.removeClass('active last-active');
-            });
+  _next_slide.css({opacity: 0.0}).addClass('active').animate(
+    {opacity: 1.0}, 
+    transition_speed, 
+    function() {
+      _active_slide.removeClass('active last-active');
     }
-    
+  );
+}
+
+
 jQuery(document).ready(function(){
 //move header into primary-links
 //	jQuery("#primary-links").prepend(jQuery("#header"));
@@ -55,16 +63,16 @@ jQuery(document).ready(function(){
     var length = jQuery('#gallery ul li').length;
     
     if(length > 1) {
-     setInterval( "slideSwitch()", 5000 );   
+     setInterval( "slideSwitch()", slide_speed );   
     }
     
     
      
-     
+     /*
      jQuery('div.secondary ul').jcarousel({
          scroll:12       
      });
-     
+     */
      
      
 

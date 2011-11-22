@@ -154,8 +154,10 @@ a:focus {
 
 #sidebar .body .content {
 }
+.sidebar-first #content,
 #sidebar-container .content {
   width : 360px;
+  margin-left : 0;
 }
 #sidebar-container h2,
 #sidebar-container h2 a,
@@ -171,6 +173,8 @@ a:focus {
     font-style: italic;
     color: #333333;
     text-decoration : none;
+    padding-bottom : 3px;
+    border-bottom : 1px solid transparent;
 }
 #sidebar-container div.title {
     width : 368px;
@@ -199,6 +203,13 @@ a:focus {
     position : relative;
     display: inline ! important;
 }
+body.front #sidebar-container h2 a:hover,
+body.front #sidebar-container a:hover {  
+    border-color : rgb(51,51,51);
+    border-color : rgba(51,51,51,0.5);
+}
+
+
 #sidebar-container div.title div.meta {
     margin-left : 0.4em;  
 }
@@ -352,10 +363,10 @@ a:focus {
 }
 #gallery ul li.active {
     z-index: 10;
+    display: block; 
 }
-#gallery ul li.active{
-    display: block;
- 
+#gallery ul li.last-active {
+  z-index : 9;
 }
 
 #gallery ul li .detail-info {
