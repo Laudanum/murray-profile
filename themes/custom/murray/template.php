@@ -150,22 +150,22 @@ function murray_preprocess_page(&$variables, $hook) {
               ':id' => $property_value,
               ));
               
-              
+
               foreach($result as $item) {
-                  $project_property .= "<dt>" . $item->name . "</dt><dd class='item-value'>". strip_tags($item->value,'<a>') . "</dd>";
-                  if($user->uid != 0){
+                  $project_property .= "<dt>" . $item->name . "</dt><dd class='item-value'>". trim(strip_tags($item->value,'<a><strong><em>')) . "</dd>";
+                  if($user->uid != 0) {
                       
                     if(in_array('editor user',$user->roles) || in_array('administrator',$user->roles) ) {
-                        $project_property .= "<dd class='item-edit'><a href='" . $property_add_url . "' class='edit_property'>Add</a><br/>";
-                        $project_property .= "<a href='" . $property_edit_url . "' class='edit_property'>Edit</a><br/>";
-                        $project_property .= "<a href='" . $property_delete_url . "' class='edit_property'>Delete</a></dd>";
+                        $project_property .= "<dd class='item-edit'><a href='" . $property_edit_url . "' class='edit_property'>Edit</a>";
+                        $project_property .= "<a href='" . $property_delete_url . "' class='edit_property delete_property'>Delete</a></dd>";
                     }
                   }
               }
-              
-          }
-          
+          }          
       }
+      if(in_array('editor user',$user->roles) || in_array('administrator',$user->roles) ) {
+        $project_property .= "<dt>&nbsp;</dt><dd>&nbsp;</dd><dd class='item-edit'><a href='" . $property_add_url . "' class='edit_property add_property'>Add</a></dd>";
+      }              
                 
       
       $project_property .= "</dl>";

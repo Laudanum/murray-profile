@@ -154,7 +154,9 @@ a:focus {
 
 #sidebar .body .content {
 }
-
+#sidebar-container .content {
+  width : 360px;
+}
 #sidebar-container h2,
 #sidebar-container h2 a,
 #sidebar-container div.title div.meta,
@@ -169,9 +171,6 @@ a:focus {
     font-style: italic;
     color: #333333;
     text-decoration : none;
-}
-#sidebar-container div.title div.meta {
-    padding-left: 0.5em;
 }
 #sidebar-container div.title {
     width : 368px;
@@ -200,8 +199,12 @@ a:focus {
     position : relative;
     display: inline ! important;
 }
-#sidebar-container div.title div.meta a{
+#sidebar-container div.title div.meta {
+    margin-left : 0.4em;  
+}
+#sidebar-container div.title div.meta a {
     text-decoration: none;
+    color : #444444;
 }
 /* Bottom */
 #bottom {
@@ -383,9 +386,14 @@ ul.nice-menu ul {
 a.edit_property {
     text-decoration: none;
     color: #444444;
-    font-weight: bold;
+    font-size : 0.9em;
+    text-transform : uppercase;
+    display : block;
 }
-
+a.edit_property:hover {
+  text-decoration : underline;
+  color : red;
+}
 #footer {
     background-color: rgba(255, 255, 255, 0.75);
     text-align: right;
