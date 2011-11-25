@@ -405,8 +405,8 @@ body.front #sidebar-container a:hover {
     max-height : 100%;*/
 }
 #gallery ul li.crop img {
-    min-width : 100%;
-    min-height : 100%;
+   width : 100%;
+   height : auto;
 }
 
 #field_property p {
@@ -426,6 +426,7 @@ ul.nice-menu ul {
     text-transform : uppercase;
 }
 
+a.edit,
 a.edit_property {
     text-decoration: none;
     color: #444444;

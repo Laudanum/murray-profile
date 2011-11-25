@@ -121,7 +121,6 @@ function get_project_info($tax_name = 'none'){
         
         //Get File info.
         if(!empty($first_image)) {
-      
             $file = db_query("Select * from {file_managed} Where fid = :fid",array(
             ':fid' => $first_image['fid']
             ));
@@ -252,6 +251,10 @@ function get_project_slide_info($tax_name = 'none'){
             
             if(isset($first_image['file']) && !empty($first_image['file'])){
                 $media_caption = $first_image['file']->field_media_caption;
+                $classes = array();
+                if ( $first_image['file']->field_media_crop['und'][0]['value'] == 1 ) {
+                  $classes[] = 'crop';
+                }
                 
                 //print "<pre>";
                 //print_r($media_caption);
@@ -273,20 +276,20 @@ function get_project_slide_info($tax_name = 'none'){
                 image_style_create_derivative($style_thumbnail, $file_item->uri, file_default_scheme() . '://styles/large/public/' . $file_item->filename);
                 
                 if ( $iterator === 0 ) {
-                  $item_class = "item-0 active";
+                  $classes[] = "item-0 active";
                 } else {
-                  $item_class = "item-$iterator";
+                  $classes[] = "item-$iterator";
                 }
                  if($index == 1){
                     //$output .= '<li class="active"><a href="'. url("node/".$node->nid) .'" title="'. $caption_value . '" ><img src="' . $base_url . $file_direcoty_path . '/styles/large/public/' . $file_item->filename . '" title="'. $caption_value . '" /></a>';
-                    $output .= '<li class="' . $item_class . '"><a href="'. url("node/".$node->nid) .'" title="'. $caption_value . '" ><img src="' . $base_url . $file_direcoty_path . '/styles/large/public/' . $file_item->filename . '" title="'. $caption_value . '" /></a>';
+                    $output .= '<li class="' . implode(" ", $classes) . '"><a href="'. url("node/".$node->nid) .'" title="'. $caption_value . '" ><img src="' . $base_url . $file_direcoty_path . '/styles/large/public/' . $file_item->filename . '" title="'. $caption_value . '" /></a>';
                     //$output .= '<div class="detail-info">' . '<p><a href="'. url("node/".$node->nid) .'">' . $title . '</a></p><p><a href="'. url("node/".$node->nid) .'">' . $date_info . '</a></p>' . '</div>';
                     $output .= '<div class="detail-info">' . '<h2><a href="'. url("node/".$node->nid) .'">' . $title . '</a></h2><div class="meta"><a href="'. url("node/".$node->nid) .'">' . $date_info . '</a></div>' . '</div>';
                     $output .= '<div class="detail-body">' . $body. '</div>';
                     $output .= '</li>';
                  }
                  else{
-                    $output .= '<li class="' . $item_class . '"><a href="'. url("node/".$node->nid) .'" title="'. $caption_value . '"><img src="' . $base_url . $file_direcoty_path . '//styles/large/public/' . $file_item->filename . '" title="'. $caption_value . '" />';
+                    $output .= '<li class="' . implode(" ", $classes) . '"><a href="'. url("node/".$node->nid) .'" title="'. $caption_value . '"><img src="' . $base_url . $file_direcoty_path . '//styles/large/public/' . $file_item->filename . '" title="'. $caption_value . '" />';
                     $output .= '<div class="detail-info">' . '<h2><a href="'. url("node/".$node->nid) .'">' . $title . '</a></h2><div class="meta"><a href="'. url("node/".$node->nid) .'">' . $date_info . '</a></div>' . '</div>';
                     $output .= '<div class="detail-body">' . $body. '</div>';
                     $output .= '</li>'; 

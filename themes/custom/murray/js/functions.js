@@ -79,6 +79,17 @@ jQuery(document).ready(function(){
       return false;
     }
 
+//  if required adjust the image position
+    var _mt = 0;
+    if ( _next_slide.hasClass("crop") ) {
+  //  top margin should be negative 1/2 ( height of image - height of screen )
+      _wh = jQuery('#gallery').height();
+      _h = _next_slide.find("img")[0].height;
+      _mt = -(_h-_wh)/2;
+      _next_slide.children("a").css({marginTop : _mt, height : 'auto'});
+    } else {
+    }
+
     _active_slide.addClass('last-active');
     _next_slide.css({opacity: 0.0}).addClass('active').animate(
       {opacity: 1.0}, 
@@ -134,7 +145,7 @@ jQuery(document).ready(function(){
     });
 
 //  interrupt clicks on project media thumbs and show the correct slide
-    jQuery("#project-media li a").click(function(event) {
+    jQuery("#project-media li a:not(.edit)").click(function(event) {
       event.preventDefault();
 //  pause the slideshow
       _stopSlideshow();
