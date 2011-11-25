@@ -234,11 +234,13 @@ function murray_preprocess_page(&$variables, $hook) {
             }
             
             
-            $style_thumbnail = image_style_load('large');
-            image_style_create_derivative($style_thumbnail, $file->uri, file_default_scheme() . '://styles/large/public/' . $file->filename);
-            
-            $style_thumbnail = image_style_load('square_thumbnail');
-            image_style_create_derivative($style_thumbnail, $file->uri, file_default_scheme() . '://styles/square_thumbnail/public/' . $file->filename);
+  //          $style_thumbnail = image_style_load('large');
+//            image_style_create_derivative($style_thumbnail, $file->uri, file_default_scheme() . '://styles/large/public/' . $file->filename);
+              $large_file_src = image_style_url("large", $file->uri);
+        
+//            $style_thumbnail = image_style_load('square_thumbnail');
+  //          image_style_create_derivative($style_thumbnail, $file->uri, file_default_scheme() . '://styles/square_thumbnail/public/' . $file->filename);
+              $thumbnail_file_src = image_style_url("square_thumbnail", $file->uri);
 
             $tabs = "";
             if(in_array('editor user',$user->roles) || in_array('administrator',$user->roles) ) {
@@ -247,8 +249,8 @@ function murray_preprocess_page(&$variables, $hook) {
             }
 
    
-            $media_info .= '<li class="' . implode(" ", $classes) . '"><a href="'. url("node/".$node->nid) .'" title="'. $caption_value . '"><img src="' . $base_url . $file_directory_path .'/styles/large/public/' . $file->filename . '" title="'. $caption_value . '" /></a></li>';
-            $thumb_info .= '<li class="' . implode(" ", $classes) . '">' . $tabs . '<a href="'. $base_url . $file_directory_path . '/styles/large/public/' . $file->filename .'" title="'. $caption_value . '"><img src="' . $base_url . $file_directory_path . '/styles/square_thumbnail/public/' . $file->filename . '" title="'. $caption_value . '" /></a></li>';
+            $media_info .= '<li class="' . implode(" ", $classes) . '"><a href="'. url("node/".$node->nid) .'" title="'. $caption_value . '"><img src="' . $large_file_src . '" title="'. $caption_value . '" /></a></li>';
+            $thumb_info .= '<li class="' . implode(" ", $classes) . '">' . $tabs . '<a href="'. $base_url . $file_directory_path . '/styles/large/public/' . $file->filename .'" title="'. $caption_value . '"><img src="' . $thumbnail_file_src . '" title="'. $caption_value . '" /></a></li>';
             
           }
      }
