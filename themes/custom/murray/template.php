@@ -250,7 +250,7 @@ function murray_preprocess_page(&$variables, $hook) {
 
    
             $media_info .= '<li class="' . implode(" ", $classes) . '"><a href="'. url("node/".$node->nid) .'" title="'. $caption_value . '"><img src="' . $large_file_src . '" title="'. $caption_value . '" /></a></li>';
-            $thumb_info .= '<li class="' . implode(" ", $classes) . '">' . $tabs . '<a href="'. $base_url . $file_directory_path . '/styles/large/public/' . $file->filename .'" title="'. $caption_value . '"><img src="' . $thumbnail_file_src . '" title="'. $caption_value . '" /></a></li>';
+            $thumb_info .= '<li class="default ' . implode(" ", $classes) . '">' . $tabs . '<a href="'. $base_url . $file_directory_path . '/styles/large/public/' . $file->filename .'" title="'. $caption_value . '"><img src="' . $thumbnail_file_src . '" title="'. $caption_value . '" /></a></li>';
             
           }
      }
@@ -266,7 +266,7 @@ function murray_preprocess_page(&$variables, $hook) {
      if($thumb_info == "<ul></ul>") 
         $thumb_info = "";
      else{
-        $thumb_info =  '<div id="project-media" class="menu secondary">' . $thumb_info . '</div>';
+        $thumb_info =  '<div id="project-media" class="menu secondary default">' . $thumb_info . '</div>';
      }
      
      

@@ -106,7 +106,7 @@ jQuery(document).ready(function(){
   var _startSlideshow = function() {
 //  update the info area with the correct information
     _updateSlideInfo(jQuery("#gallery li.active"));
-    jQuery("body").everyTime(slide_speed, "slideshow", function() {
+    jQuery("body").addClass("slideshow-running").everyTime(slide_speed, "slideshow", function() {
       _showSlide();
     });
   }
@@ -126,7 +126,17 @@ jQuery(document).ready(function(){
   
   
   var _stopSlideshow = function() {
-    jQuery("body").stopTime("slideshow");
+    jQuery("body").removeClass("slideshow-running").stopTime("slideshow");
+  }
+
+
+  var _toggleSlideshow = function() {
+    if ( jQuery("body").hasClass("slideshow-running") ) 
+      _stopSlideshow();
+    else {
+      _showSlide();
+      _startSlideshow();
+    }
   }
   
 
@@ -203,6 +213,10 @@ jQuery(document).ready(function(){
 				} else if ( event.which == 39 ) { // right
 					event.preventDefault()
 					jQuery(".next").click();
+				} else if ( event.which == 32 ) { // space
+				  _toggleSlideshow();
+				} else if ( event.which == 27 ) { // esc
+				  jQuery("div.toggle a").click();
 				} else {
 //						alert(event.which)
 				}
@@ -333,6 +347,7 @@ _showSubmenu(jQuery('#works-'+ current_name));
   //      jQuery(target).animate({width:'toggle'},500)
 //          jQuery(target).hide('slide',{direction:'right'},1000);
 //          jQuery(target).animate({left:'toggle'},500)
+    _hideMenus();
         
 	},
     function() {
@@ -341,9 +356,17 @@ _showSubmenu(jQuery('#works-'+ current_name));
 //  jQuery(target).fadeIn(500);
 //        jQuery(target).slideToggle("slow");
 //        jQuery(target).animate({width:'toggle'},500)
-        
+        _showMenus();
     });
 	
+	var _hideMenus = function() {
+    jQuery(".secondary,.primary").animate({height:0, opacity:0}, "slow", "swing").removeClass("active");
+	}
+	
+	var _showMenus = function() {
+    jQuery(".primary").animate({height:95, opacity:1}, "slow", "swing");	  
+    _showSubmenu(jQuery(".secondary.default"));
+	}
 	
 	jQuery('#sidebar div.body').tinyscrollbar();
 	

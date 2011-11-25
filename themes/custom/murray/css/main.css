@@ -369,6 +369,9 @@ body.front #sidebar-container a:hover {
   width : 66%;
   left : 33%;
 }
+body.slideshow-running #gallery a.navigation:hover {
+  background : none;
+}
 #gallery a.navigation:hover {
   background-image : url(../images/arrow-prev.png);
   background-repeat : no-repeat;
