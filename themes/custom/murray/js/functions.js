@@ -36,7 +36,6 @@ function slideSwitch() {
 //  front page - update the header with the title of the work shown
       var gallery_info = _next_slide.find('.detail-info').html();
       if(gallery_info != ""){
-        alert(gallery_info)
         jQuery('#slidecontent').html(gallery_info);
       }  
     }
@@ -50,9 +49,9 @@ jQuery(document).ready(function(){
 
 
 /* show the correct row of thumbnails and hide the others */
-  var _showSubmenu = function(obj) {
+  var _showSubmenu = function(_obj) {
 //  do nothing if we're currently active
-    if ( jQuery(obj).hasClass("active") ) {
+    if ( jQuery(_obj).hasClass("active") ) {
       return false;
     }
 //  hide any existing menus
@@ -61,7 +60,7 @@ jQuery(document).ready(function(){
       height : 0
     }, "fast", "swing");
 //  show the correct one
-    jQuery(obj).addClass("active").animate({
+    jQuery(_obj).addClass("active").animate({
       opacity : 1,
       height : 94
     }, "slow", "swing");
@@ -112,13 +111,13 @@ jQuery(document).ready(function(){
   }
   
   
-  var _updateSlideInfo = function(obj) {
+  var _updateSlideInfo = function(_obj) {
 //  update the correct thumbnail
-    _src = jQuery(obj).find("img").attr("src");
+    _src = jQuery(_obj).find("img").attr("src");
     jQuery(".secondary a.active").removeClass("active");
     jQuery(".secondary a[href=" + _src + "]").addClass("active");
 //  front page - update the header with the title of the work shown
-    var gallery_info = jQuery(obj).find('.detail-info').html();
+    var gallery_info = jQuery(_obj).find('.detail-info').html();
     if(gallery_info != ""){
       jQuery('#slidecontent').html(gallery_info);
     }  
@@ -225,26 +224,6 @@ jQuery(document).ready(function(){
     
     
      
-     /*
-     jQuery('div.secondary ul').jcarousel({
-         scroll:12       
-     });
-     */
-     
-     
-
-    
-
-/*
-	jQuery("#primary-links").hover(function(){
-		jQuery(secondary+","+primary).stop();
-		jQuery(this).animate({height:94}, "slow", "swing");
-//		jQuery(secondary).animate({height:94, bottom:95, opacity:1}, "slow", "swing");
-	}, function() {
-//		jQuery(this).animate({height:41}, "slow", "swing");
-//		jQuery(secondary).animate({height:0, bottom:41, opacity:0}, "slow", "swing");
-	});
-*/
 /*
 	handle the secondary menu exits
 */
@@ -255,22 +234,12 @@ jQuery(document).ready(function(){
 	},function(event){
 // only exit if we're exiting up
 			if ( event.pageY < jQuery(this).offset().top && jQuery(this).hasClass("active") ) {
-//			  jQuery(this).css("border", "1px solid red");
-//    	  alert('exit event y ' + event.pageY + " this top " + jQuery(this).offset().top);
     		jQuery(this).animate({height:0, opacity:0}, "slow", "swing", function() {
-//	if we exit from the top close primary
-//	dont' close the primary menu any more
-/*
-			if ( event.pageY < jQuery(primary).offset().top ) {
-				jQuery(primary).animate({height:41}, "slow", "swing");
-				jQuery(primary).find("ul ul").animate({opacity:0});
-			} else {
-			}
-*/
 		    });
 	    }
       jQuery("#bottom").show();
 	});
+
 
 /* show submenu */
 	jQuery(".primary ul ul").hover(function(){
@@ -281,14 +250,8 @@ jQuery(document).ready(function(){
 //	if we are not exiting up then close it up
 		if ( event.pageY > jQuery(primary).offset().top ) {
 			jQuery(this).animate({opacity:0}).parent().removeClass("active");
-//			alert("close from primary ul ul exit")
-//  why are we closing here ? probably from old hover interaction
-//			jQuery(".secondary").animate({height:0, opacity:0}, "slow", "swing");
-            
 		} else {
-            //alert('me');
-           jQuery(this).parent().find("a").animate({opacity:1});
-			
+     jQuery(this).parent().find("a").animate({opacity:1});
 		}
 	});
 
@@ -296,46 +259,31 @@ jQuery(document).ready(function(){
 	reveal the correct secondary menu
 */
 	jQuery(".primary ul ul li a").click(function(){
-        
-        var taxnomy_name_list = jQuery(this).attr("href");
-        
-        var taxnomy_name = taxnomy_name_list.split("/");
-        var current_name = taxnomy_name[taxnomy_name.length - 1];
+    var taxnomy_name_list = jQuery(this).attr("href");
+    var taxnomy_name = taxnomy_name_list.split("/");
+    var current_name = taxnomy_name[taxnomy_name.length - 1];
 //        alert("Closing others")
-_showSubmenu(jQuery('#works-'+ current_name));
+    _showSubmenu(jQuery('#works-'+ current_name));
 //        jQuery(".secondary.active").removeClass("active").animate({height:0, opacity:0}, "fast", "swing");    
-  //      jQuery('#works-'+ current_name).addClass("active").animate({height:95, bottom:95, opacity:1}, "slow", "swing");    
-        
-        /*jQuery.ajax({
-          url: "murray_thumbnail/" + current_name,
-          cache: false,
-          success: function(id){
-              alert(id);
-            if(id != '0'){  
-                alert(id);
-                jQuery('#works-'+ id).animate({height:94, bottom:95, opacity:1}, "slow", "swing");    
-            }
-          }
-        });*/
-        
-        
-		/*event.preventDefault();
-		s_id = jQuery(this).attr("href");
-		if ( jQuery(s_id).size() ) {
-			jQuery(s_id).animate({height:94, opacity:1}, "slow", "swing");
-			jQuery(".secondary:not("+s_id+")").animate({height:0, opacity:0}, "slow", "swing");
-
-		}
-		if ( jQuery(secondary).css('opacity') < 1 ) {
-			jQuery(secondary).animate({height:94, opacity:1}, "slow", "swing");
-		} else {
-			jQuery(secondary).animate({height:0, opacity:0}, "slow", "swing");
-		}  */
-        
-        
-        
+//      jQuery('#works-'+ current_name).addClass("active").animate({height:95, bottom:95, opacity:1}, "slow", "swing");    
+    
         return false;
 	});
+
+  
+/* show titles on hover over the thumbnails */
+  jQuery(".secondary ul li a").hover(function(event){
+    _src = jQuery(this).attr("href");
+    _title = jQuery(this).attr("title");
+//    alert(_title)
+//    _obj = jQuery("#gallery").find("li > a[href=" + _src + "]");
+//    var gallery_info = jQuery(_obj).parent().find('.detail-info').html();
+//    var _title = gal
+    if(_title != "") {
+      jQuery('#slidecontent h2').html(_title);
+      jQuery('#slidecontent div.meta').html(" ");
+    }  
+  });
 
 /*
 	close - show and hide the sidebar content 
