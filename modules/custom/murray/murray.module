@@ -1,5 +1,9 @@
 <?php
 
+function murray_init() {
+  drupal_add_library('system', 'effects.slide');  
+}
+
 /**
  * Implements hook_block_info().
  */
