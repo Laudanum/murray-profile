@@ -79,7 +79,6 @@ body.front .toggle {
     height: 100%;
     width : 100%;
     overflow : hidden;
-    z-index: 20;
 }
 #header {
     font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
@@ -118,6 +117,7 @@ body.front .toggle {
 }
 #sidebar {
     position: relative;
+    z-index : 30;
     width : 1000px;
     left : 66.7%;
     display : table;
@@ -353,7 +353,7 @@ body.front #sidebar-container a:hover {
 }
 #gallery a.navigation {
   position : absolute;
-  z-index : 11;
+  z-index : 15;
   height : 100%;
   width : 33%;
   display : block;
@@ -362,6 +362,15 @@ body.front #sidebar-container a:hover {
 #gallery a.navigation.next {
   width : 66%;
   left : 33%;
+}
+#gallery a.navigation:hover {
+  background-image : url(../images/arrow-prev.png);
+  background-repeat : no-repeat;
+  background-position : 10% 40%;
+}
+#gallery a.navigation.next:hover {
+  background-image : url(../images/arrow-next.png);
+  background-position : 90% 40%;
 }
 #gallery ul,
 #gallery ul li {
