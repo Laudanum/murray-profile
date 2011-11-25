@@ -4,11 +4,6 @@ var slide_speed = 7000;
 function slideSwitch() {
   var _active_slide = jQuery('#gallery ul li.active');
 
-//  front page - update the header with the title of the work shown
-  var gallery_info = jQuery('#gallery ul li.active .detail-info').html();
-  if(gallery_info != ""){
-    jQuery('#slidecontent').html(gallery_info);
-  }
   
 /*  
 //  front page - update the content area with the project description  
@@ -38,6 +33,12 @@ function slideSwitch() {
     transition_speed, 
     function() {
       _active_slide.removeClass('active last-active');
+//  front page - update the header with the title of the work shown
+      var gallery_info = _next_slide.find('.detail-info').html();
+      if(gallery_info != ""){
+        alert(gallery_info)
+        jQuery('#slidecontent').html(gallery_info);
+      }  
     }
   );
 }
@@ -96,25 +97,31 @@ jQuery(document).ready(function(){
       transition_speed, 
       function() {
         _active_slide.removeClass('active last-active');
+        _updateSlideInfo(_next_slide);
       }
-    );
-    
-//  update the correct thumbnail
-    _src = jQuery(_next_slide).find("img").attr("src");
-    jQuery(".secondary a.active").removeClass("active");
-    jQuery(".secondary a[href=" + _src + "]").addClass("active");
-  //  front page - update the header with the title of the work shown
-    var gallery_info = jQuery('#gallery ul li.active .detail-info').html();
-    if(gallery_info != ""){
-      jQuery('#slidecontent').html(gallery_info);
-    }  
+    );    
   }  
   
 
   var _startSlideshow = function() {
+//  update the info area with the correct information
+    _updateSlideInfo(jQuery("#gallery li.active"));
     jQuery("body").everyTime(slide_speed, "slideshow", function() {
       _showSlide();
     });
+  }
+  
+  
+  var _updateSlideInfo = function(obj) {
+//  update the correct thumbnail
+    _src = jQuery(obj).find("img").attr("src");
+    jQuery(".secondary a.active").removeClass("active");
+    jQuery(".secondary a[href=" + _src + "]").addClass("active");
+//  front page - update the header with the title of the work shown
+    var gallery_info = jQuery(obj).find('.detail-info').html();
+    if(gallery_info != ""){
+      jQuery('#slidecontent').html(gallery_info);
+    }  
   }
   
   
