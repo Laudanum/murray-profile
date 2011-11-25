@@ -141,6 +141,7 @@ body.front .toggle {
 }
 #wrapper .toggle {
     position : absolute;
+    z-index : 100;
     top : 0;
     right : 0;
     width : 40px;
@@ -358,6 +359,11 @@ body.front #sidebar-container a:hover {
   width : 33%;
   display : block;
   text-indent : -5000px;
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  filter:alpha(opacity=50);
+  -webkit-opacity : 0.5;
+  -moz-opacity : 0.5;
+  opacity : 0.5;
 }
 #gallery a.navigation.next {
   width : 66%;
