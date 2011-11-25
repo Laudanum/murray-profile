@@ -69,7 +69,7 @@
  */
 ?>
   <div id="gallery">
-    
+    <?php print render($page['gallery_collection']); ?>    
   </div>
  
         <div id="wrapper">
