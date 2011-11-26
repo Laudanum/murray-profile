@@ -336,13 +336,17 @@ function _murray_get_thumbnails() {
           ));
     foreach($pdata as $term_data){
         $tid = $term_data->id;
-        
+        $classes = array('menu','secondary');
+        if ( arg(2) == $tid ) {
+          $classes[] = 'default';
+          $classes[] = 'active';
+        }
         $path = drupal_get_path_alias("taxonomy/term/" . $tid);
         
         $path = explode("/",$path);        
         //exit(0);
         $term_name = $term_data->name;
-        $output .= '<div id="works-'.$path[count($path)-1].'" class="menu secondary">';
+        $output .= '<div id="works-'.$path[count($path)-1].'" class="' . implode(" ", $classes) . '">';
         $output .= _murray_get_project_info($term_name);
         $output .= '</div>';
     }

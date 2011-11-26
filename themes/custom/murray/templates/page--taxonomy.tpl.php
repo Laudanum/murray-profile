@@ -67,18 +67,20 @@
  * @see zen_preprocess_page()
  * @see template_process()
  */
+ if ( empty($page['content']['system_main']['term_heading']['term']["#term"]->description) ) {
+   $nodescription = TRUE;
+ } 
 ?>
         <div id="gallery">
           <?php print render($page['gallery_collection']); ?>     
         </div>
- 
         <div id="wrapper">
             
             <div id="sidebar-container" class="container_12">
                 <div class="title" id="slidecontent">
                     
                 </div>
-                <div id="sidebar" class="">                
+                <div id="sidebar" class="<? if ($nodescription) echo "empty" ?>">                
                     <div class="body grid_4">
                         <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
                         <div class="viewport">

@@ -20,6 +20,7 @@ a:focus {
     outline: 0;
 }
 
+#sidebar.empty,
 body.front #sidebar,
 body.front .toggle {
   display : none;

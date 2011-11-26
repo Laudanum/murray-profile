@@ -1,52 +1,9 @@
 var transition_speed = 500;
 var slide_speed = 7000;
 
-function slideSwitch() {
-  var _active_slide = jQuery('#gallery ul li.active');
-
-  
-/*  
-//  front page - update the content area with the project description  
-  var gallery_body = jQuery('#gallery ul li.active .detail-body').html();
-  if(gallery_info != ""){
-      jQuery('#content').html(gallery_body);
-  }
-*/  
-  
-
-  if ( _active_slide.length == 0 ) _active_slide = jQuery('#gallery ul li:last');
-
-  // use this to pull the images in the order they appear in the markup
-  var _next_slide =  _active_slide.next().length ? _active_slide.next() : jQuery('#gallery ul li:first');
-
-  // uncomment the 3 lines below to pull the images in random order
-  
-  // var $sibs  = _active_slide.siblings();
-  // var rndNum = Math.floor(Math.random() * $sibs.length );
-  // var _next_slide  = $( $sibs[ rndNum ] );
-
-
-  _active_slide.addClass('last-active');
-
-  _next_slide.css({opacity: 0.0}).addClass('active').animate(
-    {opacity: 1.0}, 
-    transition_speed, 
-    function() {
-      _active_slide.removeClass('active last-active');
-//  front page - update the header with the title of the work shown
-      var gallery_info = _next_slide.find('.detail-info').html();
-      if(gallery_info != ""){
-        jQuery('#slidecontent').html(gallery_info);
-      }  
-    }
-  );
-}
-
-
 jQuery(document).ready(function(){
 //move header into primary-links
 //	jQuery("#primary-links").prepend(jQuery("#header"));
-
 
 /* show the correct row of thumbnails and hide the others */
   var _showSubmenu = function(_obj) {
@@ -65,6 +22,7 @@ jQuery(document).ready(function(){
       height : 94
     }, "slow", "swing");
   }
+
 
 /* show a particular slide, or the next slide if no slide is specified */
   var _showSlide = function(_next_slide) {
@@ -101,7 +59,9 @@ jQuery(document).ready(function(){
     );    
   }  
   
-
+/*
+  start the slideshow and trigger the first image update
+  */
   var _startSlideshow = function() {
 //  update the info area with the correct information
     _updateSlideInfo(jQuery("#gallery li.active"));
@@ -111,6 +71,9 @@ jQuery(document).ready(function(){
   }
   
   
+/* 
+  update the title area and set the active class on the current thumbnail 
+  */
   var _updateSlideInfo = function(_obj) {
 //  update the correct thumbnail
     _src = jQuery(_obj).find("img").attr("src");
@@ -137,8 +100,9 @@ jQuery(document).ready(function(){
       _startSlideshow();
     }
   }
-  
 
+
+/* initialisation */
 	if ( jQuery("body").hasClass("front") ) {
 		secondary = "#header";
 	} else {

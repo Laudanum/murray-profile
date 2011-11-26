@@ -23,8 +23,8 @@
 	height : 0;
 	opacity : 0;
 	overflow : hidden;
-    
 }
+.secondary.default,
 .secondary.active {
 	opacity : 1;
 	height : 95px;
