@@ -275,13 +275,14 @@ jQuery(document).ready(function(){
   jQuery(".secondary ul li a").hover(function(event){
     _src = jQuery(this).attr("href");
     _title = jQuery(this).attr("title");
+    _date =  jQuery(this).attr("data-date");
 //    alert(_title)
 //    _obj = jQuery("#gallery").find("li > a[href=" + _src + "]");
 //    var gallery_info = jQuery(_obj).parent().find('.detail-info').html();
 //    var _title = gal
     if(_title != "") {
       jQuery('#slidecontent h2').html(_title);
-      jQuery('#slidecontent div.meta').html(" ");
+      jQuery('#slidecontent div.meta').html(_date);
     }  
   });
 
