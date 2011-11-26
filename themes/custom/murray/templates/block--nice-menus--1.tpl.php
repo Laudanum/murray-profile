@@ -1,3 +1,4 @@
+<!-- template block nice-menus 1 -->
 <?php
 // $Id: gigya-login-block.tpl.php,v 1.1 2010/08/04 14:52:05 add1sun Exp $
 

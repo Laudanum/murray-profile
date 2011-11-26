@@ -1,3 +1,4 @@
+<!-- template page front -->
 <?php
 /**
  * @file

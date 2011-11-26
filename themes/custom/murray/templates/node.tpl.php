@@ -1,3 +1,4 @@
+<!-- template node -->
 <?php
 /**
  * @file

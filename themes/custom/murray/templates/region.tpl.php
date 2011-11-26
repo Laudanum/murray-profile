@@ -1,3 +1,4 @@
+<!-- template region -->
 <?php
 /**
  * @file

@@ -1,3 +1,4 @@
+<!-- template comment-wrapper -->
 <?php
 /**
  * @file

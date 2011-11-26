@@ -1,3 +1,4 @@
+<!-- template region sidebar -->
 <?php
 /**
  * @file

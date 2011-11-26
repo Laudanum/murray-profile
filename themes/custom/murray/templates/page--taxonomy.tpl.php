@@ -1,3 +1,4 @@
+<!-- template page taxonomy -->
 <?php
 /**
  * @file

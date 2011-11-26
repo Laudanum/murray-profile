@@ -89,6 +89,7 @@ body.front .toggle {
 #name-and-slogan {
   margin-top : 15px;
 }
+div#site-name strong a,
 #header h1,
 #header h1 a {
     font-weight : normal;
@@ -168,6 +169,10 @@ body.front .toggle {
   width : 360px;
   margin-left : 0;
 }
+h1, h2 {
+  font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+  font-weight : normal;
+}
 #sidebar-container h2,
 #sidebar-container h2 a,
 #sidebar-container div.title div.meta,
@@ -176,7 +181,6 @@ body.front .toggle {
     bottom: 0;
     right: 0;
     text-align: right;
-    font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
     font-size: 12px;
     font-weight: normal;
     font-style: italic;
@@ -445,6 +449,9 @@ ul.nice-menu ul {
     text-transform : uppercase;
 }
 
+.breadcrumb a,
+.section #main-menu li a,
+label,
 a.edit,
 a.edit_property {
     text-decoration: none;
@@ -452,7 +459,14 @@ a.edit_property {
     font-size : 0.9em;
     text-transform : uppercase;
     display : block;
+    font-weight : normal;
 }
+.breadcrumb a,
+.section #main-menu li a {
+  display : inline;
+}
+.breadcrumb a:hover,
+.section #main-menu li a:hover, 
 a.edit_property:hover {
   text-decoration : underline;
   color : red;
@@ -460,4 +474,18 @@ a.edit_property:hover {
 #footer {
     background-color: rgba(255, 255, 255, 0.75);
     text-align: right;
+}
+
+.no-sidebars #page-wrapper,
+.page-admin #page-wrapper,
+.page-user #page-wrapper {
+  width : 960px;
+  margin : 0 auto;
+}
+
+input[type=text], input[type=password] {
+  width : 10em;
+  padding : 0.2em 0.5em;
+  border : 1px solid #cccccc;
+  font-size : 2em;
 }

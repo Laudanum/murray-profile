@@ -1,3 +1,4 @@
+<!-- template page field-collection -->
 <?php
 /**
  * @file
