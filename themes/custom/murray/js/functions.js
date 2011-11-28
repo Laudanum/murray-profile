@@ -127,6 +127,8 @@ jQuery(document).ready(function(){
 //  interrupt clicks on project media thumbs and show the correct slide
     jQuery("#project-media li a:not(.edit)").click(function(event) {
       event.preventDefault();
+      if ( jQuery(this).hasClass("active") )
+        return
 //  pause the slideshow
       _stopSlideshow();
       
