@@ -374,16 +374,26 @@ body.front #sidebar-container a:hover {
   width : 66%;
   left : 33%;
 }
+#gallery a.navigation.show {
+  z-index : 16;
+  height : 180px;
+  bottom : 0px;
+  width : 100%;
+}
+#gallery a.navigation.show:hover {
+
+}
 body.slideshow-running #gallery a.navigation:hover {
   background : none;
 }
-#gallery a.navigation:hover {
+#gallery a.navigation.previous:hover {
   background-image : url(../images/arrow-prev.png);
   background-repeat : no-repeat;
   background-position : 10% 40%;
 }
 #gallery a.navigation.next:hover {
   background-image : url(../images/arrow-next.png);
+  background-repeat : no-repeat;
   background-position : 90% 40%;
 }
 #gallery ul,

@@ -154,18 +154,23 @@ jQuery(document).ready(function(){
       _startSlideshow();
 
 //  create some buttons if we don't have them already
-      jQuery("#gallery").append("<a class='navigation next' href='javascript:void(0);'>Next</a><a class='navigation previous' href='javascript:void(0);'>Previous</a>");
+      jQuery("#gallery").append("<a class='navigation show' href='javascript:void(0);'>Show menu</a><a class='navigation next' href='javascript:void(0);'>Next</a><a class='navigation previous' href='javascript:void(0);'>Previous</a>");
 
 //  listen for clicks on the navigation arrows
       jQuery("#gallery a.navigation").click(function(event) {
-        _stopSlideshow();
         if ( jQuery(this).hasClass("next") ) {
+          _stopSlideshow();
           _showSlide();
-        } else {
+        } else if ( jQuery(this).hasClass("previous") ) {
+          _stopSlideshow();
           var _active_slide = jQuery('#gallery ul li.active');
           _previous_slide = _active_slide.prev().length ? _active_slide.prev() : jQuery('#gallery ul li:last');
           _showSlide(_previous_slide);
         }
+      });
+
+      jQuery("#gallery a.navigation.show").hover(function(event) {
+        _showMenus();
       });
 
 //  use keyboard arrows to navigate the slideshow
@@ -198,7 +203,7 @@ jQuery(document).ready(function(){
 	},function(event){
 // only exit if we're exiting up
 			if ( event.pageY < jQuery(this).offset().top && jQuery(this).hasClass("active") ) {
-    		jQuery(this).animate({height:0, opacity:0}, "slow", "swing", function() {
+    		jQuery(this).removeClass("active").animate({height:0, opacity:0}, "slow", "swing", function() {
 		    });
 	    }
       jQuery("#bottom").show();
