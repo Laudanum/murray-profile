@@ -172,6 +172,7 @@ jQuery(document).ready(function(){
 
       jQuery("#gallery a.navigation.show").hover(function(event) {
         _showMenus();
+      }, function(event) {
       });
 
 //  use keyboard arrows to navigate the slideshow
@@ -198,14 +199,13 @@ jQuery(document).ready(function(){
 	handle the secondary menu exits
 */
 //refactor with intent or timer
-	jQuery(".secondary").hover(function(event){
-        //alert('okay');
-		jQuery(secondary+","+primary).stop();					
+	jQuery(".secondary, .primary").hover(function(event){
+//		jQuery(secondary).stop();					
 	},function(event){
 // only exit if we're exiting up
 			if ( event.pageY < jQuery(this).offset().top && jQuery(this).hasClass("active") ) {
-    		jQuery(this).removeClass("active").animate({height:0, opacity:0}, "slow", "swing", function() {
-		    });
+//    		jQuery(this).removeClass("active").animate({height:0, opacity:0}, "slow", "swing", function() {  });
+        _hideMenus();
 	    }
       jQuery("#bottom").show();
 	});
@@ -284,7 +284,7 @@ jQuery(document).ready(function(){
 	
 	var _showMenus = function() {
     jQuery(".primary").animate({height:95, opacity:1}, "slow", "swing");	  
-    _showSubmenu(jQuery(".secondary.default"));
+    _showSubmenu(jQuery(".secondary.default,.secondary#header"));
 	}
 	
 	jQuery('#sidebar div.body').tinyscrollbar();

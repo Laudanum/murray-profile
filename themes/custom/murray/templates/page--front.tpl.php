@@ -108,7 +108,7 @@
         </div>
         <div id="bottom">
           <?php print render($page['footer']); ?>
-    <div class="copyright"><a href="<?php print $front_page; ?>">Home | Copyright <?=date("Y")?> Ainslie Murray</a></div>
+    <div class="copyright"><a class="home" href="<?php print $front_page; ?>">Home</a> | Copyright <?=date("Y")?> <a class="" href="<?php print $front_page; ?>">Ainslie Murray</a></div>
         </div>
         
 
