@@ -242,8 +242,8 @@ body.front #sidebar-container a:hover {
     */
     position: relative;
     margin-top: -10px;
-    z-index: 30;
-    color: Gray;
+    z-index: 100;
+    color : #444444;
     display: none;
 }
 /* Installations */
@@ -343,7 +343,7 @@ body.front #sidebar-container a:hover {
 }
 #bottom .copyright a {
     text-decoration: none;
-    color: Gray;
+    color : #666666;
 }
 
 #thumb_nails {

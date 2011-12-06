@@ -109,7 +109,10 @@
    <?php print render($page['thumbnail_collection']); ?>
 </div>
 <div id="bottom" style="display: block;">
-       <div class="copyright">Copyright 2011 <a href="<?php print $front_page; ?>">Ainslie Murray</a></div>
+    <?php print render($page['footer']); ?>
+    <div class="copyright">
+      <a href="<?php print $front_page; ?>">Home | Copyright <?=date("Y")?> Ainslie Murray</a>
+    </div>
 </div>
 
 <?php
