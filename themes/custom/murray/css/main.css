@@ -387,12 +387,12 @@ body.slideshow-running #gallery a.navigation:hover {
   background : none;
 }
 #gallery a.navigation.previous:hover {
-  background-image : url(../images/arrow-prev.png);
+  background-image : url(../images/arrow-prev-grey.png);
   background-repeat : no-repeat;
   background-position : 10% 40%;
 }
 #gallery a.navigation.next:hover {
-  background-image : url(../images/arrow-next.png);
+  background-image : url(../images/arrow-next-grey.png);
   background-repeat : no-repeat;
   background-position : 90% 40%;
 }

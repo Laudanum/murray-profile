@@ -45,7 +45,6 @@ jQuery(document).ready(function(){
       _h = _next_slide.find("img")[0].height;
       _mt = -(_h-_wh)/2;
       _next_slide.children("a").css({marginTop : _mt, height : 'auto'});
-    } else {
     }
 
     _active_slide.addClass('last-active');
