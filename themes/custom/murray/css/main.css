@@ -12,7 +12,7 @@ html {
 body {
     background: #efefef;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 11px;
+    font-size: 12px;
     line-height: 18px;
     color: #444444;
 }
@@ -169,6 +169,8 @@ div#site-name strong a,
 #sidebar-container .content {
   width : 360px;
   margin-left : 0;
+  margin-top : 1em;
+  margin-bottom : 1em;
 }
 h1, h2 {
   font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
@@ -245,7 +247,7 @@ body.front #sidebar-container a:hover {
     position: relative;
     margin-top: -10px;
     z-index: 100;
-    color : #444444;
+    color : #cccccc;
     display: none;
 }
 /* Installations */
@@ -339,13 +341,13 @@ body.front #sidebar-container a:hover {
     bottom: 10px;
     left: 77%;
     text-align: right;
-    font-size: 12px;
-    color: #444444;
+    font-size: 11px;
+    color: #cccccc;
     font-family: 'Ubuntu', Helvetica, Arial, sans-serif;    
 }
 #bottom .copyright a {
     text-decoration: none;
-    color : #666666;
+    color : #cccccc;
 }
 
 #thumb_nails {
