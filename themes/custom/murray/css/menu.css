@@ -14,6 +14,7 @@
 	color: #333333;
 	background-color : rgba(255,255,255,0.75);
 	border-top : 1px solid rgba(255,255,255,0.9);
+	text-transform : lowercase;
 }
 .secondary {
 	bottom : 96px;

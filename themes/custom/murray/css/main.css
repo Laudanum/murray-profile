@@ -333,13 +333,13 @@ body.front #sidebar-container a:hover {
 /* Copyright */
 #bottom .copyright {
     position: absolute;
+    z-index : 100;
     bottom: 10px;
     left: 77%;
     text-align: right;
     font-size: 13px;
-    color: Gray;
-    font-family: "Ubuntu";
-    
+    color: #444444;
+    font-family: 'Ubuntu', Helvetica, Arial, sans-serif;    
 }
 #bottom .copyright a {
     text-decoration: none;
@@ -384,7 +384,9 @@ body.front #sidebar-container a:hover {
 
 }
 body.slideshow-running #gallery a.navigation:hover {
+/*
   background : none;
+  */
 }
 #gallery a.navigation.previous:hover {
   background-image : url(../images/arrow-prev-grey.png);
