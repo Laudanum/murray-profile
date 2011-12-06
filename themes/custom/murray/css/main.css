@@ -83,8 +83,8 @@ body.front .toggle {
 }
 #header {
     font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
-    padding : 15px 0px;
-    height : 65px;
+    padding : 20px 0px;
+    height : 55px;
 }
 #name-and-slogan {
   margin-top : 15px;
@@ -93,14 +93,14 @@ div#site-name strong a,
 #header h1,
 #header h1 a {
     font-weight : normal;
-    font-size : 44px;
+    font-size : px;
     color : #444444;
     display : inline;
     text-decoration : none;
 }
 #header #site-slogan {
     display : inline;
-    font-size : 36px;
+    font-size : 24px;
     text-transform : lowercase;
     margin-left : 20px;
     color : #999999;
