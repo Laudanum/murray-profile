@@ -280,10 +280,12 @@ jQuery(document).ready(function(){
 	
 	var _hideMenus = function() {
     jQuery(".secondary,.primary").animate({height:0, opacity:0}, "slow", "swing").removeClass("active");
+    jQuery("#slidecontent").animate({bottom:95, opacity:0}, "slow");
 	}
 	
 	var _showMenus = function() {
     jQuery(".primary").animate({height:95, opacity:1}, "slow", "swing");	  
+    jQuery("#slidecontent").animate({bottom:190, opacity:1}, "slow");
     _showSubmenu(jQuery(".secondary.default,.secondary#header"));
 	}
 	
