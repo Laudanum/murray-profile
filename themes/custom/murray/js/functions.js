@@ -1,4 +1,4 @@
-var transition_speed = 500;
+var transition_speed = 700;
 var slide_speed = 7000;
 
 jQuery(document).ready(function(){
@@ -56,12 +56,12 @@ jQuery(document).ready(function(){
     }
 
     _active_slide.addClass('last-active');
+    _updateSlideInfo(_next_slide);
     _next_slide.css({opacity: 0.0}).addClass('active').animate(
       {opacity: 1.0}, 
       transition_speed, 
       function() {
         _active_slide.removeClass('active last-active');
-        _updateSlideInfo(_next_slide);
       }
     );    
   }  
@@ -89,7 +89,9 @@ jQuery(document).ready(function(){
 //  front page - update the header with the title of the work shown
     var gallery_info = jQuery(_obj).find('.detail-info').html();
     if(gallery_info != ""){
-      jQuery('#slidecontent').html(gallery_info);
+      jQuery("#slidecontent").fadeOut(transition_speed, function() {
+        jQuery('#slidecontent').html(gallery_info).fadeIn(transition_speed);
+      });
     }  
   }
   
