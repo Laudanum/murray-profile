@@ -307,7 +307,6 @@ jQuery(document).ready(function(){
 	//			alert(img.height())
 				if ( ! bg_container )
 					bg_container = img.parents('div.full-item');
-          console.log(jQuery(img).attr("data-ratio"))
 //	get the original image sizes if we don't have them already
         if ( ! jQuery(img).attr("data-ratio") ) {
           jQuery("<img/>") // Make in memory copy of image to avoid css issues
@@ -317,7 +316,6 @@ jQuery(document).ready(function(){
             //  jQuery.data(img, '_h', this.height);  // work for in memory images.
               jQuery(img).attr("data-ratio", this.width/this.height);
               _imageSize(img, bg_container, settings);
-              console.log(this.width/this.height)
             });
           return; //  as we are recalling imagesize onload
         }
