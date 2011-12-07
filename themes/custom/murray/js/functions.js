@@ -355,16 +355,26 @@ jQuery(document).ready(function(){
 //				alert(bg_container.attr('id'))
 				img.css('width',_w).css('height',_h);	  
 	}
+
+
+	var _recropImages = function() {
+	  jQuery(".crop").each(function() {
+      settings = {fill:true, centre:true};
+      _imageSize(jQuery(this).find("img"), jQuery(this), settings)
+	  });
+	};
+	
 	
 	jQuery('#sidebar div.body').tinyscrollbar();
 
 //  resize cropped images on window resize
 	jQuery(window).resize(function() {
-	  jQuery(".crop").each(function() {
-      settings = {fill:true, centre:true};
-      _imageSize(jQuery(this).find("img"), jQuery(this), settings)
-	  });
+	  _recropImages();
 	});
+	
+//  crop them on load too
+  _recropImages();
+	
 	
 	
 });
