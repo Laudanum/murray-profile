@@ -268,18 +268,22 @@ jQuery(document).ready(function(){
 	close - show and hide the sidebar content 
 */
 	jQuery(".toggle a").toggle(function() {
-        var target ='#sidebar';
+	  if ( ! jQuery("body").hasClass("front") ) {
+      var target ='#sidebar';
 //		    jQuery(target).slideToggle("slow");
-        jQuery(target).hide('slide',{direction:'right'}, 1000);
+      jQuery(target).hide('slide',{direction:'right'}, 1000);
   //      jQuery(target).animate({width:'toggle'},500)
 //          jQuery(target).hide('slide',{direction:'right'},1000);
 //          jQuery(target).animate({left:'toggle'},500)
+    }
     _hideMenus();
         
 	},
     function() {
+	    if ( ! jQuery("body").hasClass("front") ) {
         var target ='#sidebar';
-          jQuery(target).show('slide',{direction:'right'},500);
+        jQuery(target).show('slide',{direction:'right'},500);
+      }
 //  jQuery(target).fadeIn(500);
 //        jQuery(target).slideToggle("slow");
 //        jQuery(target).animate({width:'toggle'},500)
