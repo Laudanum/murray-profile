@@ -22,11 +22,15 @@
 	border-top : 1px solid rgba(255,255,255,0.9);
 	z-index : 90;
 	height : 0;
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; 
+	filter: alpha(opacity=0);	
 	opacity : 0;
 	overflow : hidden;
 }
 .secondary.default,
 .secondary.active {
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; 
+	filter: alpha(opacity=100);	
 	opacity : 1;
 	height : 95px;
 }
@@ -66,6 +70,8 @@
 	margin-top : 0px;
 }
 #primary-links > ul > li.active > a {
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; 
+	filter: alpha(opacity=0);	
 	opacity : 0;
 }
 #primary-links > ul > li > ul {
@@ -77,6 +83,8 @@
 	border-right : 1px solid white;
 	text-align : right;
 	top : 0;
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; 
+	filter: alpha(opacity=0);	
 	opacity : 0;
 }
 #primary-links > ul > li > ul:hover {
@@ -118,6 +126,8 @@
 	border-bottom-right-radius : 10px;
 	border : 1px solid white;
 	overflow : hidden;
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=60)"; 
+	filter: alpha(opacity=60);	
 	opacity : 0.6;
 /* styles for missing thumbnails */
 	text-decoration: none;
@@ -127,6 +137,8 @@
 }
 .secondary li a.active,
 .secondary li a:hover {
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; 
+	filter: alpha(opacity=100);	
 	opacity : 1.0;
 }
 .secondary li a.active,
