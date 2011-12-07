@@ -38,15 +38,21 @@ jQuery(document).ready(function(){
     }
 
 //  if required adjust the image position
-//  refactor with 50% positioning
     var _mt = 0;
     if ( _next_slide.hasClass("crop") ) {
+//  	var _imageSize = function(img, bg_container, settings) {
+      settings = {fill:true, centre:true};
+      _imageSize(_next_slide.find("img"), _next_slide, settings)
+      /*
   //  top margin should be negative 1/2 ( height of image - height of screen )
       _wh = jQuery('#gallery').height();
       _h = _next_slide.find("img")[0].height;
-      _mt = -(_h-_wh)/4;
+      _mt = -(_h-_wh)/2;
+      alert(jQuery(window).height() + " " + _wh + " " + _h + " " + _mt);
+  
 //      alert("height " + _h + " window " + _wh + " margin " + _mt)
       _next_slide.children("a").css({marginTop : _mt, height : _h});
+      */
     }
 
     _active_slide.addClass('last-active');
@@ -291,7 +297,74 @@ jQuery(document).ready(function(){
     _showSubmenu(jQuery(".secondary.default,.secondary#header"));
 	}
 	
+	
+	var _imageSize = function(img, bg_container, settings) {
+	  //  get the images parent ( this gives us our size )
+				img = jQuery(img);
+//				alert(img.width())
+	//			alert(img.height())
+				if ( ! bg_container )
+					bg_container = img.parents('div.full-item');
+
+//	get the original image sizes if we don't have them already
+        if ( ! img.data._w ) {
+          jQuery("<img/>") // Make in memory copy of image to avoid css issues
+            .attr("src", jQuery(img).attr("src"))
+            .load(function() {
+              img.data._w = this.width;    // Note: $(this).width() will not
+              img.data.height = this.height;  // work for in memory images.
+              _imageSize(img, bg_container, settings);
+            });
+          return; //  as we are recalling imagesize onload
+        }
+
+				_pw = bg_container.width();
+				_ph = bg_container.height();
+				
+				_pratio = _pw/_ph;
+				_iratio = img.data._w/img.data.height;
+				
+//	are we scaling to fit or fill ?
+				if ( settings.fill ) {
+					if ( _pratio > _iratio ) {
+						_w = _pw;
+						_h = _pw / _iratio;
+					} else {
+						_w = _ph * _iratio;
+						_h = _ph;					
+					}
+				} else {
+					if ( _pratio < _iratio ) {
+						_w = _pw;
+						_h = _pw / _iratio;
+					} else {
+						_w = _ph * _iratio;
+						_h = _ph;					
+					}				
+				}
+				
+				if ( settings.centre ) {
+					_ml = (_pw - _w) / 2;
+					_mt = (_ph - _h ) / 2;
+					
+					img.css('margin-top', _mt).css('margin-left', _ml);
+				}
+				
+//				alert('w ' + _w + ' h ' + _h);
+//				alert('w ' + _pw + ' h ' + _ph);
+//				alert(bg_container.attr('id'))
+				img.css('width',_w).css('height',_h);	  
+	}
+	
 	jQuery('#sidebar div.body').tinyscrollbar();
+
+//  resize cropped images on window resize
+	jQuery(window).resize(function() {
+	  jQuery(".crop").each(function() {
+      settings = {fill:true, centre:true};
+      _imageSize(jQuery(this).find("img"), jQuery(this), settings)
+	  });
+	});
 	
 	
 });
