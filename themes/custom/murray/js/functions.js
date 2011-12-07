@@ -187,6 +187,11 @@ jQuery(document).ready(function(){
 
 //  use keyboard arrows to navigate the slideshow
 			jQuery(document).keydown(function(event) {
+//  ignore keycommands if modifier keys are pressed
+			  if ( event.ctrlKey || event.shiftKey || event.altKey || event.metaKey ) {
+          return true;
+			  }
+			  
 				if ( event.which == 37 ) { // left
 					event.preventDefault()
 					jQuery(".previous").click();
