@@ -8,6 +8,22 @@
  */
 
 
+#primary-links {
+	background-color : transparent;
+	background-image : url(../images/white-75.png);
+	border-top : 1px solid #ffffff;
+}
+.secondary {
+	background-color : transparent;
+	background-image : url(../images/white-50.png);
+	border-top : 1px solid #ffffff;
+}
+#primary-links > ul > li > ul {
+	background-color : transparent;
+	background-image : url(../images/white-60.png);
+}
+
+
 /*
  * Tabs
  */
