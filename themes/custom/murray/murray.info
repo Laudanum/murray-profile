@@ -30,6 +30,8 @@ stylesheets[all][]        = css/skin.css
 ;stylesheets[handheld][]  = css/mobile.css
 ;stylesheets[only screen and (max-device-width: 480px)][] = css/iphone.css
 stylesheets[only screen and (max-device-width: 480px)][] = css/ipad.css
+stylesheets[all][] = css/small-screens.css
+; stylesheets[screen and (orientation:landscape)][] = screen-landscape.css
 
 ; Add conditional stylesheets that are processed by IE. Uses conditional_styles module
 ; To target all versions of IE with an ie.css, uncomment the following line:

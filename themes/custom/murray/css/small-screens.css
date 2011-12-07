@@ -1,0 +1,94 @@
+/*
+@media all and (max-width: 1180px) {
+  
+  #sidebar-container {
+    margin-left : -620px;
+  }
+  
+  #sidebar div.body {
+
+  }
+  
+  .navigation {
+    background-color: red;
+  }
+}
+*/
+@media all and (max-width: 1180px) {
+  
+  #sidebar-container {
+    margin-left : -620px;
+  }
+  #sidebar div.body {
+    width : 300px;
+  }
+  #sidebar div.body .viewport {
+    width : 260px;
+  }  
+  #sidebar-container div.title {
+    width : 298px;    
+  }
+  body {
+    min-width : 768px;
+  }
+  .secondary ul, #primary-links > ul {
+    width : 768px;
+  }
+  
+  #primary-links > ul > li {
+    /*
+    width : 190px;
+    */
+    width : 140px;
+  }
+  #primary-links > ul > li > a {
+    /*
+    width : 170px;
+    */
+    width : 120px;
+  }
+  #primary-links > ul > li > ul {
+    /*
+    width : 188px;
+    */
+    width : 138px;
+  }
+
+  .navigation {
+
+  }
+}
+
+@media all and (max-width: 768px) {
+  #sidebar div.body {
+    width : 240px;
+  }
+  #sidebar div.body .viewport {
+    width : 200px;
+  }  
+  #sidebar-container div.title {
+    width : 238px;    
+  }
+  
+  #sidebar div.body .viewport .overview {
+    width : 200px;
+  }
+
+  /*
+  .secondary ul, #primary-links > ul {
+    width : 768px;
+  }
+  #primary-links > ul > li {
+    width : 90px;
+  }
+  #primary-links > ul > li > a {
+    width : 70px;
+  }
+  #primary-links > ul > li > ul {
+    width : 88px;
+  }
+  */
+
+  .navigation {
+  }
+}
