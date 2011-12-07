@@ -288,12 +288,14 @@ jQuery(document).ready(function(){
 	
 	var _hideMenus = function() {
     jQuery(".secondary,.primary").animate({height:0, opacity:0}, "slow", "swing").removeClass("active");
-    jQuery("#slidecontent").animate({bottom:95, opacity:0}, "slow");
+//  front page title
+//  project page titles
+    jQuery("#slidecontent, #sidebar-container div.title").animate({bottom:95, opacity:0}, "slow");
 	}
 	
 	var _showMenus = function() {
     jQuery(".primary").animate({height:95, opacity:1}, "slow", "swing");	  
-    jQuery("#slidecontent").animate({bottom:190, opacity:1}, "slow");
+    jQuery("#slidecontent, #sidebar-container div.title").animate({bottom:190, opacity:1}, "slow");
     _showSubmenu(jQuery(".secondary.default,.secondary#header"));
 	}
 	
@@ -305,15 +307,17 @@ jQuery(document).ready(function(){
 	//			alert(img.height())
 				if ( ! bg_container )
 					bg_container = img.parents('div.full-item');
-
+          console.log(jQuery(img).attr("data-ratio"))
 //	get the original image sizes if we don't have them already
-        if ( ! img.data._w ) {
+        if ( ! jQuery(img).attr("data-ratio") ) {
           jQuery("<img/>") // Make in memory copy of image to avoid css issues
             .attr("src", jQuery(img).attr("src"))
             .load(function() {
-              img.data._w = this.width;    // Note: $(this).width() will not
-              img.data.height = this.height;  // work for in memory images.
+          //    jQuery.data(img, '_w', this.width);    // Note: $(this).width() will not
+            //  jQuery.data(img, '_h', this.height);  // work for in memory images.
+              jQuery(img).attr("data-ratio", this.width/this.height);
               _imageSize(img, bg_container, settings);
+              console.log(this.width/this.height)
             });
           return; //  as we are recalling imagesize onload
         }
@@ -322,8 +326,9 @@ jQuery(document).ready(function(){
 				_ph = bg_container.height();
 				
 				_pratio = _pw/_ph;
-				_iratio = img.data._w/img.data.height;
+				_iratio = jQuery(img).attr("data-ratio");
 				
+//				alert("_pratio " + _pratio + " _iratio " + _iratio)
 //	are we scaling to fit or fill ?
 				if ( settings.fill ) {
 					if ( _pratio > _iratio ) {
