@@ -358,7 +358,7 @@ jQuery(document).ready(function(){
 
 
 	var _recropImages = function() {
-	  jQuery(".crop").each(function() {
+	  jQuery("#gallery .crop.active").each(function() {
       settings = {fill:true, centre:true};
       _imageSize(jQuery(this).find("img"), jQuery(this), settings)
 	  });
