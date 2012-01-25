@@ -155,7 +155,7 @@ function murray_preprocess_page(&$variables, $hook) {
                   $project_property .= "<dt>" . $item->name . "</dt><dd class='item-value'>". trim(strip_tags($item->value,'<a><strong><em>')) . "</dd>";
                   if($user->uid != 0) {
                       
-                    if(in_array('editor user',$user->roles) || in_array('administrator',$user->roles) ) {
+                    if(in_array('editor',$user->roles) || in_array('administrator',$user->roles) ) {
                         $project_property .= "<dd class='item-edit'><a href='" . $property_edit_url . "' class='edit_property'>Edit</a>";
                         $project_property .= "<a href='" . $property_delete_url . "' class='edit_property delete_property'>Delete</a></dd>";
                     }
@@ -163,7 +163,7 @@ function murray_preprocess_page(&$variables, $hook) {
               }
           }          
       }
-      if(in_array('editor user',$user->roles) || in_array('administrator',$user->roles) ) {
+      if(in_array('editor',$user->roles) || in_array('administrator',$user->roles) ) {
         $project_property .= "<dt>&nbsp;</dt><dd>&nbsp;</dd><dd class='item-edit'><a href='" . $property_add_url . "' class='edit_property add_property'>Add</a></dd>";
       }              
                 
@@ -171,7 +171,7 @@ function murray_preprocess_page(&$variables, $hook) {
       $project_property .= "</dl>";
       
       if($project_property == "<dl></dl>") {
-          if(in_array('editor user',$user->roles) || in_array('administrator',$user->roles) ) {
+          if(in_array('editor',$user->roles) || in_array('administrator',$user->roles) ) {
                 $property_add_url = $base_url.'/field-collection/field-property/add/node/' . $node->nid . '?destination=node/' . $node->nid; 
                 $project_property = "<dl><dd class='item-edit'><a href='" . $property_add_url . "' class='edit_property'>Add</a></dd></dl>";
           }else{
@@ -243,7 +243,7 @@ function murray_preprocess_page(&$variables, $hook) {
               $thumbnail_file_src = image_style_url("square_thumbnail", $file->uri);
 
             $tabs = "";
-            if(in_array('editor user',$user->roles) || in_array('administrator',$user->roles) ) {
+            if(in_array('editor',$user->roles) || in_array('administrator',$user->roles) ) {
               $tabs .= l("Edit", "file/" . $file->fid . "/edit", array("query"=>array("destination"=>current_path()), "attributes"=>array("class"=>array("edit"))));
 //              $tabs .= "<a class='item-edit' href='" . $property_edit_url . "' class='edit_property'>Edit</a>";
             }

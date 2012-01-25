@@ -216,7 +216,7 @@ function _murray_get_project_slide_info($term = null){
             (node.status = '1') 
           AND (node.type IN  ('project')) 
           AND (field_data_field_project_type.field_project_type_tid = :type_id ) ))
-        ORDER BY nid desc ", array(
+        ORDER BY rand()", array(
         ':type_id' => $term,
         )
       );
@@ -233,7 +233,7 @@ function _murray_get_project_slide_info($term = null){
           AND (node.promote = '1') 
           AND (node.type IN  ('project')) 
            ))
-        ORDER BY nid desc ", array(
+        ORDER BY rand()", array(
         )
       );
     }
@@ -248,6 +248,7 @@ function _murray_get_project_slide_info($term = null){
     $nodes = node_load_multiple($nids);    
     $iterator = 0;
 //    krumo($nodes);
+    shuffle(&$nodes);
     foreach($nodes as $node){        
 
       $body = "";

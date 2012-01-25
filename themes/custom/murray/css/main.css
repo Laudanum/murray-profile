@@ -16,6 +16,13 @@ body {
     line-height: 18px;
     color: #444444;
 }
+
+a, a:link, a:visited {
+  color : #444444;
+}
+a:hover, a:focus {
+  color : #111111;
+}
 a:focus {
     outline: 0;
 }
@@ -26,6 +33,9 @@ body.front .toggle {
   display : none;
 }
 
+#sidebar .properties div {
+  margin-bottom : 1em;
+}
 #sidebar .properties dl {
     margin: 0;
     overflow: hidden;
@@ -89,6 +99,7 @@ body.front .toggle {
 }
 #name-and-slogan {
   margin-top : 35px;
+  letter-spacing : 1px;
 }
 div#site-name strong a,
 #header h1,
@@ -132,7 +143,6 @@ div#site-name strong a,
     height : 100%;    
 }
 #sidebar .body {
-    
     position: absolute;
     padding-left: 15px;
     margin-top: 20px;
@@ -141,6 +151,20 @@ div#site-name strong a,
     width : 359px;
     overflow : auto;
     max-height : 400px;
+}
+
+#sidebar .body a {
+  text-decoration : none;
+  padding-bottom : 1px;
+  border-bottom : 1px solid #888888;
+}
+#sidebar .body a:hover, 
+#sidebar .body a:focus {
+  border-bottom-color : #444444;
+}
+#sidebar .item-edit a,
+#sidebar .body a.download {
+  border : none;
 }
 #wrapper .toggle {
     position : absolute;
