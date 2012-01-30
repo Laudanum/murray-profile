@@ -19,7 +19,8 @@ jQuery(document).ready(function(){
 //  show the correct one
     jQuery(_obj).addClass("active").animate({
       opacity : 1,
-      height : 94
+      height : 94,
+      bottom : 96
     }, "slow", "swing");
   }
 
@@ -298,7 +299,8 @@ jQuery(document).ready(function(){
     });
 	
 	var _hideMenus = function() {
-    jQuery(".secondary,.primary").animate({height:0, opacity:0}, "slow", "swing").removeClass("active");
+    jQuery(".secondary").animate({height:0, bottom:0, opacity:0}, "slow", "swing").removeClass("active");
+    jQuery(".primary").animate({height:0, opacity:0}, "slow", "swing").removeClass("active");
 //  front page title
 //  project page titles
     jQuery("#slidecontent, #sidebar-container div.title").animate({bottom:95, opacity:0}, "slow");
