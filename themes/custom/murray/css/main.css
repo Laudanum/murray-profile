@@ -125,15 +125,18 @@ div#site-name strong a,
 #sidebar-container {
     position: absolute;
     bottom: 0px;
+/*
     left: 50%;
     margin-left: -570px;
+    */
+    right : 0px;
     height : 100%;
 }
 #sidebar {
     position: relative;
     z-index : 30;
-    width : 1000px;
-    left : 66.7%;
+    width : 400px;
+    float  : right;
     display : table;
     background-color : rgb(255,255,255);
     background-color : rgba(255,255,255,0.7);
