@@ -12,10 +12,14 @@ jQuery(document).ready(function(){
       return false;
     }
 //  hide any existing menus
-    jQuery(".menu.secondary").removeClass("active").animate({
+    jQuery(".menu.secondary").not(_obj).removeClass("active").animate({
       opacity : 0,
       height : 0
     }, "fast", "swing");
+//  if primary is active set bottom first
+    if ( jQuery(".menu.primary.active").size() ) {
+      jQuery(_obj).css("bottom", 96);
+    }
 //  show the correct one
     jQuery(_obj).addClass("active").animate({
       opacity : 1,
@@ -303,11 +307,13 @@ jQuery(document).ready(function(){
     jQuery(".primary").animate({height:0, opacity:0}, "slow", "swing").removeClass("active");
 //  front page title
 //  project page titles
-    jQuery("#slidecontent, #sidebar-container div.title").animate({bottom:95, opacity:0}, "slow");
+    jQuery("#slidecontent, #sidebar-container div.title").animate({bottom:0, opacity:0}, "slow");
 	}
 	
 	var _showMenus = function() {
-    jQuery(".primary").animate({height:95, opacity:1}, "slow", "swing");	  
+    jQuery(".primary").animate({height:95, opacity:1}, "slow", "swing", function(){
+      jQuery(this).addClass("active");
+    });	  
     jQuery("#slidecontent, #sidebar-container div.title").animate({bottom:190, opacity:1}, "slow");
     _showSubmenu(jQuery(".secondary.default,.secondary#header"));
 	}

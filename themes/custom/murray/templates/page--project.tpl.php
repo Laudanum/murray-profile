@@ -84,6 +84,9 @@
             <h2><a href="<?php print $node_url; ?>" title="<?php print $node_title; ?>" description"<?php print $date_info; ?>"><?php print $node_title; ?></a></h2>
             <div class="meta"><?php print $date_info; ?></div>
         </div>
+        <div class="title caption">
+          This is the file caption
+        </div>
         <div id="sidebar" class="">                
             <div class="body grid_4">
                 <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
