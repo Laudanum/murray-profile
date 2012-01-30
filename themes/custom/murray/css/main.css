@@ -225,7 +225,7 @@ h1, h2 {
     width : 368px;
     bottom : 190px;
     height : 40px;
-    left : 66.7%;
+    right : 30px;
     position : absolute;
     z-index : 999;
     display: inline;
