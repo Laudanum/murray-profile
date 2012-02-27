@@ -26,7 +26,8 @@
   #sidebar div.body {
     width : 285px;
   }
-  #sidebar div.body .viewport {
+  #sidebar div.body .viewport,
+  #sidebar div.body .viewport .overview {
     width : 260px;
   }  
   #sidebar-container div.title {
@@ -60,6 +61,11 @@
 
   .navigation {
 
+  }
+  /* stack labels */
+  #sidebar .properties dl dd, #sidebar .properties dl dd {
+    float: none;
+    clear: both;
   }
 }
 

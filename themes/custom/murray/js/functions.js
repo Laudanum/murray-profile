@@ -190,6 +190,9 @@ jQuery(document).ready(function(){
           _showSlide(_previous_slide);
         }
       });
+    } else {
+//  interrupt clicks on gallery items and do nothing
+      jQuery("#gallery ul li a").click(function(e) {e.preventDefault(); return false;});
     }
 
 //  use keyboard arrows to navigate the slideshow

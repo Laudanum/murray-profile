@@ -68,6 +68,8 @@
  * @see zen_preprocess_page()
  * @see template_process()
  */
+ if ( ! isset($secondary_menu_heading ) )
+   $secondary_menu_heading = "";
 ?>
 
 <div id="page-wrapper"><div id="page">

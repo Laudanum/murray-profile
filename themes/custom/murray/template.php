@@ -159,9 +159,8 @@ function murray_preprocess_page(&$variables, $hook) {
               
 
               foreach($result as $item) {
-                  $project_property .= "<dt>" . $item->name . "</dt><dd class='item-value'>". trim(strip_tags($item->value,'<a><strong><em>')) . "</dd>";
+                  $project_property .= "<dt>" . $item->name . "</dt><dd class='item-value'>" . htmltrim(strip_tags($item->value,'<a><strong><em>')) . "</dd>";
                   if($user->uid != 0) {
-                      
                     if(in_array('editor',$user->roles) || in_array('administrator',$user->roles) ) {
                         $project_property .= "<dd class='item-edit'><a href='" . $property_edit_url . "' class='edit_property'>Edit</a>";
                         $project_property .= "<a href='" . $property_delete_url . "' class='edit_property delete_property'>Delete</a></dd>";
@@ -215,6 +214,7 @@ function murray_preprocess_page(&$variables, $hook) {
         
       $first_image = array();
       $index = 0;
+
       foreach($media as $value){
           foreach($value as $info){
               //Get File info.
@@ -411,3 +411,9 @@ function STARTERKIT_preprocess_block(&$variables, $hook) {
   $variables['classes_array'][] = 'count-' . $variables['block_id'];
 }
 // */
+
+
+function htmltrim($string) {
+    $pattern = '(?:[ \t\n\r\x0B\x00\x{A0}\x{AD}\x{2000}-\x{200F}\x{201F}\x{202F}\x{3000}\x{FEFF}]|&nbsp;|<br\s*\/?>)+';
+    return preg_replace('/^' . $pattern . '|' . $pattern . '$/u', '', $string);
+}

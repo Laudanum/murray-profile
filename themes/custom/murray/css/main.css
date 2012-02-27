@@ -567,8 +567,23 @@ a.edit_property:hover {
 }
 
 input[type=text], input[type=password] {
-  width : 10em;
+  width : 250px;
   padding : 0.2em 0.5em;
   border : 1px solid #cccccc;
-  font-size : 2em;
+  font-size : 1.4em;
 }
+
+form br {
+  height : 0;
+}
+
+form label {
+  margin-top : 1em;
+  width : auto;
+  display : inline;
+}
+
+form input[type=checkbox] {
+  margin-right : 1em;
+}
+

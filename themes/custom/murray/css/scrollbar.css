@@ -1,7 +1,7 @@
 
 #sidebar div.body { width: 380px; clear: both; margin: 20px 0 10px; }
 #sidebar div.body .viewport { width: 360px; height : 400px; overflow: hidden; position: relative; }
-#sidebar div.body .overview { list-style: none; position: absolute; left: 0; top: 0; }
+#sidebar div.body .overview { list-style: none; position: absolute; left: 0; top: 0; width: 360px;}
 
 #sidebar div.body .thumb .end,
 #sidebar div.body .thumb { 
