@@ -164,16 +164,22 @@ jQuery(document).ready(function(){
 	});
     
 //    var length = jQuery('#gallery ul li').length;
-    
+
+/* reveal the concealled menu */
+  jQuery("body").prepend("<a class='navigation show' href='javascript:void(0);'>Show menu</a>");
+  jQuery("a.navigation.show").hover(function(event) {
+    _showMenus();
+  }, function(event) {});
+
 /* if we have a gallery set up a slideshow and run it */
     if(jQuery('#gallery ul li').size() > 1) {
       _startSlideshow();
 
 //  create some buttons if we don't have them already
-      jQuery("#gallery").append("<a class='navigation show' href='javascript:void(0);'>Show menu</a><a class='navigation next' href='javascript:void(0);'>Next</a><a class='navigation previous' href='javascript:void(0);'>Previous</a>");
-
+      jQuery("#gallery").append("<a class='navigation next' href='javascript:void(0);'>Next</a><a class='navigation previous' href='javascript:void(0);'>Previous</a>");
+      
 //  listen for clicks on the navigation arrows
-      jQuery("#gallery a.navigation").click(function(event) {
+      jQuery("a.navigation").click(function(event) {
         if ( jQuery(this).hasClass("next") ) {
           _stopSlideshow();
           _showSlide();
@@ -184,11 +190,7 @@ jQuery(document).ready(function(){
           _showSlide(_previous_slide);
         }
       });
-
-      jQuery("#gallery a.navigation.show").hover(function(event) {
-        _showMenus();
-      }, function(event) {
-      });
+    }
 
 //  use keyboard arrows to navigate the slideshow
 			jQuery(document).keydown(function(event) {
@@ -211,7 +213,7 @@ jQuery(document).ready(function(){
 //						alert(event.which)
 				}
 			});
-    }
+
     
     
      
