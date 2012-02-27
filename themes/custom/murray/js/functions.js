@@ -387,19 +387,41 @@ jQuery(document).ready(function(){
       _imageSize(jQuery(this).find("img"), jQuery(this), settings)
 	  });
 	};
+
 	
-	
-	jQuery('#sidebar div.body').tinyscrollbar();
+	var _scaleSidebar = function() {
+  //  detect the available space and position the scrollbar div
+    _h = jQuery("#sidebar").height();
+    jQuery("#sidebar div.body .viewport, #sidebar div.body").css("height","auto")
+    _vph = jQuery("#sidebar div.body .overview").height();
+//    alert(_vph)
+
+  //  alert(_h);
+    _b = jQuery("#sidebar .body").css("bottom");
+  //  arbitrary top margin determined by murray
+    _mt = 95;
+    _bh = (parseInt(_h) - parseInt(_b) - _mt);
+    if ( _bh < 95 )
+      _bh = 95;
+    else if ( _bh > _vph )
+      _bh = _vph;
+      
+    jQuery("#sidebar div.body, #sidebar div.body .viewport").css({"max-height":"none", "height": _bh});
+
+  	jQuery('#sidebar div.body').tinyscrollbar();
+  }
+
 
 //  resize cropped images on window resize
 	jQuery(window).resize(function() {
 	  _recropImages();
+	  _scaleSidebar();
 	});
 	
 //  crop them on load too
   _recropImages();
-	
-	
+  _scaleSidebar();
+		
 	
 });
 

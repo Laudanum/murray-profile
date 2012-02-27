@@ -91,6 +91,10 @@ body.front .toggle {
     width : 100%;
     overflow : hidden;
 }
+body.toolbar #wrapper {
+  bottom : auto;
+  top : -65px;
+}
 #header {
     font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
     padding : 0px;
@@ -133,6 +137,9 @@ div#site-name strong a,
     width : 100%;
     height : 100%;
 }
+body.toolbar #sidebar-container {
+}
+
 #sidebar {
     position: relative;
     z-index : 30;
@@ -146,6 +153,7 @@ div#site-name strong a,
     bottom: 0;
     height : 100%;    
 }
+
 #sidebar .body {
     position: absolute;
     padding-left: 15px;
@@ -412,6 +420,10 @@ body.front #sidebar-container a:hover {
     position : absolute;
     width : 100%;
     height : 100%;
+}
+
+body.toolbar #gallery {
+  margin-top : -65px;
 }
 a.navigation {
   position : absolute;
