@@ -303,7 +303,6 @@ jQuery(document).ready(function(){
     });
 	
 	var _hideMenus = function() {
-	  alert(1)
     jQuery(".secondary").animate({height:0, bottom:0, opacity:0}, "slow", "swing").removeClass("active");
     jQuery(".primary").animate({height:0, opacity:0}, "slow", "swing").removeClass("active");
 //  front page title
