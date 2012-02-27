@@ -74,7 +74,7 @@
 ?>
 
 <div id="gallery">
-    <?php //print $media_info; ?>
+    <?php print $media_info; ?>
 </div>
 
 <div id="wrapper">

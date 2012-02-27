@@ -88,7 +88,14 @@ function STARTERKIT_preprocess_html(&$variables, $hook) {
 
 function murray_preprocess_page(&$variables, $hook) {
   
-  if (isset($variables['node']) && ($variables['node']->type == 'project')) {
+  if (
+    isset($variables['node']) && 
+    (
+      $variables['node']->type == 'project'
+      ||
+      $variables['node']->type == 'page'
+    )
+  ) {
       
       global $base_url,$user;
       
