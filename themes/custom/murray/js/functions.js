@@ -48,8 +48,8 @@ jQuery(document).ready(function(){
     jQuery(".menu.secondary").not(_obj).removeClass("active").animate(menu_opts.secondary.hide, "fast", "swing");
 
 //  if primary is active set bottom first
-    if ( jQuery(".menu.primary.active").size() ) {
-      jQuery(_obj).css("bottom", 96);
+    if ( jQuery("div.menu.primary.active").size() ) {
+      jQuery(_obj).css("bottom", menu_height + menu_border);
     }
 //  show the correct one
     jQuery(_obj).addClass("active").animate(menu_opts.secondary.show, "slow", "swing");
@@ -183,7 +183,7 @@ jQuery(document).ready(function(){
 	
 	
 	
-	primary = ".primary";
+	primary = "div.primary";
 	
 	jQuery("#secondary-links li a img").each(function(){
 //		jQuery(this).parent().css({backgroundImage: "url(" + jQuery(this).attr("src") + ")"});
@@ -337,20 +337,19 @@ jQuery(document).ready(function(){
 	
 //  using opacity causes IE8 to render solid pngs 	
 	var _hideMenus = function() {
-    jQuery(".secondary").animate(menu_opts.secondary.hide, "slow", "swing").removeClass("active");
-    jQuery(".primary").animate(menu_opts.primary.hide, "slow", "swing").removeClass("active");
+    jQuery("div.secondary").animate(menu_opts.secondary.hide, "slow", "swing").removeClass("active");
+    jQuery("div.primary").animate(menu_opts.primary.hide, "slow", "swing").removeClass("active");
 //  front page title
 //  project page titles
     jQuery("#slidecontent, #sidebar-container div.title").animate({bottom:0, opacity:0}, "slow");
 	}
 	
 	var _showMenus = function() {
-	  
-    jQuery(".primary").animate(menu_opts.primary.show, "slow", "swing", function(){
+    jQuery("div.primary").animate(menu_opts.primary.show, "slow", "swing", function(){
       jQuery(this).addClass("active");
     });	  
     jQuery("#slidecontent, #sidebar-container div.title").animate({bottom:190, opacity:1}, "slow");
-    _showSubmenu(jQuery(".secondary.default,.secondary#header"));
+    _showSubmenu(jQuery("div.secondary.default, div.secondary#header"));
 	}
 	
 	
