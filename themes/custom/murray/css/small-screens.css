@@ -40,18 +40,21 @@
     width : 768px;
   }
   */
+  #block-system-main-menu div.content > ul > li,
   #primary-links > ul > li {
     /*
     width : 190px;
     */
     width : 140px;
   }
+  #block-system-main-menu div.content > ul.menu > li > a,
   #primary-links > ul > li > a {
     /*
     width : 170px;
     */
     width : 120px;
   }
+  #block-system-main-menu div.content > ul > li > ul,
   #primary-links > ul > li > ul {
     /*
     width : 188px;

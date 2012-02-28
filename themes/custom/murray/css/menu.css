@@ -1,3 +1,5 @@
+
+#block-system-main-menu div.content,
 #primary-links,
 .secondary {
 	position : absolute;
@@ -7,6 +9,7 @@
 	z-index : 100;
 }
 
+#block-system-main-menu div.content,
 #primary-links {
 	font-family: "Ubuntu", Helvetica, Arial, sans-serif;
 	text-decoration: none;
@@ -31,6 +34,8 @@
 	height : 95px;
 }
 
+#block-system-main-menu .menu,
+#block-system-main-menu .menu li,
 .secondary ul,
 .secondary ul li,
 #primary-links ul, 
@@ -40,17 +45,37 @@
 	padding : 0;
 }
 .secondary ul,
+#block-system-main-menu .menu,
 #primary-links > ul {
 	margin-right : 20px;
 	float : right;
-    z-index: 50;
+  z-index: 50;
 }
 
+#block-system-main-menu .menu li,
 #primary-links > ul > li {
 	float : left;
 	width : 190px;
 	height : 100%;
 }
+#block-system-main-menu ul.menu li.expanded:hover a,
+#primary-links ul li.menuparent:hover a {
+  visibility : hidden;
+}
+#block-system-main-menu ul.menu li.expanded:hover li a,
+#primary-links ul li.menuparent:hover li a {
+  visibility : visible;
+}
+
+#block-system-main-menu ul.menu li.expanded ul {
+  display : none ! important;
+}
+#block-system-main-menu ul.menu li.expanded:hover ul {
+  display : block ! important;
+}
+
+
+#block-system-main-menu .content > .menu > li > a,
 #primary-links > ul > li > a {
 	display : block;
 	margin : 7px;
@@ -65,10 +90,13 @@
 	margin-top : 0px;
 }
 #primary-links > ul > li.active > a {
+  /*
   -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; 
 	filter: alpha(opacity=0);	
 	opacity : 0;
+	*/
 }
+#block-system-main-menu ul.menu li ul,
 #primary-links > ul > li > ul {
 	position : absolute;
 	height : 94px;
@@ -78,14 +106,20 @@
 	border-right : 1px solid white;
 	text-align : right;
 	top : 0;
+	/*
   -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; 
 	filter: alpha(opacity=0);	
 	opacity : 0;
+	*/
 }
 #primary-links > ul > li > ul:hover {
 }
 
 /* this fits 5 items */
+#block-system-main-menu ul.menu li.expanded li.leaf {
+	height : auto;
+}
+#block-system-main-menu ul.menu ul li.leaf a,
 #primary-links > ul > li > ul li a {
 	display : block;
 	padding : 1px 7px 0px 7px;
@@ -103,9 +137,13 @@
 	min-height : 17px;
 }
 */
+#block-system-main-menu .menu a:hover,
+#primary-links a:hover {
+	color : #000000 ! important;
+}
+#block-system-main-menu ul.menu li.expanded li.leaf a:hover,
 #primary-links > ul > li > ul li a:hover {
 	background-color : white;
-	color : #333333;
 }
 
 .secondary li {
@@ -155,17 +193,17 @@
 	border-bottom-right-radius : 10px;
 }
 
+#block-system-main-menu ul.menu ul,
 #primary-links ul.nice-menu-down {
     float: right;
     border: 0px !important;
 }
+#block-system-main-menu .menu li,
 #primary-links ul.nice-menu-down li {
     border: 0px;
-}
-
-#primary-links ul.nice-menu-down li {
     background: transparent;
 }
+#block-system-main-menu .menu ul li,
 #primary-links ul.nice-menu ul li {
     width: 100%;
 }

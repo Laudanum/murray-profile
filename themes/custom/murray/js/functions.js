@@ -182,8 +182,10 @@ jQuery(document).ready(function(){
 	}
 	
 	
-	
+//  nicemenus
 	primary = "div.primary";
+//  system menus
+	primary_selector = "#block-system-main-menu div.content";
 	
 	jQuery("#secondary-links li a img").each(function(){
 //		jQuery(this).parent().css({backgroundImage: "url(" + jQuery(this).attr("src") + ")"});
@@ -252,11 +254,9 @@ jQuery(document).ready(function(){
 */
 //refactor with intent or timer
 	jQuery(".secondary").hover(function(event){
-//		jQuery(secondary).stop();					
 	},function(event){
 // only exit if we're exiting up
 			if ( event.pageY < jQuery(this).offset().top && jQuery(this).hasClass("active") ) {
-//    		jQuery(this).removeClass("active").animate({height:0, opacity:0}, "slow", "swing", function() {  });
         _hideMenus();
 	    }
       jQuery("#bottom").show();
@@ -264,23 +264,25 @@ jQuery(document).ready(function(){
 
 
 /* show submenu */
+/*
 	jQuery(".primary ul ul").hover(function(){
 //	close all the others
-		jQuery(this).parent().addClass("active").siblings().removeClass("active").find("ul").animate({opacity:0});
-		jQuery(this).animate({opacity:1});
+		jQuery(this).parent().addClass("active").siblings().removeClass("active").find("ul").hide();
+		jQuery(this).show();
 	}, function(event) {
 //	if we are not exiting up then close it up
 		if ( event.pageY > jQuery(primary).offset().top ) {
-			jQuery(this).animate({opacity:0}).parent().removeClass("active");
+			jQuery(this).hide().parent().removeClass("active");
 		} else {
-     jQuery(this).parent().find("a").animate({opacity:1});
+     jQuery(this).parent().find("a").show();
 		}
 	});
+*/
 
 /*
 	reveal the correct secondary menu
 */
-	jQuery(".primary ul ul li a").click(function(){
+	jQuery(primary_selector + " ul li a").click(function(){
     var taxnomy_name_list = jQuery(this).attr("href");
     var taxnomy_name = taxnomy_name_list.split("/");
     var current_name = taxnomy_name[taxnomy_name.length - 1];
@@ -338,14 +340,14 @@ jQuery(document).ready(function(){
 //  using opacity causes IE8 to render solid pngs 	
 	var _hideMenus = function() {
     jQuery("div.secondary").animate(menu_opts.secondary.hide, "slow", "swing").removeClass("active");
-    jQuery("div.primary").animate(menu_opts.primary.hide, "slow", "swing").removeClass("active");
+    jQuery(primary_selector).animate(menu_opts.primary.hide, "slow", "swing").removeClass("active");
 //  front page title
 //  project page titles
     jQuery("#slidecontent, #sidebar-container div.title").animate({bottom:0, opacity:0}, "slow");
 	}
 	
 	var _showMenus = function() {
-    jQuery("div.primary").animate(menu_opts.primary.show, "slow", "swing", function(){
+    jQuery(primary_selector).animate(menu_opts.primary.show, "slow", "swing", function(){
       jQuery(this).addClass("active");
     });	  
     jQuery("#slidecontent, #sidebar-container div.title").animate({bottom:190, opacity:1}, "slow");
