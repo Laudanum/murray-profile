@@ -2,6 +2,39 @@ var transition_speed = 700;
 var slide_speed = 7000;
 
 jQuery(document).ready(function(){
+
+  menu_height = 94;
+  menu_border = 1;
+
+
+  var menu_opts = {
+    primary: {
+      show: {
+        height: menu_height + menu_border
+      },
+      hide: {
+        height: 0
+      }
+    },
+    secondary: {
+      show: {
+        height: menu_height,
+        bottom: menu_height + menu_border * 2
+      },
+      hide: {
+        height: 0,
+        bottom: 0
+      }        
+    }
+  }
+/* msie misbehaves with transitioning opacity */  
+  if ( ! jQuery.browser.msie ) {
+    menu_opts.primary.show.opacity = 1;
+    menu_opts.primary.hide.opacity = 0;
+    menu_opts.secondary.show.opacity = 1;
+    menu_opts.secondary.hide.opacity = 0;
+  }
+
 //move header into primary-links
 //	jQuery("#primary-links").prepend(jQuery("#header"));
 
@@ -12,20 +45,14 @@ jQuery(document).ready(function(){
       return false;
     }
 //  hide any existing menus
-    jQuery(".menu.secondary").not(_obj).removeClass("active").animate({
-      opacity : 0,
-      height : 0
-    }, "fast", "swing");
+    jQuery(".menu.secondary").not(_obj).removeClass("active").animate(menu_opts.secondary.hide, "fast", "swing");
+
 //  if primary is active set bottom first
     if ( jQuery(".menu.primary.active").size() ) {
       jQuery(_obj).css("bottom", 96);
     }
 //  show the correct one
-    jQuery(_obj).addClass("active").animate({
-      opacity : 1,
-      height : 94,
-      bottom : 96
-    }, "slow", "swing");
+    jQuery(_obj).addClass("active").animate(menu_opts.secondary.show, "slow", "swing");
   }
 
 
@@ -45,7 +72,7 @@ jQuery(document).ready(function(){
 //  if required adjust the image position
     var _mt = 0;
     if ( _next_slide.hasClass("crop") ) {
-//  	var _imageSize = function(img, bg_container, settings) {
+//  	var _imageSize = function(img, bg_container, menu_opts) {
       settings = {fill:true, centre:true};
       _imageSize(_next_slide.find("img"), _next_slide, settings)
       /*
@@ -310,15 +337,16 @@ jQuery(document).ready(function(){
 	
 //  using opacity causes IE8 to render solid pngs 	
 	var _hideMenus = function() {
-    jQuery(".secondary").animate({height:0, bottom:0, opacity:0}, "slow", "swing").removeClass("active");
-    jQuery(".primary").animate({height:0, opacity:0}, "slow", "swing").removeClass("active");
+    jQuery(".secondary").animate(menu_opts.secondary.hide, "slow", "swing").removeClass("active");
+    jQuery(".primary").animate(menu_opts.primary.hide, "slow", "swing").removeClass("active");
 //  front page title
 //  project page titles
     jQuery("#slidecontent, #sidebar-container div.title").animate({bottom:0, opacity:0}, "slow");
 	}
 	
 	var _showMenus = function() {
-    jQuery(".primary").animate({height:95, opacity:1}, "slow", "swing", function(){
+	  
+    jQuery(".primary").animate(menu_opts.primary.show, "slow", "swing", function(){
       jQuery(this).addClass("active");
     });	  
     jQuery("#slidecontent, #sidebar-container div.title").animate({bottom:190, opacity:1}, "slow");
