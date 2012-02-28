@@ -307,6 +307,8 @@ jQuery(document).ready(function(){
         _showMenus();
     });
 	
+	
+//  using opacity causes IE8 to render solid pngs 	
 	var _hideMenus = function() {
     jQuery(".secondary").animate({height:0, bottom:0, opacity:0}, "slow", "swing").removeClass("active");
     jQuery(".primary").animate({height:0, opacity:0}, "slow", "swing").removeClass("active");
