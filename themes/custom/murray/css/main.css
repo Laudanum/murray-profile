@@ -452,7 +452,7 @@ body.toolbar a.navigation.show {
   margin-bottom : -65px;
 }
 
-#gallery a.navigation.show:hover {
+a.navigation.show:hover {
 }
 body.slideshow-running #gallery a.navigation:hover {
 /*
