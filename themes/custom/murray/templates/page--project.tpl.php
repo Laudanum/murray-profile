@@ -85,7 +85,7 @@
             <div class="meta"><?php print $date_info; ?></div>
         </div>
         <div class="title caption">
-          This is the file caption
+
         </div>
         <div id="sidebar" class="">                
             <div class="body grid_4">

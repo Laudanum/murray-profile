@@ -118,13 +118,22 @@ jQuery(document).ready(function(){
     _src = jQuery(_obj).find("img").attr("src");
     jQuery(".secondary a.active").removeClass("active");
     jQuery(".secondary a[href=" + _src + "]").addClass("active");
+
+    selector = null;
 //  front page - update the header with the title of the work shown
-    var gallery_info = jQuery(_obj).find('.detail-info').html();
+    if ( jQuery("body.front").size() ) {
+        var gallery_info = jQuery(_obj).find('.detail-info').html();
+        selector = "#slidecontent";
+    } else {
+//  else project pages -- update caption
+        gallery_info = jQuery(_obj).find("a").attr('title');
+        selector = "#sidebar-container .title.caption";
+    }
     if(gallery_info != ""){
-      jQuery("#slidecontent").fadeOut(transition_speed, function() {
-        jQuery('#slidecontent').html(gallery_info).fadeIn(transition_speed);
+      jQuery(selector).fadeOut(transition_speed, function() {
+        jQuery(selector).html(gallery_info).fadeIn(transition_speed);
       });
-    }  
+    }
   }
   
   
@@ -282,16 +291,21 @@ jQuery(document).ready(function(){
 /*
 	reveal the correct secondary menu
 */
-	jQuery(primary_selector + " ul li a").click(function(){
-    var taxnomy_name_list = jQuery(this).attr("href");
-    var taxnomy_name = taxnomy_name_list.split("/");
-    var current_name = taxnomy_name[taxnomy_name.length - 1];
-//        alert("Closing others")
-    _showSubmenu(jQuery('#works-'+ current_name));
+	jQuery(primary_selector + " ul li a").click(function(e){
+        var taxnomy_name_list = jQuery(this).attr("href");
+        var taxnomy_name = taxnomy_name_list.split("/");
+        var current_name = taxnomy_name[taxnomy_name.length - 1];
+
+        submenu = jQuery('#works-'+ current_name);
+        if ( submenu.size() ) {
+            e.preventDefault();
+            _showSubmenu(submenu);
+            return false;
+        } else {
+            return true;
+        }
 //        jQuery(".secondary.active").removeClass("active").animate({height:0, opacity:0}, "fast", "swing");    
 //      jQuery('#works-'+ current_name).addClass("active").animate({height:95, bottom:95, opacity:1}, "slow", "swing");    
-    
-        return false;
 	});
 
   
@@ -343,7 +357,7 @@ jQuery(document).ready(function(){
     jQuery(primary_selector).animate(menu_opts.primary.hide, "slow", "swing").removeClass("active");
 //  front page title
 //  project page titles
-    jQuery("#slidecontent, #sidebar-container div.title").animate({bottom:0, opacity:0}, "slow");
+    jQuery("#slidecontent, #sidebar-container div.title").animate({bottom:0}, "slow");
 	}
 	
 	var _showMenus = function() {
