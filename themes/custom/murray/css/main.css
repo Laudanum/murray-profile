@@ -240,9 +240,11 @@ h1, h2 {
     z-index : 999;
     display: inline;
     text-align: right;
+    /*
     -moz-text-shadow: 0px 1px 0px rgba(192,192,192, 0.5);
     text-shadow: 0px 1px 0px rgba(192,192,192, 0.5);
     -webkit-text-shadow: 0px 1px 0px rgba(192,192,192, 0.5);
+    */
 }
 #sidebar-container div.title h2 a {
   color: #111111;
@@ -254,9 +256,11 @@ h1, h2 {
   margin-left : 28px;
   text-align : left;
   font-style: italic;
+  /*
     -moz-text-shadow: 0px 1px 0px rgba(192,192,192, 0.5);
     -webkit-text-shadow: 0px 1px 0px rgba(192,192,192, 0.5);
     text-shadow: 0px 1px 0px rgba(192,192,192, 0.5);
+    */
   /*
   not currently disabled
   display : none;
