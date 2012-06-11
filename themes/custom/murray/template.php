@@ -116,14 +116,15 @@ function murray_preprocess_page(&$variables, $hook) {
         if ( count($node->field_downloads) ) {
         $download = "<ul>";
         foreach($node->field_downloads as $value){
-          foreach($value as $item){
-              $fname = ! empty($item['description']) ? $item['description'] : $item['filename'];
-              $target_path = $base_url . $file_directory_path;
-  //            $url = str_replace("public://", $target_path, $item['uri']);
-              $url = file_create_url($item['uri']);
-              $mimetype = str_replace("/", "-", $item['filemime']);
-            
-              $download .= '<li><a href="' . $url . '" class="download ' . $mimetype . '">' . $fname . '</a></li>';
+          foreach ($value as $item) {
+              $file_title = ! empty($item['description']) ? $item['description'] : $item['filename'];
+              $attributes = array(
+                'title'=>$file_title,
+                'class'=>array('download', str_replace("/", "-", $item['filemime'])),
+                'target'=>'_BLANK',
+              );
+              $link = l($file_title, file_create_url($item['uri']), array('attributes'=>$attributes));
+              $download .= "<li>$link</li>";
           }   
         
         }
@@ -192,9 +193,13 @@ function murray_preprocess_page(&$variables, $hook) {
       $link_info = "";
       foreach($node->field_link as $value){
         foreach($value as $item){
-            $url = $item['url'];
-            $link_name = $item['title'];
-            $link_info .= '<a href="' . $url . '" class="link">' . $link_name . '</a>'; 
+          $link_title = $item['title'];
+          $attributes = array(
+            'title'=>$file_title,
+            'class'=>array('link'),
+            'target'=>'_BLANK',
+          );
+          $link_info .= l($link_title, $item['url'], array('attributes'=>$attributes));
         }   
         
       }
@@ -324,11 +329,14 @@ function murray_preprocess_page(&$variables, $hook) {
         $download = "<ul>";
         foreach($node->field_downloads as $value){
           foreach($value as $item){
-              $fname = $item['filename'];
-              $target_path = $base_url . $file_directory_path;
-              $url = str_replace("public://", $target_path, $item['uri']);    
-            
-              $download .= '<li><a href="' . $url . '" class="download">' . $fname . '</a></li>';
+              $file_title = ! empty($item['description']) ? $item['description'] : $item['filename'];
+              $attributes = array(
+                'title'=>$file_title,
+                'class'=>array('download', str_replace("/", "-", $item['filemime'])),
+                'target'=>'_BLANK',
+              );
+              $link = l($file_title, file_create_url($item['uri']), array('attributes'=>$attributes));
+              $download .= "<li>$link</li>";
           }   
         
         }
