@@ -1,6 +1,6 @@
 .DS_Store
-libraries/
-modules/contrib/
-modules/developer/
-themes/contrib/
-modules-disabled/
+libraries
+modules/contrib
+modules/developer
+themes/contrib
+modules-disabled

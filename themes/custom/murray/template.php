@@ -87,7 +87,6 @@ function STARTERKIT_preprocess_html(&$variables, $hook) {
  */
 
 function murray_preprocess_page(&$variables, $hook) {
-  
   if (
     isset($variables['node']) && 
     (
@@ -112,7 +111,8 @@ function murray_preprocess_page(&$variables, $hook) {
       foreach($node->body as $key=>$value) {   
         $body .= $node->body[$key][0]['safe_value'];
       }
-      
+
+
         if ( count($node->field_downloads) ) {
         $download = "<ul>";
         foreach($node->field_downloads as $value){
@@ -130,9 +130,9 @@ function murray_preprocess_page(&$variables, $hook) {
         }
         $download .="</ul>";
       }
-      
+
       $project_property = "<dl>";
-      
+
       $property_data = db_query("SELECT DISTINCT node.nid AS nid, field_data_field_property.delta AS field_data_field_property_delta, field_data_field_property.language AS field_data_field_property_language, field_data_field_property.bundle AS field_data_field_property_bundle, field_data_field_property.field_property_value AS field_data_field_property_field_property_value, node.created AS node_created, 'node' AS field_data_field_property_node_entity_type
                 FROM
                 node node
@@ -141,6 +141,7 @@ function murray_preprocess_page(&$variables, $hook) {
                 ORDER BY node_created DESC",array(
                 ':nid' => $node->nid,
                 ));
+
       if(!empty($property_data)) {
           foreach($property_data as $p_item){
           
@@ -170,10 +171,11 @@ function murray_preprocess_page(&$variables, $hook) {
               }
           }          
       }
+      
       if(in_array('editor',$user->roles) || in_array('administrator',$user->roles) ) {
         $project_property .= "<dt>&nbsp;</dt><dd>&nbsp;</dd><dd class='item-edit'><a href='" . $property_add_url . "' class='edit_property add_property'>Add</a></dd>";
       }              
-                
+        
       
       $project_property .= "</dl>";
       
@@ -184,11 +186,7 @@ function murray_preprocess_page(&$variables, $hook) {
           }else{
                 $project_property = "";
           }
-          
-          
       }
-      
-      
       
       $link_info = "";
       foreach($node->field_link as $value){
@@ -200,9 +198,9 @@ function murray_preprocess_page(&$variables, $hook) {
             'target'=>'_BLANK',
           );
           $link_info .= l($link_title, $item['url'], array('attributes'=>$attributes));
-        }   
-        
+        }
       }
+
       $date_info ="";
       foreach($node->field_date as $value){
         foreach($value as $item){
@@ -219,16 +217,22 @@ function murray_preprocess_page(&$variables, $hook) {
         
       $first_image = array();
       $index = 0;
-
+      error_log(var_export($media, TRUE));
       foreach($media as $value){
           foreach($value as $info){
               //Get File info.
-            $file = $info ['file'];
+            $file = $info['file'];
             $classes = array();
-            if ( $file->field_media_crop['und'][0]['value'] == 1 ) {
-              $classes[] = 'crop';
+
+            list($filetype, $filesubtype) = explode("/", $file->filemime);
+//  crop is available for images not video
+            if ( $filetype == 'image' ) {
+              if ( $file->field_media_crop['und'][0]['value'] == 1 ) {
+                $classes[] = 'crop';
+              }
             }
             
+//  caption is an array, empty on vimeo
             $caption = $file->field_media_caption;
             
             $caption_value = "";
@@ -237,23 +241,21 @@ function murray_preprocess_page(&$variables, $hook) {
                 foreach($caption as $item)
                     $caption_value = $item[0]['value'];
             }
-            
-            
-            
+
             $index++;
             if ( $index == 1 ) {
               $classes[] = "active";
             }
             
-            
-  //          $style_thumbnail = image_style_load('large');
-//            image_style_create_derivative($style_thumbnail, $file->uri, file_default_scheme() . '://styles/large/public/' . $file->filename);
+            if ( $filetype == "image" ) {
               $large_file_src = image_style_url("large", $file->uri);
-        
-//            $style_thumbnail = image_style_load('square_thumbnail');
-  //          image_style_create_derivative($style_thumbnail, $file->uri, file_default_scheme() . '://styles/square_thumbnail/public/' . $file->filename);
-              $thumbnail_file_src = image_style_url("square_thumbnail", $file->uri);
+            } else if ( $filesubtype == 'vimeo' ) {
 
+//      'variables' => array('uri' => NULL, 'width' => NULL, 'height' => NULL, 'autoplay' => NULL, 'fullscreen' => NULL),
+              $large_file_src = theme('media_vimeo_video', array('uri'=>$file->uri));              
+            }
+            $thumbnail_file_src = image_style_url("square_thumbnail", $file->uri);
+            error_log("thumbnail: " . $thumbnail_file_src);
             $tabs = "";
             if(in_array('editor',$user->roles) || in_array('administrator',$user->roles) ) {
               $tabs .= l("Edit", "file/" . $file->fid . "/edit", array("query"=>array("destination"=>current_path()), "attributes"=>array("class"=>array("edit"))));
