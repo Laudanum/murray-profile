@@ -250,13 +250,14 @@ function murray_preprocess_page(&$variables, $hook) {
             }
             
             if ( $filetype == "image" ) {
-              $large_file_src = image_style_url("large", $file->uri);
-              $large_file = theme_image(array("path"=>$large_file_src, "alt"=>$caption_value)); 
+              $fullscreen_src = image_style_url("fullscreen", $file->uri);
+              $fullscreen_large = image_style_url("fullscreen-large", $file->uri);
+              $large_file = theme_image(array("path"=>$fullscreen_src, "alt"=>$caption_value, "attributes"=>array("data-fullsrc"=>$fullscreen_large))); 
               $thumbnail_file_src = image_style_url("square_thumbnail", $file->uri);
             } else if ( $filesubtype == 'vimeo' ) {
 
 //      'variables' => array('uri' => NULL, 'width' => NULL, 'height' => NULL, 'autoplay' => NULL, 'fullscreen' => NULL),
-              $large_file = theme('media_vimeo_video', array('uri'=>$file->uri, 'height'=>'100%', 'width'=>'100%', 'autoplay'=>false, 'fullscreen'=>true));
+              $large_file = theme('media_vimeo_video', array('uri'=>$file->uri, 'title'=>0, 'byline'=>0, 'portrait'=>0, 'api'=>1, 'color'=>'cccccc', 'height'=>'100%', 'width'=>'100%', 'autoplay'=>false, 'fullscreen'=>true));
                 $wrapper = file_stream_wrapper_get_instance_by_uri($file->uri);
                 $thumbnail_file_src = $wrapper->getLocalThumbnailPath();
  		$thumbnail_file_src = image_style_url("square_thumbnail", $thumbnail_file_src);
@@ -266,9 +267,10 @@ function murray_preprocess_page(&$variables, $hook) {
               $tabs .= l("Edit", "file/" . $file->fid . "/edit", array("query"=>array("destination"=>current_path()), "attributes"=>array("class"=>array("edit"))));
 //              $tabs .= "<a class='item-edit' href='" . $property_edit_url . "' class='edit_property'>Edit</a>";
             }
+            $file_id = "media-" . $node->nid . "-" . $file->fid;
             $thumbnail_file = theme_image(array("path"=>$thumbnail_file_src, "alt"=>$caption_value)); 
-            $media_info .= '<li class="' . implode(" ", $classes) . '"><a href="'. url("node/".$node->nid) .'" title="'. $caption_value . '">' . $large_file . '</a></li>';
-		$thumb_info .= '<li class="default ' . implode(" ", $classes) . '">' . $tabs . '<a href="'. $base_url . $file_directory_path . '/styles/large/public/' . $file->filename .'" title="'. $caption_value . '">' . $thumbnail_file . '</a></li>';
+            $media_info .= '<li id="' . $file_id . '" class="' . implode(" ", $classes) . '"><a href="'. url("node/".$node->nid) .'" title="'. $caption_value . '">' . $large_file . '</a></li>';
+		$thumb_info .= '<li rel="' . $file_id . '" class="default ' . implode(" ", $classes) . '">' . $tabs . '<a href="'. $base_url . $file_directory_path . '/styles/large/public/' . $file->filename .'" title="'. $caption_value . '">' . $thumbnail_file . '</a></li>';
             
           }
      }
