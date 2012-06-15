@@ -63,9 +63,12 @@ jQuery(document).ready(function(){
     if ( ! _next_slide ) {
       _next_slide =  _active_slide.next().length ? _active_slide.next() : jQuery('#gallery ul li:first');
     }
+//  if we're looking at the next slide then do nothing
+    if ( _next_slide.hasClass("active") )
+      return true;
 
 //  if the previous slide is still running then don't do anything
-    if (_active_slide.is(':animated') ) {
+    if ( _active_slide.is(':animated') ) {
       return false;
     }
 
