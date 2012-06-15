@@ -181,9 +181,10 @@ jQuery(document).ready(function(){
         return
 //  pause the slideshow
       _stopSlideshow();
-      
-      _src = jQuery(this).attr("href");      
-      next_slide = jQuery("#gallery img[src=" + _src + "]").parents("li");
+      _rel = jQuery(this).parent("li").attr("rel");
+//      _src = jQuery(this).attr("href");      
+//      next_slide = jQuery("#gallery img[src=" + _src + "]").parents("li");
+      next_slide = jQuery("#" + _rel);
       if ( next_slide.length ) {
         _showSlide(next_slide);
       }      
