@@ -231,7 +231,9 @@ function murray_preprocess_page(&$variables, $hook) {
                 $classes[] = 'crop';
               }
             }
-            
+            $classes[] = "type-$filetype";
+            $classes[] = "type-$filesubtype";
+ 
 //  caption is an array, empty on vimeo
             $caption = $file->field_media_caption;
             
@@ -249,22 +251,26 @@ function murray_preprocess_page(&$variables, $hook) {
             
             if ( $filetype == "image" ) {
               $large_file_src = image_style_url("large", $file->uri);
+              $large_file = theme_image(array("path"=>$large_file_src, "alt"=>$caption_value)); 
+              $thumbnail_file_src = image_style_url("square_thumbnail", $file->uri);
             } else if ( $filesubtype == 'vimeo' ) {
 
 //      'variables' => array('uri' => NULL, 'width' => NULL, 'height' => NULL, 'autoplay' => NULL, 'fullscreen' => NULL),
-              $large_file_src = theme('media_vimeo_video', array('uri'=>$file->uri));              
+              $large_file = theme('media_vimeo_video', array('uri'=>$file->uri, 'width'=>'100%', 'height'=>'90%', 'autoplay'=>false, 'fullscreen'=>true));
+		error_log(var_export($media, true));   
+                $wrapper = file_stream_wrapper_get_instance_by_uri($file->uri);
+                $thumbnail_file_src = $wrapper->getLocalThumbnailPath();
+ 		$thumbnail_file_src = image_style_url("square_thumbnail", $thumbnail_file_src);
             }
-            $thumbnail_file_src = image_style_url("square_thumbnail", $file->uri);
             error_log("thumbnail: " . $thumbnail_file_src);
             $tabs = "";
             if(in_array('editor',$user->roles) || in_array('administrator',$user->roles) ) {
               $tabs .= l("Edit", "file/" . $file->fid . "/edit", array("query"=>array("destination"=>current_path()), "attributes"=>array("class"=>array("edit"))));
 //              $tabs .= "<a class='item-edit' href='" . $property_edit_url . "' class='edit_property'>Edit</a>";
             }
-
-   
-            $media_info .= '<li class="' . implode(" ", $classes) . '"><a href="'. url("node/".$node->nid) .'" title="'. $caption_value . '"><img src="' . $large_file_src . '" title="'. $caption_value . '" /></a></li>';
-            $thumb_info .= '<li class="default ' . implode(" ", $classes) . '">' . $tabs . '<a href="'. $base_url . $file_directory_path . '/styles/large/public/' . $file->filename .'" title="'. $caption_value . '"><img src="' . $thumbnail_file_src . '" title="'. $caption_value . '" /></a></li>';
+            $thumbnail_file = theme_image(array("path"=>$thumbnail_file_src, "alt"=>$caption_value)); 
+            $media_info .= '<li class="' . implode(" ", $classes) . '"><a href="'. url("node/".$node->nid) .'" title="'. $caption_value . '">' . $large_file . '</a></li>';
+		$thumb_info .= '<li class="default ' . implode(" ", $classes) . '">' . $tabs . '<a href="'. $base_url . $file_directory_path . '/styles/large/public/' . $file->filename .'" title="'. $caption_value . '">' . $thumbnail_file . '</a></li>';
             
           }
      }

@@ -533,7 +533,14 @@ body.slideshow-running #gallery a.navigation:hover {
    width : 100%;
    height : auto;
 }
-
+#gallery ul li.type-video {
+}
+#gallery ul li.type-video a  {
+  padding-bottom: 200px;
+  display: block;
+  height: auto;
+  width: 100%;
+}
 #field_property p {
     margin: 0px;
     padding: 0px;
