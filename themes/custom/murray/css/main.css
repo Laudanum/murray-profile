@@ -471,7 +471,7 @@ body.toolbar a.navigation.show {
   margin-bottom : -65px;
 }
 
-a.navigation.show:hover {
+a.navigation.previous {
 }
 body.slideshow-running #gallery a.navigation:hover {
 /*
@@ -510,7 +510,9 @@ body.slideshow-running #gallery a.navigation:hover {
 #gallery ul li.last-active {
   z-index : 9;
 }
-
+/* allow video to appear above nav */
+#gallery ul {
+}
 #gallery ul li .detail-info {
     display: none;
 }
@@ -533,8 +535,10 @@ body.slideshow-running #gallery a.navigation:hover {
    width : 100%;
    height : auto;
 }
-#gallery ul li.type-video {
-background-color: black ! important;
+#gallery ul li.type-video.active {
+  background-color: black ! important;
+/* just above navigation so we can use the controls. */
+  z-index: 17;
 }
 #gallery ul li.type-video a  {
 background-color: black;
