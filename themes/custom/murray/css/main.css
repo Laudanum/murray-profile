@@ -534,12 +534,20 @@ body.slideshow-running #gallery a.navigation:hover {
    height : auto;
 }
 #gallery ul li.type-video {
+background-color: black ! important;
 }
 #gallery ul li.type-video a  {
-  padding-bottom: 200px;
+background-color: black;
+  padding-bottom: 190px;
+  padding-top: 100px;
   display: block;
-  height: auto;
+  height: 100%;
   width: 100%;
+-webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+     -o-box-sizing: border-box;
+        box-sizing: border-box;
 }
 #field_property p {
     margin: 0px;
