@@ -256,13 +256,11 @@ function murray_preprocess_page(&$variables, $hook) {
             } else if ( $filesubtype == 'vimeo' ) {
 
 //      'variables' => array('uri' => NULL, 'width' => NULL, 'height' => NULL, 'autoplay' => NULL, 'fullscreen' => NULL),
-              $large_file = theme('media_vimeo_video', array('uri'=>$file->uri, 'width'=>'100%', 'height'=>'90%', 'autoplay'=>false, 'fullscreen'=>true));
-		error_log(var_export($media, true));   
+              $large_file = theme('media_vimeo_video', array('uri'=>$file->uri, 'height'=>'100%', 'width'=>'100%', 'autoplay'=>false, 'fullscreen'=>true));
                 $wrapper = file_stream_wrapper_get_instance_by_uri($file->uri);
                 $thumbnail_file_src = $wrapper->getLocalThumbnailPath();
  		$thumbnail_file_src = image_style_url("square_thumbnail", $thumbnail_file_src);
             }
-            error_log("thumbnail: " . $thumbnail_file_src);
             $tabs = "";
             if(in_array('editor',$user->roles) || in_array('administrator',$user->roles) ) {
               $tabs .= l("Edit", "file/" . $file->fid . "/edit", array("query"=>array("destination"=>current_path()), "attributes"=>array("class"=>array("edit"))));
