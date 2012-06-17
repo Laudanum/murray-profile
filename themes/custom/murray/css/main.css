@@ -625,3 +625,40 @@ form input[type=checkbox] {
   margin-right : 1em;
 }
 
+
+a.social {
+  text-indent : -9999px;
+  background-image : url(../images/social-icons.png);
+  background-repeat : no-repeat;
+  display : block;
+  float : left;
+  width : 16px;
+  height : 16px;  
+  margin-right : 8px;
+  padding-bottom : 0;
+}
+a.social.large {
+  width : 32px;
+  height : 32px;
+  float : none;
+  display : inline-block;
+  margin-bottom : 2px;
+}
+a.facebook {
+  background-position : 0 -16px;
+}
+a.facebook:hover {
+  background-position : 0 0;
+}
+a.linkedin {
+  background-position : 0 -48px;
+}
+a.linkedin:hover {
+  background-position : 0 -32px;
+}
+a.linkedin.large {
+  background-position : -48px -32px;
+}
+a.linkedin.large:hover {
+  background-position : -48px 0;  
+}
