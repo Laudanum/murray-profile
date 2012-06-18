@@ -16,7 +16,9 @@ body {
     line-height: 18px;
     color: #444444;
 }
-
+p {
+clear:both;
+}
 a, a:link, a:visited {
   color : #444444;
 }
@@ -635,7 +637,10 @@ a.social {
   width : 16px;
   height : 16px;  
   margin-right : 8px;
-  padding-bottom : 0;
+  margin-bottom: 1.5em;
+  padding-bottom : 0 ! important;
+  border-bottom: none ! important;
+  text-decoration: none ! important;
 }
 a.social.large {
   width : 32px;
@@ -661,4 +666,10 @@ a.linkedin.large {
 }
 a.linkedin.large:hover {
   background-position : -48px 0;  
+}
+a.twitter {
+background-position: 0 -80px;
+}
+a.twitter:hover {
+background-position: 0 -64px;
 }
