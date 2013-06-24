@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Murray projects feature.
+ */
+
+include_once 'murray_projects.features.inc';

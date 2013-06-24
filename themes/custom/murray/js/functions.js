@@ -61,11 +61,14 @@ jQuery(document).ready(function(){
     var _active_slide = jQuery('#gallery ul li.active');
     if ( _active_slide.length == 0 ) _active_slide = jQuery('#gallery ul li:last');
     if ( ! _next_slide ) {
-      _next_slide =  _active_slide.next().length ? _active_slide.next() : jQuery('#gallery ul li:first');
+      _next_slide =  _active_slide.next("li").length ? _active_slide.next("li") : jQuery('#gallery ul li:first');
     }
+//  if we're looking at the next slide then do nothing
+    if ( _next_slide.hasClass("active") )
+      return true;
 
 //  if the previous slide is still running then don't do anything
-    if (_active_slide.is(':animated') ) {
+    if ( _active_slide.is(':animated') ) {
       return false;
     }
 
@@ -181,9 +184,10 @@ jQuery(document).ready(function(){
         return
 //  pause the slideshow
       _stopSlideshow();
-      
-      _src = jQuery(this).attr("href");      
-      next_slide = jQuery("#gallery img[src=" + _src + "]").parents("li");
+      _rel = jQuery(this).parent("li").attr("rel");
+//      _src = jQuery(this).attr("href");      
+//      next_slide = jQuery("#gallery img[src=" + _src + "]").parents("li");
+      next_slide = jQuery("#" + _rel);
       if ( next_slide.length ) {
         _showSlide(next_slide);
       }      
@@ -214,7 +218,7 @@ jQuery(document).ready(function(){
       _startSlideshow();
 
 //  create some buttons if we don't have them already
-      jQuery("#gallery").append("<a class='navigation next' href='javascript:void(0);'>Next</a><a class='navigation previous' href='javascript:void(0);'>Previous</a>");
+      jQuery("#gallery ul").append("<a class='navigation next' href='javascript:void(0);'>Next</a><a class='navigation previous' href='javascript:void(0);'>Previous</a>");
       
 //  listen for clicks on the navigation arrows
       jQuery("a.navigation").click(function(event) {
@@ -224,7 +228,7 @@ jQuery(document).ready(function(){
         } else if ( jQuery(this).hasClass("previous") ) {
           _stopSlideshow();
           var _active_slide = jQuery('#gallery ul li.active');
-          _previous_slide = _active_slide.prev().length ? _active_slide.prev() : jQuery('#gallery ul li:last');
+          _previous_slide = _active_slide.prev("li").length ? _active_slide.prev("li") : jQuery('#gallery ul li:last');
           _showSlide(_previous_slide);
         }
       });

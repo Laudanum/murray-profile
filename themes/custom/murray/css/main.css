@@ -16,7 +16,9 @@ body {
     line-height: 18px;
     color: #444444;
 }
-
+p {
+clear:both;
+}
 a, a:link, a:visited {
   color : #444444;
 }
@@ -240,9 +242,11 @@ h1, h2 {
     z-index : 999;
     display: inline;
     text-align: right;
+    /*
     -moz-text-shadow: 0px 1px 0px rgba(192,192,192, 0.5);
     text-shadow: 0px 1px 0px rgba(192,192,192, 0.5);
     -webkit-text-shadow: 0px 1px 0px rgba(192,192,192, 0.5);
+    */
 }
 #sidebar-container div.title h2 a {
   color: #111111;
@@ -254,9 +258,11 @@ h1, h2 {
   margin-left : 28px;
   text-align : left;
   font-style: italic;
+  /*
     -moz-text-shadow: 0px 1px 0px rgba(192,192,192, 0.5);
     -webkit-text-shadow: 0px 1px 0px rgba(192,192,192, 0.5);
     text-shadow: 0px 1px 0px rgba(192,192,192, 0.5);
+    */
   /*
   not currently disabled
   display : none;
@@ -467,7 +473,7 @@ body.toolbar a.navigation.show {
   margin-bottom : -65px;
 }
 
-a.navigation.show:hover {
+a.navigation.previous {
 }
 body.slideshow-running #gallery a.navigation:hover {
 /*
@@ -506,7 +512,9 @@ body.slideshow-running #gallery a.navigation:hover {
 #gallery ul li.last-active {
   z-index : 9;
 }
-
+/* allow video to appear above nav */
+#gallery ul {
+}
 #gallery ul li .detail-info {
     display: none;
 }
@@ -529,7 +537,24 @@ body.slideshow-running #gallery a.navigation:hover {
    width : 100%;
    height : auto;
 }
-
+#gallery ul li.type-video.active {
+  background-color: black ! important;
+/* just above navigation so we can use the controls. */
+  z-index: 17;
+}
+#gallery ul li.type-video a  {
+background-color: black;
+  padding-bottom: 190px;
+  padding-top: 100px;
+  display: block;
+  height: 100%;
+  width: 100%;
+-webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+     -o-box-sizing: border-box;
+        box-sizing: border-box;
+}
 #field_property p {
     margin: 0px;
     padding: 0px;
@@ -602,3 +627,49 @@ form input[type=checkbox] {
   margin-right : 1em;
 }
 
+
+a.social {
+  text-indent : -9999px;
+  background-image : url(../images/social-icons.png);
+  background-repeat : no-repeat;
+  display : block;
+  float : left;
+  width : 16px;
+  height : 16px;  
+  margin-right : 8px;
+  margin-bottom: 1.5em;
+  padding-bottom : 0 ! important;
+  border-bottom: none ! important;
+  text-decoration: none ! important;
+}
+a.social.large {
+  width : 32px;
+  height : 32px;
+  float : none;
+  display : inline-block;
+  margin-bottom : 2px;
+}
+a.facebook {
+  background-position : 0 -16px;
+}
+a.facebook:hover {
+  background-position : 0 0;
+}
+a.linkedin {
+  background-position : 0 -48px;
+}
+a.linkedin:hover {
+  background-position : 0 -32px;
+}
+a.linkedin.large {
+  background-position : -48px -32px;
+}
+a.linkedin.large:hover {
+  background-position : -48px 0;  
+}
+a.twitter {
+background-position: 0 -80px;
+}
+a.twitter:hover {
+background-position: 0 -64px;
+}

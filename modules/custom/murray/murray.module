@@ -386,23 +386,3 @@ function _murray_get_slideshow() {
     
     return $output;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
