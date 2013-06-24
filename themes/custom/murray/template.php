@@ -97,7 +97,7 @@ function murray_preprocess_page(&$variables, $hook) {
   ) {
       
       global $base_url,$user;
-      
+      drupal_add_js("http://a.vimeocdn.com/js/froogaloop2.min.js", "external"); 
       $file_directory_path = '/' . file_stream_wrapper_get_instance_by_uri('public://')->getDirectoryPath();
     
       $node = $variables['node'];
