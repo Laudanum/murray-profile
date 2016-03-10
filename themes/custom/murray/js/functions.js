@@ -84,25 +84,35 @@ jQuery(document).ready(function(){
       _h = _next_slide.find("img")[0].height;
       _mt = -(_h-_wh)/2;
       alert(jQuery(window).height() + " " + _wh + " " + _h + " " + _mt);
-  
+
 //      alert("height " + _h + " window " + _wh + " margin " + _mt)
       _next_slide.children("a").css({marginTop : _mt, height : _h});
       */
     }
 // pause any active videos
     pauseVideo(_active_slide);
-
     _active_slide.addClass('last-active');
     _updateSlideInfo(_next_slide);
+
+    // If its a video set the size.
+    if ( _next_slide.hasClass('type-video') ) {
+      var _h = jQuery('body').height();
+      var _w = jQuery('body').width();
+      _next_slide
+        .find('.media-vimeo-preview-wrapper').width(_w).height(_h)
+        .find('iframe').width(_w).height('100%')
+        ;
+
+    }
     _next_slide.css({opacity: 0.0}).addClass('active').animate(
-      {opacity: 1.0}, 
-      transition_speed, 
+      {opacity: 1.0},
+      transition_speed,
       function() {
         _active_slide.removeClass('active last-active');
       }
-    );    
-  }  
-  
+    );
+  }
+
 /*
   start the slideshow and trigger the first image update
   */
