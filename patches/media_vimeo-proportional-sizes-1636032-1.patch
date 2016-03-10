@@ -1,0 +1,36 @@
+diff --git a/includes/themes/media-vimeo-video.tpl.php b/includes/themes/media-vimeo-video.tpl.php
+index 8dcd76c..81d3ebd 100644
+--- a/includes/themes/media-vimeo-video.tpl.php
++++ b/includes/themes/media-vimeo-video.tpl.php
+@@ -16,8 +16,10 @@
+  * Note that we set the width & height of the outer wrapper manually so that
+  * the JS will respect that when resizing later.
+  */
++ $width = is_numeric($width) ? $width . "px" : $width;
++ $height = is_numeric($height) ? $height . "px" : $height;
+ ?>
+-<div class="media-vimeo-outer-wrapper" id="media-vimeo-<?php print $id; ?>" style="width: <?php print $width; ?>px; height: <?php print $height; ?>px;">
++<div class="media-vimeo-outer-wrapper" id="media-vimeo-<?php print $id; ?>" style="width: <?php print $width; ?>; height: <?php print $height; ?>;">
+   <div class="media-vimeo-preview-wrapper" id="<?php print $wrapper_id; ?>">
+     <?php print $output; ?>
+   </div>
+diff --git a/includes/themes/media_vimeo.theme.inc b/includes/themes/media_vimeo.theme.inc
+index 348cd37..7fe6c6f 100644
+--- a/includes/themes/media_vimeo.theme.inc
++++ b/includes/themes/media_vimeo.theme.inc
+@@ -20,7 +20,14 @@ function media_vimeo_preprocess_media_vimeo_video(&$variables) {
+   $variables['wrapper_id'] = $wrapper_id;
+ 
+   // Load defaults and coerce these variables to integers.
+-  foreach (array('width', 'height', 'autoplay', 'fullscreen', 'loop', 'portrait', 'title', 'byline') as $key) {
++  $variables_to_coerce = array('autoplay', 'fullscreen', 'loop', 'portrait', 'title', 'byline');
++  if ( isset($variables['width']) && is_numeric($variables['width']) ) {
++    $variables_to_coerce[] = 'width';
++  }
++  if ( isset($variables['height']) && is_numeric($variables['height']) ) {
++    $variables_to_coerce[] = 'height';
++  }
++  foreach ($variables_to_coerce as $key) {
+     $variables[$key] = (int) (isset($variables[$key]) ? $variables[$key] : media_vimeo_variable_get($key));
+   }
+   $variables['color'] = str_replace('#', '', isset($variables['color']) ? $variables['color'] : media_vimeo_variable_get('color'));

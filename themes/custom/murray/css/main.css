@@ -85,7 +85,7 @@ body.front .toggle {
     background: url("../images/icons.png") no-repeat 0 -49px scroll transparent;
 }
 #wrapper {
-/*    
+/*
     background: url("../images/sidebar.png") repeat-y top center scroll transparent;
 */
     position: relative;
@@ -153,7 +153,7 @@ body.toolbar #sidebar-container {
     border-left : 1px solid rgb(255,255,255);
     border-left-color : rgba(255,255,255, 0.5);
     bottom: 0;
-    height : 100%;    
+    height : 100%;
 }
 
 #sidebar .body {
@@ -172,7 +172,7 @@ body.toolbar #sidebar-container {
   padding-bottom : 1px;
   border-bottom : 1px solid #888888;
 }
-#sidebar .body a:hover, 
+#sidebar .body a:hover,
 #sidebar .body a:focus {
   border-bottom-color : #444444;
 }
@@ -286,17 +286,17 @@ h1, h2 {
     display: inline ! important;
 }
 body.front #sidebar-container h2 a:hover,
-body.front #sidebar-container a:hover {  
+body.front #sidebar-container a:hover {
     border-color : rgb(51,51,51);
     border-color : rgba(51,51,51,0.5);
 }
 
 
 #sidebar-container div.title div.meta {
-    margin-left : 0.4em; 
--moz-text-shadow: none; 
--webkit-text-shadow: none; 
-text-shadow: none; 
+    margin-left : 0.4em;
+-moz-text-shadow: none;
+-webkit-text-shadow: none;
+text-shadow: none;
 }
 #sidebar-container div.title div.meta a {
     text-decoration: none;
@@ -414,7 +414,7 @@ text-shadow: none;
     text-align: right;
     font-size: 11px;
     color: #cccccc;
-    font-family: 'Ubuntu', Helvetica, Arial, sans-serif;    
+    font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
 }
 #bottom .copyright a {
     text-decoration: none;
@@ -507,7 +507,7 @@ body.slideshow-running #gallery a.navigation:hover {
 }
 #gallery ul li.active {
     z-index: 10;
-    display: block; 
+    display: block;
 }
 #gallery ul li.last-active {
   z-index : 9;
@@ -555,6 +555,21 @@ background-color: black;
      -o-box-sizing: border-box;
         box-sizing: border-box;
 }
+#gallery ul .media-vimeo-preview-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding-bottom: 190px;
+  box-sizing: border-box;
+}
+#gallery ul .media-vimeo-preview-wrapper iframe {
+
+}
+
+body.toolbar #gallery ul .media-vimeo-preview-wrapper{
+  padding-top: 65px;
+}
+
 #field_property p {
     margin: 0px;
     padding: 0px;
@@ -589,7 +604,7 @@ a.edit_property {
   display : inline;
 }
 .breadcrumb a:hover,
-.section #main-menu li a:hover, 
+.section #main-menu li a:hover,
 a.edit_property:hover {
   text-decoration : underline;
   color : red;
@@ -635,7 +650,7 @@ a.social {
   display : block;
   float : left;
   width : 16px;
-  height : 16px;  
+  height : 16px;
   margin-right : 8px;
   margin-bottom: 1.5em;
   padding-bottom : 0 ! important;

@@ -84,23 +84,35 @@ jQuery(document).ready(function(){
       _h = _next_slide.find("img")[0].height;
       _mt = -(_h-_wh)/2;
       alert(jQuery(window).height() + " " + _wh + " " + _h + " " + _mt);
-  
+
 //      alert("height " + _h + " window " + _wh + " margin " + _mt)
       _next_slide.children("a").css({marginTop : _mt, height : _h});
       */
     }
-
+// pause any active videos
+    pauseVideo(_active_slide);
     _active_slide.addClass('last-active');
     _updateSlideInfo(_next_slide);
+
+    // If its a video set the size.
+    if ( _next_slide.hasClass('type-video') ) {
+      var _h = jQuery('body').height();
+      var _w = jQuery('body').width();
+      _next_slide
+        .find('.media-vimeo-preview-wrapper').width(_w).height(_h)
+        .find('iframe').width(_w).height('100%')
+        ;
+
+    }
     _next_slide.css({opacity: 0.0}).addClass('active').animate(
-      {opacity: 1.0}, 
-      transition_speed, 
+      {opacity: 1.0},
+      transition_speed,
       function() {
         _active_slide.removeClass('active last-active');
       }
-    );    
-  }  
-  
+    );
+  }
+
 /*
   start the slideshow and trigger the first image update
   */
@@ -139,7 +151,36 @@ jQuery(document).ready(function(){
     }
   }
   
-  
+
+  var pauseVideo = function(slide) {
+    var iframe = jQuery("iframe", slide);
+    if ( iframe.size() ) {
+      var player = $f(iframe[0]);
+      player.api("pause");
+    }
+  }
+
+ 
+  jQuery('.type-video iframe').each(function(){
+// move the id to the iframe (not the div)
+    id = jQuery(this).closest("div").attr("id");
+    jQuery(this).attr("id", id);
+    jQuery(this).closest("div").removeAttr(id);
+  //  $f(this).addEvent('play', function(id) {alert(id)});
+    $f(this).addEvent('ready', function(id) {
+      var player = jQuery("iframe#" + id)[0];
+      $f(player).addEvent('play', function(id) {
+        _stopSlideshow();
+        _hideMenus();
+        _hideSidebar(); 
+      }); 
+      $f(player).addEvent('pause', function(id) {
+        _showMenus();
+        _showSidebar();
+      });
+    });
+  });
+
   var _stopSlideshow = function() {
     jQuery("body").removeClass("slideshow-running").stopTime("slideshow");
   }
@@ -260,8 +301,6 @@ jQuery(document).ready(function(){
 			});
 
     
-    
-     
 /*
 	handle the secondary menu exits
 */
@@ -353,7 +392,14 @@ jQuery(document).ready(function(){
 //        jQuery(target).animate({width:'toggle'},500)
         _showMenus();
     });
-	
+    
+    var _hideSidebar = function() {
+      jQuery('#sidebar').hide('slide',{direction:'right'}, 1000);
+    }	
+
+    var _showSidebar = function() {
+      jQuery('#sidebar').show('slide',{direction:'right'}, 500);
+    }
 	
 //  using opacity causes IE8 to render solid pngs 	
 	var _hideMenus = function() {

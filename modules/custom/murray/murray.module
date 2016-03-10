@@ -1,5 +1,5 @@
 <?php
-/*  
+/*
   things alex needs to learn
   - theme layer
   - commenting code
@@ -7,7 +7,7 @@
 
 
 function murray_init() {
-  drupal_add_library('system', 'effects.slide');  
+  drupal_add_library('system', 'effects.slide');
 }
 
 /**
@@ -15,7 +15,7 @@ function murray_init() {
  */
 function murray_block_info() {
   $blocks = array();
-  
+
   $blocks['get-thumbnails'] = array(
     'info' => t('Thubmails'),
     'cache' => DRUPAL_NO_CACHE,
@@ -24,7 +24,7 @@ function murray_block_info() {
     'info' => t('Slideshow on Front'),
     'cache' => DRUPAL_NO_CACHE,
   );
-  
+
   return $blocks;
 }
 
@@ -48,7 +48,7 @@ function murray_block_view($delta) {
   }
 }
 
-function murray_menu() 
+function murray_menu()
 {
    $items['murray_thumbnail/%'] = array(
         'title' => 'Home',
@@ -68,49 +68,49 @@ function murray_menu()
   Executed 65 queries in 5.93 ms. Queries exceeding 5 ms are highlighted. Page execution time was 280.82 ms. Memory used at: devel_boot()=1.71 MB, devel_shutdown()=20.99 MB, PHP peak=21.25 MB.
   */
 function get_project_id($tax_name = 'none') {
-   
+
    $type_id = 0;
-    
+
    $pdata = db_query("SELECT d.tid as id, d.name FROM {taxonomy_vocabulary} v inner join {taxonomy_term_data} d on v.vid = d.vid WHERE v.machine_name = :v_name and d.name = :tax_name order by name ", array(
           ':v_name' => 'project_type',
           ':tax_name' => $tax_name,
           ));
-          
+
    foreach($pdata as $p) {
           $type_id = $p->id;
    }
-   
+
    print $type_id;
-   
+
    //return $type_id;
-   
-    
+
+
 }
 
 function _murray_get_project_info($tax_name = 'none'){
-    
+
     global $base_url;
-    
+
     $file_directory_path = '/' . file_stream_wrapper_get_instance_by_uri('public://')->getDirectoryPath();
-    
+
     $output = "<ul>";
-    
+
     $type_id = 0;
-    
+
     $pdata = db_query("SELECT d.tid as id, d.name FROM {taxonomy_vocabulary} v inner join {taxonomy_term_data} d on v.vid = d.vid WHERE v.machine_name = :v_name and d.name = :tax_name order by name ", array(
           ':v_name' => 'project_type',
           ':tax_name' => $tax_name,
           ));
-          
+
      foreach($pdata as $p) {
             $type_id = $p->id;
      }
-     
-     
-    
+
+
+
     $result = db_query("
             SELECT node.title AS node_title, node.nid AS nid, nodequeue_nodes_node.position AS nodequeue_nodes_node_position
-            FROM 
+            FROM
             {node} node
             Left JOIN {nodequeue_nodes} nodequeue_nodes_node ON node.nid = nodequeue_nodes_node.nid AND nodequeue_nodes_node.qid = '1'
             LEFT JOIN {field_data_field_project_type} field_data_field_project_type ON node.nid = field_data_field_project_type.entity_id AND (field_data_field_project_type.entity_type = 'node' AND field_data_field_project_type.deleted = '0')
@@ -118,37 +118,37 @@ function _murray_get_project_info($tax_name = 'none'){
             ORDER BY nodequeue_nodes_node_position ASC ", array(
             ':type_id' => $type_id,
             ));
-    
+
     foreach($result as $node_item){
         $node = node_load($node_item->nid);
-        
+
         $media = $node->field_media;
-        
+
         $first_image = array();
         foreach($media as $value){
             if(!empty($value)){
-              $first_image = $value[0];  
+              $first_image = $value[0];
               break;
             }
         }
-        
-       
-        
+
+
+
         //Get File info.
         if(!empty($first_image)) {
             $file = db_query("Select * from {file_managed} Where fid = :fid",array(
             ':fid' => $first_image['fid']
             ));
-            
+
             $caption_value = "";
             if(isset($first_image['file']) && !empty($first_image['file'])){
                 $media_caption = $first_image['file']->field_media_caption;
-                
+
                 if(!empty($media_caption)){
                 foreach($media_caption as $item)
                     $caption_value = $item[0]['value'];
                 }
-                
+
             }
 //  get the date for the title region
 /*
@@ -156,8 +156,8 @@ function _murray_get_project_info($tax_name = 'none'){
              foreach ( $node_item->field_date as $value ) {
                 foreach ( $value as $item ) {
                   $date = $item['value'];
-                  $date_info .= $date; 
-                }      
+                  $date_info .= $date;
+                }
               }
 */
             $date = $node->field_date['und'][0]['value'];
@@ -165,33 +165,33 @@ function _murray_get_project_info($tax_name = 'none'){
             foreach($file as $file_item){
 //                $style_thumbnail = image_style_load('square_thumbnail');
   //              image_style_create_derivative($style_thumbnail, $file_item->uri, file_default_scheme() . '://styles/square_thumbnail/public/' . $file_item->filename);
-              $thumbnail_file_src = image_style_url("square_thumbnail", $file_item->uri);  
+              $thumbnail_file_src = image_style_url("square_thumbnail", $file_item->uri);
               $output.= '<li><a href="' . url('node/'.$node_item->nid) . '" class="thumb_nail"'.' data-date="' . $date . '"title="'. $node_item->node_title . '"><img src="' . $thumbnail_file_src . '" title="'. $node_item->node_title . '" /></a></li>';
-            }    
+            }
         } else {
-            $output.= '<li><a href="' . url('node/'.$node_item->nid) . '" class="thumb_nail"'.' title="'. $node_item->node_title . '">'.$node_item->node_title.'</a></li>';    
-        }        
-        
-        
+            $output.= '<li><a href="' . url('node/'.$node_item->nid) . '" class="thumb_nail"'.' title="'. $node_item->node_title . '">'.$node_item->node_title.'</a></li>';
+        }
+
+
     }
-    
+
     //print $output ."</ul>";
-    
+
     $output .= "</ul>";
-    
+
     if($output == "<ul></ul>") $output = "";
-    
+
     return $output;
-    
-    
+
+
     //exit(0);
-    
+
     //return serialize($output);
-    
+
 }
 
 /*
-  returns a formatted slideshow from a particular taxonomy 
+  returns a formatted slideshow from a particular taxonomy
   should return a slideshow for promoted projects
   doesn't return the project view slideshow
   returing nothing doesn't improve page load times
@@ -199,22 +199,22 @@ function _murray_get_project_info($tax_name = 'none'){
   */
 function _murray_get_project_slide_info($term = null){
     global $base_url;
-    
-    $file_directory_path = '/' . file_stream_wrapper_get_instance_by_uri('public://')->getDirectoryPath();    
+
+    $file_directory_path = '/' . file_stream_wrapper_get_instance_by_uri('public://')->getDirectoryPath();
     $output = "";
-    
+
 //  get a bunch of nids based on promotion and an optional term
     if ( intval($term) ) {
       $result = db_query("SELECT node.title AS node_title, node.nid AS nid
         FROM {node} node
-        LEFT JOIN {field_data_field_project_type} field_data_field_project_type 
-          ON node.nid = field_data_field_project_type.entity_id 
-            AND (field_data_field_project_type.entity_type = 'node' 
+        LEFT JOIN {field_data_field_project_type} field_data_field_project_type
+          ON node.nid = field_data_field_project_type.entity_id
+            AND (field_data_field_project_type.entity_type = 'node'
             AND field_data_field_project_type.deleted = '0')
         WHERE (
-          ( 
-            (node.status = '1') 
-          AND (node.type IN  ('project')) 
+          (
+            (node.status = '1')
+          AND (node.type IN  ('project'))
           AND (field_data_field_project_type.field_project_type_tid = :type_id ) ))
         ORDER BY rand()", array(
         ':type_id' => $term,
@@ -223,15 +223,15 @@ function _murray_get_project_slide_info($term = null){
     } else {
       $result = db_query("SELECT nid
         FROM {node} node
-        LEFT JOIN {field_data_field_project_type} field_data_field_project_type 
-          ON node.nid = field_data_field_project_type.entity_id 
-            AND (field_data_field_project_type.entity_type = 'node' 
+        LEFT JOIN {field_data_field_project_type} field_data_field_project_type
+          ON node.nid = field_data_field_project_type.entity_id
+            AND (field_data_field_project_type.entity_type = 'node'
             AND field_data_field_project_type.deleted = '0')
         WHERE (
-          ( 
-            (node.status = '1') 
-          AND (node.promote = '1') 
-          AND (node.type IN  ('project')) 
+          (
+            (node.status = '1')
+          AND (node.promote = '1')
+          AND (node.type IN  ('project'))
            ))
         ORDER BY rand()", array(
         )
@@ -242,73 +242,73 @@ function _murray_get_project_slide_info($term = null){
     $nids = array();
     foreach ($result as $obj) {
       $nids[] = $obj->nid;
-    }    
+    }
 
     //  load all the nodes now
-    $nodes = node_load_multiple($nids);    
+    $nodes = node_load_multiple($nids);
     $iterator = 0;
 //    krumo($nodes);
-    shuffle(&$nodes);
-    foreach($nodes as $node){        
+    shuffle($nodes);
+    foreach($nodes as $node){
 
       $body = "";
       foreach($node->body as $body_item){
         $body = $body_item[0]['value'];
       }
-         
+
       $date_info ="";
        foreach ( $node->field_date as $value ) {
           foreach ( $value as $item ) {
             $date = $item['value'];
-            $date_info .= $date; 
-          }      
+            $date_info .= $date;
+          }
         }
-        
+
 //  get the first media asset
-        $media = $node->field_media;        
+        $media = $node->field_media;
         $first_image = array();
         foreach($media as $value){
             if(!empty($value)){
-              $first_image = $value[0];  
+              $first_image = $value[0];
               break;
             }
         }
-        
+
         //Get File info.
         if(!empty($first_image)) {
             $file = db_query("Select * from {file_managed} Where fid = :fid",array(
             ':fid' => $first_image['fid']
             ));
-            
+
             $caption_value = "";
             $classes = array();
-            
+
             if(isset($first_image['file']) && !empty($first_image['file'])){
                 $media_caption = $first_image['file']->field_media_caption;
                 if ( $first_image['file']->field_media_crop['und'][0]['value'] == 1 ) {
                   $classes[] = 'crop';
                 }
-                
+
                 if(!empty($media_caption)){
                 foreach($media_caption as $item)
                     $caption_value = $item[0]['value'];
                 }
             }
-            
+
             foreach ( $file as $file_item ) {
 //  if there is no file then skip ahead
-                if ( ! $file_item->filename ) 
+                if ( ! $file_item->filename )
                   continue;
 
 //                $style_thumbnail = image_style_load('large');
 //  this creates an image even if one exists
 //                image_style_create_derivative($style_thumbnail, $file_item->uri, file_default_scheme() . '://styles/large/public/' . $file_item->filename);
                 $large_file_src = image_style_url("large", $file_item->uri);
-                
+
                 if ( $iterator === 0 ) {
                   $classes[] = "active";
                   $classes[] = "first";
-                } 
+                }
                 $classes[] = "item-$iterator";
 
                 $output .= '<li class="' . implode(" ", $classes) . '"><a href="'. url("node/".$node->nid) .'" title="'. $caption_value . '" ><img src="' . $large_file_src . '" title="'. $caption_value . '" /></a>';
@@ -317,21 +317,21 @@ function _murray_get_project_slide_info($term = null){
                 $output .= '</h2><div class="meta">';
                 $output .= l($date_info, "node/".$node->nid);
                 $output .= '</div></div><div class="detail-body">' . $body. '</div></li>';
-                
+
                 $iterator++;
-            }    
-        }    
+            }
+        }
     }
     return $output;
 }
 
 
 /*
-  returns a formatted row of thumbnails from a particular taxonomy 
+  returns a formatted row of thumbnails from a particular taxonomy
   */
 function _murray_get_thumbnails() {
     $output = "";
-    
+
     $pdata = db_query("SELECT d.tid as id, d.name FROM {taxonomy_vocabulary} v inner join {taxonomy_term_data} d on v.vid = d.vid WHERE v.machine_name = :name order by name ", array(
           ':name' => 'project_type',
           ));
@@ -343,15 +343,15 @@ function _murray_get_thumbnails() {
           $classes[] = 'active';
         }
         $path = drupal_get_path_alias("taxonomy/term/" . $tid);
-        
-        $path = explode("/",$path);        
+
+        $path = explode("/",$path);
         //exit(0);
         $term_name = $term_data->name;
         $output .= '<div id="works-'.$path[count($path)-1].'" class="' . implode(" ", $classes) . '">';
         $output .= _murray_get_project_info($term_name);
         $output .= '</div>';
     }
-    
+
     return $output;
 }
 
@@ -361,14 +361,14 @@ function _murray_get_thumbnails() {
   */
 function _murray_get_slideshow() {
     $output = "<ul>";
-/*    
+/*
     $pdata = db_query("SELECT d.tid as id, d.name FROM {taxonomy_vocabulary} v inner join {taxonomy_term_data} d on v.vid = d.vid WHERE v.machine_name = :name order by name ", array(
           ':name' => 'project_type',
           ));
     foreach($pdata as $term_data){
         $tid = $term_data->id;
         $path = drupal_get_path_alias("taxonomy/term/" . $tid);
-        $path = explode("/",$path);        
+        $path = explode("/",$path);
         //exit(0);
         $term_name = $term_data->name;
         $output .= _murray_get_project_slide_info($term_name);
@@ -380,9 +380,9 @@ function _murray_get_slideshow() {
       $term = arg(2);
     }
     $output .= _murray_get_project_slide_info($term);
-    
+
     $output .= "</ul>";
     if($output == "<ul></ul>") $output = "";
-    
+
     return $output;
 }
